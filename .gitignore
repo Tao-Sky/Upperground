@@ -1,6 +1,5 @@
 *.sln
 *.csproj
 *.unityproj
-*.meta
 Library/
 Temp/

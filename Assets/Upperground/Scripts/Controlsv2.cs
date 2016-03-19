@@ -16,6 +16,7 @@ public class Controlsv2 : MonoBehaviour
 
     private Transform groundCheck;          // A position marking where to check if the player is grounded.
     private bool grounded = false;          // Whether or not the player is grounded.
+    public LayerMask ground_layer;
     public Animator anim;                  // Reference to the player's animator component.
 
 
@@ -29,10 +30,10 @@ public class Controlsv2 : MonoBehaviour
 
     void Update()
     {
-        // The player is grounded if a linecast to the groundcheck position hits anything on the ground layer.
-        grounded = true;//Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+        Vector2 feet = new Vector2(transform.position.x, transform.position.y - 1f/*- GetComponent<BoxCollider2D>().bounds.extents.y*/);
+        grounded = Physics2D.OverlapCircle(feet, 0.2f, ground_layer);
 
-        // If the jump button is pressed and the player is grounded then the player should jump.
+        Debug.Log(grounded + " " + feet);
         if (Input.GetButtonDown("Jump") && grounded)
             jump = true;
     }
@@ -62,11 +63,11 @@ public class Controlsv2 : MonoBehaviour
             //flip the player.
             Flip();
 
-  
+
         if (jump)
         {
             // Set the Jump animator trigger parameter.
-           // anim.SetTrigger("Jump");
+            // anim.SetTrigger("Jump");
 
 
             // Add a vertical force to the player.

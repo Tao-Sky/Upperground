@@ -15,7 +15,7 @@ public class Controlsv2 : MonoBehaviour
     public GameObject playerobject;
 
     private Transform groundCheck;          // A position marking where to check if the player is grounded.
-    private bool grounded = false;          // Whether or not the player is grounded.
+    public bool grounded = false;          // Whether or not the player is grounded.
     public LayerMask ground_layer;
     public Animator anim;                  // Reference to the player's animator component.
 

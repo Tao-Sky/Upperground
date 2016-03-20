@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Controlsv2 : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [HideInInspector]
     public bool facingRight = true;         // For determining which way the player is currently facing.
@@ -35,7 +35,24 @@ public class Controlsv2 : MonoBehaviour
 
         Debug.Log(grounded + " " + feet);
         if (Input.GetButtonDown("Jump") && grounded)
-            jump = true;
+			jump = true;
+		
+		if(grounded) 
+		{
+			anim.SetBool("grounded", true);
+		}
+		else 
+		{
+			anim.SetBool("grounded", false);
+			if (GetComponent<Rigidbody2D> ().velocity.y > 0) 
+			{
+				anim.SetBool ("up", true);
+			}
+			else 
+			{
+				anim.SetBool("up", false);
+			}
+		}
     }
 
 

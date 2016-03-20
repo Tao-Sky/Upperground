@@ -19,3 +19,24 @@ D:\Unity Projects\Test Niveau\Temp\bin\Debug\UnityEngine.Networking.xml
 D:\Unity Projects\Test Niveau\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 D:\Unity Projects\Test Niveau\obj\Debug\Assembly-CSharp.dll
 D:\Unity Projects\Test Niveau\obj\Debug\Assembly-CSharp.pdb
+D:\Upperground 2 - Backup\Temp\bin\Debug\Assembly-CSharp.dll
+D:\Upperground 2 - Backup\Temp\bin\Debug\Assembly-CSharp.pdb
+D:\Upperground 2 - Backup\Temp\bin\Debug\UnityEditor.dll
+D:\Upperground 2 - Backup\Temp\bin\Debug\UnityEngine.dll
+D:\Upperground 2 - Backup\Temp\bin\Debug\UnityEngine.Networking.dll
+D:\Upperground 2 - Backup\Temp\bin\Debug\UnityEngine.UI.dll
+D:\Upperground 2 - Backup\Temp\bin\Debug\Mono.Cecil.dll
+D:\Upperground 2 - Backup\Temp\bin\Debug\Unity.SerializationLogic.dll
+D:\Upperground 2 - Backup\Temp\bin\Debug\Unity.DataContract.dll
+D:\Upperground 2 - Backup\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+D:\Upperground 2 - Backup\Temp\bin\Debug\Unity.UNetWeaver.dll
+D:\Upperground 2 - Backup\Temp\bin\Debug\Unity.CecilTools.dll
+D:\Upperground 2 - Backup\Temp\bin\Debug\Mono.Cecil.Pdb.dll
+D:\Upperground 2 - Backup\Temp\bin\Debug\Mono.Cecil.Mdb.dll
+D:\Upperground 2 - Backup\Temp\bin\Debug\UnityEngine.xml
+D:\Upperground 2 - Backup\Temp\bin\Debug\UnityEditor.xml
+D:\Upperground 2 - Backup\Temp\bin\Debug\UnityEngine.UI.xml
+D:\Upperground 2 - Backup\Temp\bin\Debug\UnityEngine.Networking.xml
+D:\Upperground 2 - Backup\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
+D:\Upperground 2 - Backup\obj\Debug\Assembly-CSharp.dll
+D:\Upperground 2 - Backup\obj\Debug\Assembly-CSharp.pdb

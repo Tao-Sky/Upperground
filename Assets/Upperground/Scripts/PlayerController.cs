@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
         Vector2 feet = new Vector2(transform.position.x, transform.position.y - 1f/*- GetComponent<BoxCollider2D>().bounds.extents.y*/);
         grounded = Physics2D.OverlapCircle(feet, 0.2f, ground_layer);
 
-        Debug.Log(grounded + " " + feet);
+        //Debug.Log(grounded + " " + feet);
         if (Input.GetButtonDown("Jump") && grounded)
 			jump = true;
 		

@@ -1,11 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Upperground\Scripts\triggerMachine.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Upperground\Scripts\SoundManager.cs">
     <Files>
-      <File FileName="Assets\Upperground\Scripts\triggerMachine.cs" Line="9" Column="6" />
+      <File FileName="Assets\Upperground\Scripts\SoundManager.cs" Line="53" Column="23" />
+      <File FileName="Assets\Upperground\Scripts\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Upperground\Scripts\triggerMachine.cs" Line="1" Column="1" />
       <File FileName="Assets\Upperground\Shaders\Violet.shader" Line="1" Column="1" />
-      <File FileName="Assets\Upperground\Scripts\PlayerController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Upperground\Scripts\PlayerController.cs" Line="36" Column="11" />
       <File FileName="Assets\Upperground\Scripts\ChangeColor.cs" Line="1" Column="1" />
+      <File FileName="Assets\Upperground\Scripts\MusicLvl1.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

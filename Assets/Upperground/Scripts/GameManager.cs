@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour {
 			if(Input.GetButtonDown("Start"))
 			{
 				SetPause (true);
-				Debug.Log ("coucou c'est la pause");
 			}
 		}
 		else
@@ -47,7 +46,6 @@ public class GameManager : MonoBehaviour {
 			if(Input.GetButtonDown("Start"))
 			{
 				SetPause (false);
-				Debug.Log ("coucou c'est plus la pause");
 			}
 		}
 	}

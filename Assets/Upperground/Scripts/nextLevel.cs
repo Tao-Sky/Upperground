@@ -27,6 +27,7 @@ public class nextLevel : MonoBehaviour {
             {
                 Sha.transform.position = teleportationpoint.transform.position;                             
             }
+
             if (teleportationpoint.transform.position.x < 30)
             {
                 gamemanager.GetComponent<GameManager>().level = 0;

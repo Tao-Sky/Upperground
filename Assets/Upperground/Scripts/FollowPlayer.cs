@@ -50,7 +50,7 @@ public class FollowPlayer : MonoBehaviour {
 
     public void MoveTowardsPlayer()
     {
-        transform.LookAt(target.position);
+		transform.LookAt(new Vector3(target.position.x,target.position.y,transform.position.z));
         transform.Rotate(new Vector3(0, -90, 0), Space.Self);
 
         if (dist > 5)

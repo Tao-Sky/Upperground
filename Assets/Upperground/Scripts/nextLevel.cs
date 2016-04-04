@@ -25,7 +25,7 @@ public class nextLevel : MonoBehaviour {
             camera.GetComponent<CameraController>().IsFollowing=false;
             if (Sha.GetComponent<FollowPlayer>().playerFound)
             {
-                Sha.transform.position = teleportationpoint.transform.position;                             
+				Sha.transform.position = new Vector3(teleportationpoint.transform.position.x,teleportationpoint.transform.position.y,Sha.transform.position.z);                             
             }
 
             if (teleportationpoint.transform.position.x < 30)

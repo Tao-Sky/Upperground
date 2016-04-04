@@ -4,6 +4,7 @@ using System.Collections;
 
 public class SoundManager : MonoBehaviour {
 
+	public GameObject Player;
 
 	public AudioSource Drum ;
 	public AudioSource Synth ;
@@ -23,16 +24,19 @@ public class SoundManager : MonoBehaviour {
 	public AudioMixerSnapshot SnapLead1, SnapLead2;
 	public AudioMixerSnapshot SnapBridge1, SnapBridge2;
 
+	private double xBass = -30.0f;
+	private double xDrum = -2.3f;
+	private double xLead = 53.0f;
 
-	private bool entree1;
-	private bool entree2;
+	private bool boolBass=false;
+	private bool boolDrum=false;
+	private bool boolLead=false;
+
 
 
 	// Use this for initialization
 
 	void Start () {
-		entree1 = true;
-		entree2 = true;
 		LoadTracksLvl1 ();
 		Drum.Play ();
 		Synth.Play ();
@@ -46,6 +50,24 @@ public class SoundManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		
+		if(Player.transform.position.x > xBass && !boolBass && IsNotBridge)
+		{
+			boolBass = true;
+			SnapBass1.TransitionTo (2);
+		}
+		if(Player.transform.position.x > xDrum && !boolDrum && IsNotBridge)
+		{
+			boolDrum = true;
+			SnapDrum1.TransitionTo (2);
+		}
+		if(Player.transform.position.x > xLead && !boolLead && IsNotBridge)
+		{
+			boolLead = true;
+			SnapLead1.TransitionTo (2);
+		}
+	
+
 		if(CurrentTime > TimeLvl1 )
 		{
 			if(IsNotBridge)
@@ -53,6 +75,14 @@ public class SoundManager : MonoBehaviour {
 				CallBridge (true);
 				IsNotBridge = false;
 				CurrentTime = 0.0;
+				/*if(facteurBridge%4 == 0)
+				{
+					SwitchTheme (true);
+				}
+				else
+				{
+					SwitchTheme (false);
+				}*/
 			}
 
 			else
@@ -75,18 +105,36 @@ public class SoundManager : MonoBehaviour {
 		if(b)
 		{
 			SnapBridge1.TransitionTo (0);
-			SnapDrum2.TransitionTo (0);
 			SnapSynth2.TransitionTo (0);
-			SnapBass2.TransitionTo (0);
-			SnapLead2.TransitionTo (0);
+			if(boolDrum)
+			{
+				SnapDrum2.TransitionTo (0);
+			}
+			if(boolBass) 
+			{	
+				SnapBass2.TransitionTo (0);
+			}
+			if(boolLead)
+			{
+				SnapLead2.TransitionTo (0);
+			}
 		}
 		else
 		{
 			SnapBridge2.TransitionTo (0);
 			SnapSynth1.TransitionTo (0);
-			SnapDrum1.TransitionTo (0);
-			SnapBass1.TransitionTo (0);
-			SnapLead1.TransitionTo (0);			
+			if(boolDrum)
+			{
+				SnapDrum1.TransitionTo (0);
+			}
+			if(boolBass) 
+			{	
+				SnapBass1.TransitionTo (0);
+			}
+			if(boolLead)
+			{
+				SnapLead1.TransitionTo (0);
+			}
 		}
 	}
 
@@ -95,7 +143,7 @@ public class SoundManager : MonoBehaviour {
 		if(b)
 		{
 			Lead.Stop ();
-			Lead.clip = track [5];
+			Lead.clip = ;
 			Drum.Stop ();
 			Drum.clip = track [3];
 			Lead.Play ();
@@ -114,7 +162,7 @@ public class SoundManager : MonoBehaviour {
 	}
 
 	void LoadTracksLvl1()
-	{
+	{/*
 		track[0]=(AudioClip)Resources.Load("Assets/Upperground/Sound/Music/Lvl1/Synth");
 		track[1]=(AudioClip)Resources.Load("Assets/Upperground/Sound/Music/Lvl1/Bass");
 		track[2]=(AudioClip)Resources.Load("Assets/Upperground/Sound/Music/Lvl1/Drum1");
@@ -122,7 +170,7 @@ public class SoundManager : MonoBehaviour {
 		track[4]=(AudioClip)Resources.Load("Assets/Upperground/Sound/Music/Lvl1/Lead1");
 		track[5]=(AudioClip)Resources.Load("Assets/Upperground/Sound/Music/Lvl1/Lead2");
 		track[6]=(AudioClip)Resources.Load("Assets/Upperground/Sound/Music/Lvl1/Bridge");
-
+		*/
 		SnapSynth1.TransitionTo (0);
 		SnapBass2.TransitionTo (0);
 		SnapBridge2.TransitionTo (0);

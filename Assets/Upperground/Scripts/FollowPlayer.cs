@@ -13,6 +13,7 @@ public class FollowPlayer : MonoBehaviour {
     private Vector3 lastDestination;
 
     bool inPlayerRadius = false;
+    public bool playerFound = false;
 
     void Start()
     {
@@ -26,6 +27,8 @@ public class FollowPlayer : MonoBehaviour {
         if (!inPlayerRadius && dist < 10)
         {
             MoveTowardsPlayer();
+            playerFound = true;
+            Debug.Log(playerFound);
         }
 
         lastDist = dist;

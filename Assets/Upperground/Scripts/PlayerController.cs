@@ -19,6 +19,12 @@ public class PlayerController : MonoBehaviour
     public LayerMask ground_layer;
     public Animator anim;                  // Reference to the player's animator component.
 
+    //pour l'hud
+    public GameObject rouepouvoir;
+    private bool swap = true;
+
+    //pouvoirs
+    private int power = 0;
 
     void Awake()
     {
@@ -53,6 +59,35 @@ public class PlayerController : MonoBehaviour
 				anim.SetBool("up", false);
 			}
 		}
+
+        //pour l'hud
+        if (Input.GetAxis("gachette gauche") < 0.2 && Input.GetAxis("gachette droite") < 0.2)
+        {
+            swap = true;
+        }
+
+        if (Input.GetAxis("gachette gauche") > 0.2 && swap)
+        {
+            if (power == 0)
+            {
+                power = 3;
+            }
+            else
+            {
+                power = power - 1;
+            }
+            Debug.Log("test pouvoir " + power);
+            swap = false;
+            rouepouvoir.transform.Rotate(0, 0, -90);
+        }
+
+        if (Input.GetAxis("gachette droite") > 0.2 && swap)
+        {
+            power = Mathf.Abs((power + 1) % 4);
+            Debug.Log("test pouvoir " + power);
+            swap = false;
+            rouepouvoir.transform.Rotate(0, 0, 90);
+        }
     }
 
 

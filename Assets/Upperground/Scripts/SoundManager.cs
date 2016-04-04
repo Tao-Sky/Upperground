@@ -50,7 +50,7 @@ public class SoundManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		
+		Debug.Log (boolLead);
 		if(Player.transform.position.x > xBass && !boolBass && IsNotBridge)
 		{
 			boolBass = true;
@@ -143,7 +143,7 @@ public class SoundManager : MonoBehaviour {
 		if(b)
 		{
 			Lead.Stop ();
-			Lead.clip = ;
+			Lead.clip = track[5];
 			Drum.Stop ();
 			Drum.clip = track [3];
 			Lead.Play ();

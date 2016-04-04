@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour {
 		Margin,
 		Smoothing;
 
-	public BoxCollider2D Bounds;
+	public BoxCollider2D[] Bounds;
 
 	private Vector3
 		min,
@@ -19,14 +19,22 @@ public class CameraController : MonoBehaviour {
 
 	public void Start()
 	{
-		min = Bounds.bounds.min;
-		max = Bounds.bounds.max;
+		min = Bounds[0].bounds.min;
+		max = Bounds[0].bounds.max;
 		IsFollowing = true;
 	}
 
+    public void changeCadre()
+    {
+        GameManager gamemanager = FindObjectOfType<GameManager>();
+        min = Bounds[gamemanager.GetComponent<GameManager>().level].bounds.min;
+        max = Bounds[gamemanager.GetComponent<GameManager>().level].bounds.max;
+        IsFollowing = true;
+    }
+
 	public void Update()
 	{
-		var x = transform.position.x;
+        var x = transform.position.x;
 		var y = transform.position.y;
 
 		if (IsFollowing) 

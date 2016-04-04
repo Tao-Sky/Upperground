@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour {
 		get { return manager; }
 	}
 
+    public int level;
+
 	void Awake()
 	{
 		GetThisGameManager();
@@ -26,7 +28,7 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-	
+        level = 0;
 	}
 	
 	// Update is called once per frame

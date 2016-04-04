@@ -19,8 +19,8 @@ public class Triggergenerator : MonoBehaviour {
         {
             GameObject door = GameObject.Find("door");
             door.GetComponent<BoxCollider2D>().enabled = false;
+			door.GetComponent<Animator> ().Play ("Open",-1,-1.0f);
             door.GetComponent<SpriteRenderer>().sprite = oppendoor;
-            Debug.Log("putain ça marche");
         }
     }
 }

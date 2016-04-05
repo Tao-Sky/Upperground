@@ -49,7 +49,16 @@ public class EnemyPathing : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Player")
         {
-            Destroy(coll.gameObject);
+            GameObject[] listeCP = GameObject.FindGameObjectsWithTag("Checkpoint");
+
+            foreach (GameObject g in listeCP)
+            {
+                if (g.GetComponent<TriggerCheckpoint>().getIsActivated() == true)
+                {
+                    coll.transform.position = new Vector3(g.transform.position.x, g.transform.position.y - 4.0f, coll.transform.position.z);
+                    break;
+                }
+            }
         }
     }
 

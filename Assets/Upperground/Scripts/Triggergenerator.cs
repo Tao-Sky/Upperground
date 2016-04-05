@@ -5,6 +5,7 @@ public class Triggergenerator : MonoBehaviour {
     public Sprite oppendoor;
 	public Sprite restored;
 	private bool Sprite = true;
+	public bool allume = false;
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
@@ -42,6 +43,7 @@ public class Triggergenerator : MonoBehaviour {
 			GetComponentInChildren<SpriteRenderer>().enabled = false;
 
 			Sprite = false;
+			allume = true;
         }
     }
 }

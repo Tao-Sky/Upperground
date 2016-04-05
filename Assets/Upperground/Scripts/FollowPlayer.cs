@@ -32,7 +32,6 @@ public class FollowPlayer : MonoBehaviour {
         {
             MoveTowardsPlayer();
             playerFound = true;
-            Debug.Log(playerFound);
         }
 
         lastDist = dist;

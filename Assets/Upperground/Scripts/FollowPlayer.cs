@@ -18,6 +18,11 @@ public class FollowPlayer : MonoBehaviour {
     //pour la coroutine
     public bool nocoroutine = true;
     public GameObject ps;
+    public int appel =0;
+    public GameObject systemeparticulesha;
+
+    //pour le jeu global
+    public int PowerUnlocked=0;
 
     void Start()
     {
@@ -78,28 +83,43 @@ public class FollowPlayer : MonoBehaviour {
         inPlayerRadius = b;
     }
 
-    public void goToMachine()
+    public void goToMachine(Vector3 cible,float time)
     {
 
-        StartCoroutine(MachineCoroutine(transform));
+        StartCoroutine(MachineCoroutine(transform,cible,time));
 
     }
 
 
-    IEnumerator MachineCoroutine(Transform target)
+    IEnumerator MachineCoroutine(Transform target,Vector3 centremachine,float time)
     {
-        nocoroutine = false;
-        Vector3 centremachine = new Vector3(-12.18f, -6.85f, -1.50f);
+        nocoroutine = false;        
         while (Vector3.Distance(centremachine, target.position) > 0.1f)
         {
             target.position = Vector3.Lerp(centremachine, target.position, 59.0f * Time.deltaTime);
             yield return null;
         }
 
-        ps.SetActive(true);
+        if (appel == 1)
+        {
+            ps.SetActive(true);
+        }
+        if(appel == 2)
+        {
+            systemeparticulesha.transform.position = new Vector3(systemeparticulesha.transform.position.x, systemeparticulesha.transform.position.y, 1.0f);
+        }
+
         //Debug.Log("je suis a destination");
-        yield return new WaitForSeconds(5f);
-        ps.SetActive(false);
+        yield return new WaitForSeconds(time);
+        if (appel == 1)
+        {
+            ps.SetActive(false);
+            systemeparticulesha.SetActive(true);
+        }
+        if (appel == 2)
+        {
+            systemeparticulesha.transform.position=new Vector3(systemeparticulesha.transform.position.x, systemeparticulesha.transform.position.y,0.5f);
+        }
         nocoroutine = true;
         //Debug.Log("je suis enfin fini");
     }

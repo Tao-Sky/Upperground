@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     private bool swap = true;
 
     //pouvoirs
-    private int power = 0;
+    public int power = 0;
 
     void Awake()
     {
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         grounded = Physics2D.OverlapCircle(feet, 0.2f, ground_layer);
 
         //Debug.Log(grounded + " " + feet);
-        if ((Input.GetButtonDown("A button") || Input.GetButtonDown("Jump")) && grounded)
+        if ((Input.GetButtonDown("A button") /*|| Input.GetButtonDown("Jump")*/) && grounded)
             jump = true;
 
         if (grounded)

@@ -15,6 +15,10 @@ public class FollowPlayer : MonoBehaviour {
     bool inPlayerRadius = false;
     public bool playerFound = false;
 
+    //pour la coroutine
+    private bool nocoroutine = true;
+    public GameObject ps;
+
     void Start()
     {
 
@@ -24,7 +28,7 @@ public class FollowPlayer : MonoBehaviour {
     {
         dist = Vector3.Distance(transform.position, target.position);
 
-        if (!inPlayerRadius && dist < 10)
+        if (!inPlayerRadius && dist < 10 && nocoroutine)
         {
             MoveTowardsPlayer();
             playerFound = true;
@@ -73,5 +77,34 @@ public class FollowPlayer : MonoBehaviour {
     public void setInPlayerRadius(bool b)
     {
         inPlayerRadius = b;
+    }
+
+    public void goToMachine()
+    {
+
+        StartCoroutine(MachineCoroutine(transform));
+
+    }
+
+
+    IEnumerator MachineCoroutine(Transform target)
+    {
+
+
+
+        nocoroutine = false;
+        Vector3 centremachine = new Vector3(-12.18f, -6.85f, -1.55f);
+        while (Vector3.Distance(centremachine, target.position) > 0.1f)
+        {
+            target.position = Vector3.Lerp(centremachine, target.position, 5.0f * Time.deltaTime);
+            yield return null;
+        }
+
+        ps.SetActive(true);
+        //Debug.Log("je suis a destination");
+        yield return new WaitForSeconds(5f);
+        ps.SetActive(false);
+        nocoroutine = true;
+        //Debug.Log("je suis enfin fini");
     }
 }

@@ -55,7 +55,12 @@ public class EnemyPathing : MonoBehaviour {
             {
                 if (g.GetComponent<TriggerCheckpoint>().getIsActivated() == true)
                 {
+                    coll.gameObject.GetComponent<PlayerController>().isRespawning = true;
                     coll.transform.position = new Vector3(g.transform.position.x, g.transform.position.y - 4.0f, coll.transform.position.z);
+                    GameObject s = GameObject.Find("Sha");
+                    if (s.GetComponent<FollowPlayer>().playerFound == true && s.GetComponent<FollowPlayer>().nocoroutine == true)
+                        s.transform.position = new Vector3(g.transform.position.x, g.transform.position.y - 4.0f, s.transform.position.z);
+
                     break;
                 }
             }

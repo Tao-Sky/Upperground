@@ -16,7 +16,7 @@ public class FollowPlayer : MonoBehaviour {
     public bool playerFound = false;
 
     //pour la coroutine
-    private bool nocoroutine = true;
+    public bool nocoroutine = true;
     public GameObject ps;
 
     void Start()
@@ -89,14 +89,11 @@ public class FollowPlayer : MonoBehaviour {
 
     IEnumerator MachineCoroutine(Transform target)
     {
-
-
-
         nocoroutine = false;
-        Vector3 centremachine = new Vector3(-12.18f, -6.85f, -1.55f);
+        Vector3 centremachine = new Vector3(-12.18f, -6.85f, -1.50f);
         while (Vector3.Distance(centremachine, target.position) > 0.1f)
         {
-            target.position = Vector3.Lerp(centremachine, target.position, 5.0f * Time.deltaTime);
+            target.position = Vector3.Lerp(centremachine, target.position, 59.0f * Time.deltaTime);
             yield return null;
         }
 

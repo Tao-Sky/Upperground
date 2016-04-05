@@ -43,8 +43,6 @@ public class SoundManager : MonoBehaviour {
 		Bass.Play ();
 		Lead.Play ();
 		Bridge.Play ();
-
-
 	}
 
 	// Update is called once per frame

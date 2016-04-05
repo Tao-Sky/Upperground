@@ -6,13 +6,14 @@ public class SoundManager : MonoBehaviour {
 
 	public GameObject Player;
 
-	public AudioSource Drum ;
+	public AudioSource Drum1 ;
+	public AudioSource Drum2 ;
 	public AudioSource Synth ;
 	public AudioSource Bass ;
-	public AudioSource Lead ;
+	public AudioSource Lead1 ;
+	public AudioSource Lead2 ;
 	public AudioSource Bridge ;
 
-	private AudioClip[] track = new AudioClip[7];
 	private double TimeLvl1 = 29.088;
 	private double CurrentTime = 0.0;
 	private bool IsNotBridge = true;
@@ -28,43 +29,28 @@ public class SoundManager : MonoBehaviour {
 	private double xDrum = -2.3f;
 	private double xLead = 53.0f;
 
+	private int level;
+
 	private bool boolBass=false;
 	private bool boolDrum=false;
 	private bool boolLead=false;
 
 
-
 	// Use this for initialization
 
 	void Start () {
-		LoadTracksLvl1 ();
-		Drum.Play ();
+		LoadSnaps ();
+		Drum1.Play ();
 		Synth.Play ();
 		Bass.Play ();
-		Lead.Play ();
+		Lead1.Play ();
 		Bridge.Play ();
 	}
 
 	// Update is called once per frame
 	void Update () 
 	{
-		//Debug.Log (boolLead);
-		if(Player.transform.position.x > xBass && !boolBass && IsNotBridge)
-		{
-			boolBass = true;
-			SnapBass1.TransitionTo (2);
-		}
-		if(Player.transform.position.x > xDrum && !boolDrum && IsNotBridge)
-		{
-			boolDrum = true;
-			SnapDrum1.TransitionTo (2);
-		}
-		if(Player.transform.position.x > xLead && !boolLead && IsNotBridge)
-		{
-			boolLead = true;
-			SnapLead1.TransitionTo (2);
-		}
-	
+		ControlPosition();
 
 		if(CurrentTime > TimeLvl1 )
 		{
@@ -73,14 +59,14 @@ public class SoundManager : MonoBehaviour {
 				CallBridge (true);
 				IsNotBridge = false;
 				CurrentTime = 0.0;
-				/*if(facteurBridge%4 == 0)
+				if(facteurBridge%4 == 0)
 				{
 					SwitchTheme (true);
 				}
 				else
 				{
 					SwitchTheme (false);
-				}*/
+				}
 			}
 
 			else
@@ -97,7 +83,7 @@ public class SoundManager : MonoBehaviour {
 		}
 
 	}
-		
+
 	void CallBridge(bool b)
 	{
 		if(b)
@@ -140,39 +126,56 @@ public class SoundManager : MonoBehaviour {
 	{
 		if(b)
 		{
-			Lead.Stop ();
-			Lead.clip = track[5];
-			Drum.Stop ();
-			Drum.clip = track [3];
-			Lead.Play ();
-			Drum.Play ();
+			Lead1.Stop ();
+			Drum1.Stop ();
+			Lead2.Play ();
+			Drum2.Play ();
 		}
 		else
 		{
-			Lead.Stop ();
-			Lead.clip = track [4];
-			Drum.Stop ();
-			Drum.clip = track [2];
-			Lead.Play ();
-			Drum.Play ();
+			Lead2.Stop ();
+			Drum2.Stop ();
+			Lead1.Play ();
+			Drum1.Play ();
 		}
 
 	}
 
-	void LoadTracksLvl1()
-	{/*
-		track[0]=(AudioClip)Resources.Load("Assets/Upperground/Sound/Music/Lvl1/Synth");
-		track[1]=(AudioClip)Resources.Load("Assets/Upperground/Sound/Music/Lvl1/Bass");
-		track[2]=(AudioClip)Resources.Load("Assets/Upperground/Sound/Music/Lvl1/Drum1");
-		track[3]=(AudioClip)Resources.Load("Assets/Upperground/Sound/Music/Lvl1/Drum2");
-		track[4]=(AudioClip)Resources.Load("Assets/Upperground/Sound/Music/Lvl1/Lead1");
-		track[5]=(AudioClip)Resources.Load("Assets/Upperground/Sound/Music/Lvl1/Lead2");
-		track[6]=(AudioClip)Resources.Load("Assets/Upperground/Sound/Music/Lvl1/Bridge");
-		*/
+	void LoadSnaps()
+	{
 		SnapSynth1.TransitionTo (0);
 		SnapBass2.TransitionTo (0);
 		SnapBridge2.TransitionTo (0);
 		SnapDrum2.TransitionTo (0);
 		SnapLead2.TransitionTo (0);
+	}
+
+	void ControlPosition()
+	{
+		if(Player.transform.position.x > xBass)
+		{
+			boolBass = true;
+		}
+		if(boolBass && IsNotBridge)
+		{
+			SnapBass1.TransitionTo (2);
+		}
+
+		if(Player.transform.position.x > xDrum)
+		{
+			boolDrum = true;
+		}
+		if(boolDrum && IsNotBridge)
+		{
+			SnapDrum1.TransitionTo (2);
+		}
+		if(Player.transform.position.x > xLead)
+		{
+			boolLead = true;
+		}
+		if(boolLead && IsNotBridge)
+		{
+			SnapLead1.TransitionTo (2);
+		}		
 	}
 }

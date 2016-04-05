@@ -48,7 +48,7 @@ public class SoundManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		Debug.Log (boolLead);
+		//Debug.Log (boolLead);
 		if(Player.transform.position.x > xBass && !boolBass && IsNotBridge)
 		{
 			boolBass = true;

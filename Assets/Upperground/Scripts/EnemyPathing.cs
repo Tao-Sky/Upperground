@@ -39,7 +39,7 @@ public class EnemyPathing : MonoBehaviour {
         Vector2 feet = new Vector2(transform.position.x, bc2d.bounds.min.y-0.5f);
         grounded = Physics2D.OverlapCircle(feet, 0.2f, ground_layer);
 
-        Debug.Log(grounded);
+        //Debug.Log(grounded);
 
         walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
         transform.Translate(walkAmount);

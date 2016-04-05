@@ -7,15 +7,21 @@ public class Triggergenerator : MonoBehaviour {
 	private bool Sprite = true;
     void OnTriggerEnter2D(Collider2D other)
     {
-		if(Sprite)
-		{
-			GetComponentInChildren<SpriteRenderer>().enabled = true;
-		}
+        if (other.gameObject.tag == "Player")
+        {
+            if (Sprite)
+            {
+                GetComponentInChildren<SpriteRenderer>().enabled = true;
+            }
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-		GetComponentInChildren<SpriteRenderer>().enabled = false;
+        if (other.gameObject.tag == "Player")
+        {
+            GetComponentInChildren<SpriteRenderer>().enabled = false;
+        }
     }
 
     void OnTriggerStay2D(Collider2D other)

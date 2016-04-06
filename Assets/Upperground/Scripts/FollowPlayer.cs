@@ -85,15 +85,15 @@ public class FollowPlayer : MonoBehaviour {
 
     public void goToMachine(Vector3 cible,float time)
     {
-
         StartCoroutine(MachineCoroutine(transform,cible,time));
-
     }
 
 
     IEnumerator MachineCoroutine(Transform target,Vector3 centremachine,float time)
     {
-        nocoroutine = false;        
+        nocoroutine = false;
+		GameObject Machine = GameObject.Find("Machine");
+
         while (Vector3.Distance(centremachine, target.position) > 0.1f)
         {
             target.position = Vector3.Lerp(centremachine, target.position, 59.0f * Time.deltaTime);
@@ -103,6 +103,7 @@ public class FollowPlayer : MonoBehaviour {
         if (appel == 1)
         {
             ps.SetActive(true);
+			Machine.GetComponent<Animator> ().SetBool("run",true);
         }
         if(appel == 2)
         {
@@ -115,6 +116,8 @@ public class FollowPlayer : MonoBehaviour {
         {
             ps.SetActive(false);
             systemeparticulesha.SetActive(true);
+			Machine.GetComponent<Animator> ().SetBool("run",false);
+
         }
         if (appel == 2)
         {

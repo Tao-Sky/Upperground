@@ -43,7 +43,7 @@ public class triggerMachine : MonoBehaviour
 				if (sha.GetComponent<FollowPlayer> ().playerFound) 
 				{
                     Vector3 centremachine = new Vector3(-12.18f, -6.85f, -1.50f);
-                    sha.GetComponent<FollowPlayer>().appel = 1;
+					sha.GetComponent<FollowPlayer>().appel = 1;
                     sha.GetComponent<FollowPlayer> ().goToMachine (centremachine,5.0f);//sha va la machine situé en centremachine et y reste 5.0 seconde
                     sha.GetComponent<FollowPlayer>().PowerUnlocked = 1;
                     GetComponentInChildren<SpriteRenderer> ().enabled = false;

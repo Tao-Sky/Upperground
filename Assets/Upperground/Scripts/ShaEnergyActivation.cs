@@ -29,7 +29,7 @@ public class ShaEnergyActivation : MonoBehaviour {
     {
         GameObject player = GameObject.Find("Player");
         power = player.GetComponent<PlayerController>().power;
-        Debug.Log(power);
+        //Debug.Log(power);
     }
 
         void OnTriggerStay2D(Collider2D other)

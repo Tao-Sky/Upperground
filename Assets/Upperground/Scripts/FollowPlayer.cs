@@ -60,6 +60,19 @@ public class FollowPlayer : MonoBehaviour {
     {
 		transform.LookAt(new Vector3(target.position.x,target.position.y,transform.position.z));
         transform.Rotate(new Vector3(0, -90, 0), Space.Self);
+        //ajout par arthur pour corriger le system de particule
+        if(target.position.x > transform.position.x)
+        {
+            Debug.Log("je vais a droite");
+            systemeparticulesha.transform.position = new Vector3(systemeparticulesha.transform.position.x, systemeparticulesha.transform.position.y, 0.5f);
+
+        }
+        else
+        {
+            Debug.Log("je vais a gauche");
+            systemeparticulesha.transform.position = new Vector3(systemeparticulesha.transform.position.x, systemeparticulesha.transform.position.y, -0.5f);
+        }
+        //fin d'ajout
 
         if (dist > 5)
         {

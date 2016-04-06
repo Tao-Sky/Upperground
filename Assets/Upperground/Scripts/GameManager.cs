@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
 		AfterGame,
 		Loading
 	}
-	private bool IsPaused;
+	public bool IsPaused;
 	private static GameManager manager = null;
 	public static GameManager Manager
 	{

@@ -14,74 +14,71 @@ public class SoundManager : MonoBehaviour {
 	public AudioSource Lead2 ;
 	public AudioSource Bridge ;
 
-	private double TimeLvl1 = 29.088;
-	private double CurrentTime = 0.0;
-	private bool IsNotBridge = true;
-	private int facteurBridge = 0;
-
 	public AudioMixerSnapshot SnapDrum1, SnapDrum2;
 	public AudioMixerSnapshot SnapSynth1, SnapSynth2;
 	public AudioMixerSnapshot SnapBass1, SnapBass2;
 	public AudioMixerSnapshot SnapLead1, SnapLead2;
 	public AudioMixerSnapshot SnapBridge1, SnapBridge2;
 
+	public AudioMixer Music;
+
 	private double xBass = -30.0f;
 	private double xDrum = -2.3f;
 	private double xLead = 53.0f;
 
 	private int level;
-
+	private int nextTheme = 0;
 	private bool boolBass=false;
 	private bool boolDrum=false;
 	private bool boolLead=false;
 
-
-	// Use this for initialization
-
-	void Start () {
+		void Start () 
+	{
 		LoadSnaps ();
-		Drum1.Play ();
-		Synth.Play ();
-		Bass.Play ();
-		Lead1.Play ();
-		Bridge.Play ();
 	}
 
-	// Update is called once per frame
 	void Update () 
 	{
 		ControlPosition();
+		Effects ();
+		chooseTheme ();
+	}
 
-		if(CurrentTime > TimeLvl1 )
+	void chooseTheme()
+	{
+		if(!Bridge.isPlaying && !Synth.isPlaying)
 		{
-			if(IsNotBridge)
-			{
-				CallBridge (true);
-				IsNotBridge = false;
-				CurrentTime = 0.0;
-				if(facteurBridge%4 == 0)
-				{
-					SwitchTheme (true);
-				}
-				else
-				{
-					SwitchTheme (false);
-				}
-			}
-
-			else
+			if(nextTheme == 0)
 			{
 				CallBridge (false);
-				IsNotBridge = true;
-				CurrentTime = 0.0;
+				nextTheme = 1;
+				Synth.Play ();
+				Drum1.Play ();
+				Bass.Play ();
+				Lead1.Play ();
 			}
-			facteurBridge++;
+			else if(nextTheme == 1)
+			{
+				CallBridge (true);
+				nextTheme = 2;
+				Bridge.Play ();
+			}
+			else if(nextTheme == 2)
+			{
+				CallBridge (false);
+				nextTheme = 3;
+				Synth.Play ();
+				Drum2.Play ();
+				Bass.Play ();
+				Lead2.Play ();
+			}
+			else if(nextTheme == 3)
+			{
+				CallBridge (true);
+				nextTheme = 0;
+				Bridge.Play ();				
+			}
 		}
-		else
-		{
-			CurrentTime = Time.fixedTime - (facteurBridge*TimeLvl1);
-		}
-
 	}
 
 	void CallBridge(bool b)
@@ -122,23 +119,26 @@ public class SoundManager : MonoBehaviour {
 		}
 	}
 
-	void SwitchTheme(bool b)
+
+	void Effects()
 	{
-		if(b)
+		level = FindObjectOfType<GameManager> ().level;
+		if(level == 0)
 		{
-			Lead1.Stop ();
-			Drum1.Stop ();
-			Lead2.Play ();
-			Drum2.Play ();
+			Music.SetFloat ("lowPassVal", 22000.0f);
+			Music.SetFloat ("volumeVal", 0.00f);
 		}
-		else
+		else if(level == 1)
 		{
-			Lead2.Stop ();
-			Drum2.Stop ();
-			Lead1.Play ();
-			Drum1.Play ();
+			Music.SetFloat ("lowPassVal", 2800.0f);
+			Music.SetFloat ("volumeVal", 0.00f);
 		}
 
+		if(FindObjectOfType<GameManager>().IsPaused)
+		{
+			Music.SetFloat ("lowPassVal", 1600.0f);
+			Music.SetFloat ("volumeVal", -8.00f);
+		}
 	}
 
 	void LoadSnaps()
@@ -156,7 +156,7 @@ public class SoundManager : MonoBehaviour {
 		{
 			boolBass = true;
 		}
-		if(boolBass && IsNotBridge)
+		if(boolBass)
 		{
 			SnapBass1.TransitionTo (2);
 		}
@@ -165,7 +165,7 @@ public class SoundManager : MonoBehaviour {
 		{
 			boolDrum = true;
 		}
-		if(boolDrum && IsNotBridge)
+		if(boolDrum)
 		{
 			SnapDrum1.TransitionTo (2);
 		}
@@ -173,7 +173,7 @@ public class SoundManager : MonoBehaviour {
 		{
 			boolLead = true;
 		}
-		if(boolLead && IsNotBridge)
+		if(boolLead)
 		{
 			SnapLead1.TransitionTo (2);
 		}		

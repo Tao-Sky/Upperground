@@ -22,6 +22,9 @@ public class EnemyPathing : MonoBehaviour {
     public float walkingDirection = 1.0f;
     Vector3 walkAmount;
 
+    // pour la detection
+    public GameObject particuleDetection;
+
     // Use this for initialization
     void Awake()
     {
@@ -78,5 +81,10 @@ public class EnemyPathing : MonoBehaviour {
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    public void CanBeAttacked(bool attack)
+    {
+        particuleDetection.SetActive(attack);
     }
 }

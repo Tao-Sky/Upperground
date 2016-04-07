@@ -45,10 +45,40 @@ public class PlayerController : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
     }
 
-
-    void Update()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        GameObject sha = GameObject.Find("Sha");//pour aciver le bon pouroi sur sha
+        if (other.gameObject.tag == "Enemy")
+        {
+            other.gameObject.GetComponent<EnemyPathing>().CanBeAttacked(true);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            other.gameObject.GetComponent<EnemyPathing>().CanBeAttacked(false);
+        }
+
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        GameObject sha = GameObject.Find("Sha");
+        if (other.gameObject.tag == "Enemy")
+        {
+            if (Input.GetButtonDown("B button") && sha.GetComponent<FollowPlayer>().playerFound)
+            {
+
+                Debug.Log("j'attaque");
+            }
+        }
+    }
+
+
+        void Update()
+    {
+        GameObject sha = GameObject.Find("Sha");//pour aciver le bon pouvoir sur sha
         Vector2 feet = new Vector2(transform.position.x, transform.position.y - 1f/*- GetComponent<BoxCollider2D>().bounds.extents.y*/);
         grounded = Physics2D.OverlapCircle(feet, 0.2f, ground_layer);
 

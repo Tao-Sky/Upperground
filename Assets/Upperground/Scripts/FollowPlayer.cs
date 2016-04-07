@@ -58,6 +58,10 @@ public class FollowPlayer : MonoBehaviour {
             MoveTowardsPlayer();
             playerFound = true;
         }
+        else
+        {
+            playerFound = false;
+        }
 
         lastDist = dist;
         lastDestination = transform.forward;

@@ -1,13 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Upperground\Scripts\SoundManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Upperground\Scripts\nextLevel.cs">
     <Files>
-      <File FileName="Assets\Upperground\Scripts\SoundManager.cs" Line="134" Column="38" />
-      <File FileName="Assets\Upperground\Scripts\Triggergenerator.cs" Line="1" Column="1" />
+      <File FileName="Assets\Upperground\Scripts\Triggergenerator.cs" Line="5" Column="1" />
+      <File FileName="Assets\Upperground\Scripts\SoundManager.cs" Line="163" Column="31" />
       <File FileName="Assets\Upperground\Scripts\triggerMachine.cs" Line="1" Column="1" />
       <File FileName="Assets\Upperground\Scripts\FollowPlayer.cs" Line="1" Column="1" />
       <File FileName="Assets\Upperground\Scripts\CameraController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Upperground\Scripts\nextLevel.cs" Line="1" Column="1" />
+      <File FileName="Assets\Upperground\Scripts\nextLevel.cs" Line="5" Column="42" />
       <File FileName="Assets\Upperground\Scripts\GameManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

@@ -5,6 +5,7 @@ public class ShaEnergyActivation : MonoBehaviour {
     private bool Sprite = true;
     public Sprite oppendoor;
     private int power;
+    public GameObject centremachine;
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
@@ -37,16 +38,13 @@ public class ShaEnergyActivation : MonoBehaviour {
         if (Input.GetButtonDown("Y button"))
         {
             GameObject sha = GameObject.Find("Sha");
-            GameObject player = GameObject.Find("Player");
             if (power == 0 && sha.GetComponent<FollowPlayer>().PowerUnlocked > 0)
             {
                 GameObject Door = GameObject.Find("Doorendlvl");
                
                 if (sha.GetComponent<FollowPlayer>().playerFound)
                 {
-                    Vector3 centremachine = new Vector3(75.41f, -4.85f, -1.50f);
-                    sha.GetComponent<FollowPlayer>().appel = 2;
-                    sha.GetComponent<FollowPlayer>().goToMachine(centremachine, 1.0f);//sha va la machine situé en centremachine et y reste 1.0 seconde
+                    sha.GetComponent<FollowPlayer>().goToMachine(centremachine.transform.position, 2.0f,2);//sha va la machine situé en centremachine et y reste 1.0 seconde et il ferra l'action 2
                 }
 
                 Door.GetComponent<BoxCollider2D>().enabled = false;

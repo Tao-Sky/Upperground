@@ -127,11 +127,13 @@ public class SoundManager : MonoBehaviour {
 		{
 			Music.SetFloat ("lowPassVal", 22000.0f);
 			Music.SetFloat ("volumeVal", 0.00f);
+			Music.SetFloat ("reverbVal", -3000.0f);
 		}
 		else if(level == 1)
 		{
-			Music.SetFloat ("lowPassVal", 2800.0f);
+			Music.SetFloat ("lowPassVal", 3400.0f);
 			Music.SetFloat ("volumeVal", 0.00f);
+			Music.SetFloat ("reverbVal", -250.0f);
 		}
 
 		if(FindObjectOfType<GameManager>().IsPaused)

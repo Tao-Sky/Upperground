@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        GameObject sha = GameObject.Find("Sha");//pour aciver le bon pouroi sur sha
         Vector2 feet = new Vector2(transform.position.x, transform.position.y - 1f/*- GetComponent<BoxCollider2D>().bounds.extents.y*/);
         grounded = Physics2D.OverlapCircle(feet, 0.2f, ground_layer);
 
@@ -84,7 +83,6 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("test pouvoir " + power);
             swap = false;
             rouepouvoir.transform.Rotate(0, 0, -90);
-            sha.GetComponent<FollowPlayer>().powerParticule(power);
         }
 
         if (Input.GetAxis("gachette gauche") > 0.2 && swap)
@@ -93,7 +91,6 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("test pouvoir " + power);
             swap = false;
             rouepouvoir.transform.Rotate(0, 0, 90);
-            sha.GetComponent<FollowPlayer>().powerParticule(power);
         }
     }
 

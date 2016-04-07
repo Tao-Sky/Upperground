@@ -18,15 +18,8 @@ public class FollowPlayer : MonoBehaviour {
     //pour la coroutine
     public bool nocoroutine = true;
     public GameObject ps;
-
-    //les particules de pouvoir de sha
-    public GameObject spShaEnergie;
-    public GameObject spShaFeu;
-    public GameObject spShaGlace;
-    public GameObject spShaAcide;
-
-    //les attaques de sha
-    public GameObject speclair;
+    public int appel =0;
+    public GameObject systemeparticulesha;
 
     //pour le jeu global
     public int PowerUnlocked=0;
@@ -70,18 +63,14 @@ public class FollowPlayer : MonoBehaviour {
         //ajout par arthur pour corriger le system de particule
         if(target.position.x > transform.position.x)
         {
-            spShaEnergie.transform.localPosition = new Vector3(0, 0, 0.5f);
-            spShaFeu.transform.localPosition = new Vector3(0, 0, 0.5f);
-            spShaGlace.transform.localPosition = new Vector3(0, 0, 0.5f);
-            spShaAcide.transform.localPosition = new Vector3(0, 0, 0.5f);
+            Debug.Log("je vais a droite");
+            systemeparticulesha.transform.position = new Vector3(systemeparticulesha.transform.position.x, systemeparticulesha.transform.position.y, 0.5f);
 
         }
         else
         {
-            spShaEnergie.transform.localPosition = new Vector3(0, 0, -0.5f);
-            spShaFeu.transform.localPosition = new Vector3(0, 0, -0.5f);
-            spShaGlace.transform.localPosition = new Vector3(0, 0, -0.5f);
-            spShaAcide.transform.localPosition = new Vector3(0, 0, -0.5f);
+            Debug.Log("je vais a gauche");
+            systemeparticulesha.transform.position = new Vector3(systemeparticulesha.transform.position.x, systemeparticulesha.transform.position.y, -0.5f);
         }
         //fin d'ajout
 
@@ -107,25 +96,23 @@ public class FollowPlayer : MonoBehaviour {
         inPlayerRadius = b;
     }
 
-    public void goToMachine(Vector3 cible,float time,int appel)
+    public void goToMachine(Vector3 cible,float time)
     {
-        StartCoroutine(MachineCoroutine(transform,cible,time,appel));
+        StartCoroutine(MachineCoroutine(transform,cible,time));
     }
 
 
-    IEnumerator MachineCoroutine(Transform target,Vector3 centremachine,float time,int appel)
+    IEnumerator MachineCoroutine(Transform target,Vector3 centremachine,float time)
     {
         nocoroutine = false;
 		GameObject Machine = GameObject.Find("Machine");
-        if (appel != 2)
-        {
 
-            while (Vector3.Distance(centremachine, target.position) > 0.1f)
-            {
-                target.position = Vector3.Lerp(centremachine, target.position, 59.0f * Time.deltaTime);
-                yield return null;
-            }
+        while (Vector3.Distance(centremachine, target.position) > 0.1f)
+        {
+            target.position = Vector3.Lerp(centremachine, target.position, 59.0f * Time.deltaTime);
+            yield return null;
         }
+
         if (appel == 1)
         {
             ps.SetActive(true);
@@ -133,12 +120,7 @@ public class FollowPlayer : MonoBehaviour {
         }
         if(appel == 2)
         {
-            transform.LookAt(centremachine);
-            transform.Rotate(new Vector3(0, -90, 0), Space.Self);
-            speclair.GetComponent<ParticleSystem>().startSize = Mathf.Sqrt( Vector2.Distance(centremachine, target.position)) * 0.8f;//la taille du rayon reste a definir avec un fontion propre
-            speclair.SetActive(true);
-            speclair.GetComponent<ParticleSystem>().Play();
-            //lui faire lancer un rayon
+            systemeparticulesha.transform.position = new Vector3(systemeparticulesha.transform.position.x, systemeparticulesha.transform.position.y, 1.0f);
         }
 
         //Debug.Log("je suis a destination");
@@ -146,57 +128,15 @@ public class FollowPlayer : MonoBehaviour {
         if (appel == 1)
         {
             ps.SetActive(false);
-            PowerUnlocked = 1;
-            spShaEnergie.SetActive(true);
+            systemeparticulesha.SetActive(true);
 			Machine.GetComponent<Animator> ().SetBool("run",false);
 
         }
         if (appel == 2)
         {
-            speclair.GetComponent<ParticleSystem>().Stop();
-            speclair.SetActive(false);
-            //areter de lancer un rayon
+            systemeparticulesha.transform.position=new Vector3(systemeparticulesha.transform.position.x, systemeparticulesha.transform.position.y,0.5f);
         }
         nocoroutine = true;
         //Debug.Log("je suis enfin fini");
-    }
-
-    public void powerParticule(int power)
-    {
-        if (power == 0 && PowerUnlocked>0)// power unlock sert a savoir si le pouvoir a deja ete decouvert on peut donc decier dans quel ordre on decouvre les pouvoir en changenant a partir de quand on affiche les anims
-        {
-            spShaFeu.SetActive(false);
-            spShaGlace.SetActive(false);
-            spShaAcide.SetActive(false);
-            spShaEnergie.SetActive(true);
-            
-        }
-        if (power == 1 && PowerUnlocked > 0)// power unlock sert a savoir si le pouvoir a deja ete decouvert on peut donc decier dans quel ordre on decouvre les pouvoir en changenant a partir de quand on affiche les anims
-        {
-            spShaEnergie.SetActive(false);
-            spShaGlace.SetActive(false);
-            spShaAcide.SetActive(false);
-            spShaFeu.SetActive(true);
-
-        }
-        if (power == 2 && PowerUnlocked > 0)// power unlock sert a savoir si le pouvoir a deja ete decouvert on peut donc decier dans quel ordre on decouvre les pouvoir en changenant a partir de quand on affiche les anims
-        {
-            spShaFeu.SetActive(false);
-            spShaGlace.SetActive(false);
-            spShaEnergie.SetActive(false);
-            spShaAcide.SetActive(true);
-            
-
-        }
-        if (power == 3 && PowerUnlocked > 0)// power unlock sert a savoir si le pouvoir a deja ete decouvert on peut donc decier dans quel ordre on decouvre les pouvoir en changenant a partir de quand on affiche les anims
-        {
-            spShaFeu.SetActive(false);
-            spShaAcide.SetActive(false);
-            spShaEnergie.SetActive(false);
-            spShaGlace.SetActive(true);
-
-
-        }
-
     }
 }

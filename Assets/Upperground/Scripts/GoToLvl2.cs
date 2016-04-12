@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class GoToLvl2 : MonoBehaviour {
-
+	public GameObject door;
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
@@ -28,7 +28,10 @@ public class GoToLvl2 : MonoBehaviour {
     {
         if (Input.GetButtonDown("X button"))
         {
-            Application.LoadLevel("Scene_1");
+			if(door.GetComponent<SpriteRenderer>().sprite.name == "Door24")
+			{
+				Application.LoadLevel("Scene_1");	
+			}
         }
     }
 }

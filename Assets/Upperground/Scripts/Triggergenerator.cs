@@ -6,6 +6,7 @@ public class Triggergenerator : MonoBehaviour {
 	public Sprite restored;
 	private bool Sprite = true;
 	public bool allume = false;
+	public AudioSource SFX;
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
@@ -50,4 +51,17 @@ public class Triggergenerator : MonoBehaviour {
 			allume = true;
         }
     }
+
+	void Update()
+	{
+		GameObject Generator = GameObject.Find("Generator");
+		GameObject Player = GameObject.Find ("Player");
+		int rand = Random.Range (85, 120);
+		float pitch = (float)rand / 100.0f;
+		if(Generator.GetComponent<SpriteRenderer>().sprite.name == "broken")
+		{
+			SFX.pitch = pitch;
+			SFX.Play ();
+		}
+	}
 }

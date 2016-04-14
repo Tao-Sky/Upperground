@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 1000f;         // Amount of force added when the player jumps.
     public GameObject playerobject;
     private Rigidbody2D rb2d;
+    private SpriteRenderer sr;
 
     private Transform groundCheck;          // A position marking where to check if the player is grounded.
     public bool grounded = false;          // Whether or not the player is grounded.
@@ -28,6 +29,11 @@ public class PlayerController : MonoBehaviour
     //pouvoirs
     public int power = 0;
 
+    public Rigidbody2D getRigidbody2D()
+    {
+        return rb2d;
+    }
+
     void Awake()
     {
         /*if (uniquePlayer == null)
@@ -40,9 +46,11 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
         }*/
         // Setting up references.
+
         groundCheck = transform.Find("groundCheck");
         anim = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -76,7 +84,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-        void Update()
+    void Update()
     {
         GameObject sha = GameObject.Find("Sha");//pour aciver le bon pouvoir sur sha
         Vector2 feet = new Vector2(transform.position.x, transform.position.y - 1f/*- GetComponent<BoxCollider2D>().bounds.extents.y*/);
@@ -142,7 +150,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isRespawning)
         {
-            //rb2d.WakeUp();
+            sr.enabled = true;
             float h = Input.GetAxis("Horizontal");
             //Debug.Log(h);
             // The Speed animator parameter is set to the absolute value of the horizontal input.
@@ -182,6 +190,11 @@ public class PlayerController : MonoBehaviour
 
         else
         {
+            if (sr.enabled == false)
+                sr.enabled = true;
+            else
+                sr.enabled = false;
+
             rb2d.velocity = new Vector2(0, rb2d.velocity.y);
         }
     }

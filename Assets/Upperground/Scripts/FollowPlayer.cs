@@ -180,39 +180,38 @@ public class FollowPlayer : MonoBehaviour {
 
     public void powerParticule(int power)
     {
+		Animator A = GameObject.Find ("Sha").GetComponent<Animator> ();
         if (power == 0 && PowerUnlocked>0)// power unlock sert a savoir si le pouvoir a deja ete decouvert on peut donc decier dans quel ordre on decouvre les pouvoir en changenant a partir de quand on affiche les anims
         {
+			A.SetInteger ("state", 0);
             spShaFeu.SetActive(false);
             spShaGlace.SetActive(false);
             spShaAcide.SetActive(false);
             spShaEnergie.SetActive(true);
-            
         }
         if (power == 1 && PowerUnlocked > 0)// power unlock sert a savoir si le pouvoir a deja ete decouvert on peut donc decier dans quel ordre on decouvre les pouvoir en changenant a partir de quand on affiche les anims
         {
+			A.SetInteger ("state", 1);
             spShaEnergie.SetActive(false);
             spShaGlace.SetActive(false);
             spShaAcide.SetActive(false);
             spShaFeu.SetActive(true);
-
         }
         if (power == 2 && PowerUnlocked > 0)// power unlock sert a savoir si le pouvoir a deja ete decouvert on peut donc decier dans quel ordre on decouvre les pouvoir en changenant a partir de quand on affiche les anims
         {
+			A.SetInteger ("state", 2);
             spShaFeu.SetActive(false);
             spShaGlace.SetActive(false);
             spShaEnergie.SetActive(false);
-            spShaAcide.SetActive(true);
-            
-
+            spShaAcide.SetActive(true);            
         }
         if (power == 3 && PowerUnlocked > 0)// power unlock sert a savoir si le pouvoir a deja ete decouvert on peut donc decier dans quel ordre on decouvre les pouvoir en changenant a partir de quand on affiche les anims
         {
+			A.SetInteger ("state", 3);
             spShaFeu.SetActive(false);
             spShaAcide.SetActive(false);
             spShaEnergie.SetActive(false);
             spShaGlace.SetActive(true);
-
-
         }
 
     }

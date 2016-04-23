@@ -34,17 +34,17 @@ public class Triggergenerator : MonoBehaviour {
 			GameObject Machine = GameObject.Find("Machine");
 
 
-            Door.GetComponent<BoxCollider2D>().enabled = false;
 			if(Door.GetComponent<SpriteRenderer>().sprite.name == "Door1")
 			{
+				Door.GetComponent<BoxCollider2D>().enabled = false;
 				Door.GetComponent<Animator> ().Play ("Open",-1,-1.0f);
 				Generator.GetComponent<Animator> ().Stop ();
 				Generator.GetComponent<SpriteRenderer> ().sprite = restored;
 				Machine.GetComponent<Animator> ().SetBool ("allumee", true);
-
+				Door.GetComponent<SpriteRenderer>().sprite = oppendoor;
+				GetComponentInChildren<SpriteRenderer>().enabled = false;
 			}
-            Door.GetComponent<SpriteRenderer>().sprite = oppendoor;
-			GetComponentInChildren<SpriteRenderer>().enabled = false;
+
 
 			Sprite = false;
 			allume = true;

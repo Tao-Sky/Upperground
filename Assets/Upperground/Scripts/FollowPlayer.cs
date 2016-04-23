@@ -215,4 +215,41 @@ public class FollowPlayer : MonoBehaviour {
         }
 
     }
+
+
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.gameObject.tag == "Enemy")
+		{
+			other.gameObject.GetComponent<EnemyFight>().CanBeAttacked(true);
+			other.gameObject.GetComponent<EnemyFight>().showHealthBar(true);
+		}
+	}
+
+	void OnTriggerExit2D(Collider2D other)
+	{
+		if (other.gameObject.tag == "Enemy")
+		{
+			other.gameObject.GetComponent<EnemyFight>().CanBeAttacked(false);
+			other.gameObject.GetComponent<EnemyFight>().showHealthBar(false);
+		}
+
+	}
+
+	void OnTriggerStay2D(Collider2D other)
+	{
+		GameObject sha = GameObject.Find("Sha");
+		if (other.gameObject.tag == "Enemy")
+		{
+			if (Input.GetButtonDown("B button") && sha.GetComponent<FollowPlayer>().playerFound)
+			{
+				other.gameObject.GetComponent<EnemyFight>().takingDamage();
+				if (other.gameObject.GetComponent<EnemyFight>().getHealthPoints() == 0)
+					other.gameObject.GetComponent<EnemyFight>().EnemyDie();
+
+				Debug.Log("j'attaque");
+			}
+		}
+	}
+
 }

@@ -57,7 +57,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            other.gameObject.GetComponent<EnemyPathing>().CanBeAttacked(true);
+            other.gameObject.GetComponent<EnemyFight>().CanBeAttacked(true);
+            other.gameObject.GetComponent<EnemyFight>().showHealthBar(true);
         }
     }
 
@@ -65,7 +66,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            other.gameObject.GetComponent<EnemyPathing>().CanBeAttacked(false);
+            other.gameObject.GetComponent<EnemyFight>().CanBeAttacked(false);
+            other.gameObject.GetComponent<EnemyFight>().showHealthBar(false);
         }
 
     }
@@ -77,6 +79,9 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetButtonDown("B button") && sha.GetComponent<FollowPlayer>().playerFound)
             {
+                other.gameObject.GetComponent<EnemyFight>().takingDamage();
+                if (other.gameObject.GetComponent<EnemyFight>().getHealthPoints() == 0)
+                    other.gameObject.GetComponent<EnemyFight>().EnemyDie();
 
                 Debug.Log("j'attaque");
             }
@@ -116,7 +121,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxis("gachette gauche") < 0.2 && Input.GetAxis("gachette droite") < 0.2)
         {
             swap = true;
-            
+
         }
 
         if (Input.GetAxis("gachette droite") > 0.2 && swap)

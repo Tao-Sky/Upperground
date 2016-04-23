@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyPathing : MonoBehaviour {
+public class EnemyPathing : MonoBehaviour
+{
 
     [HideInInspector]
     public bool facingRight = true;
@@ -22,9 +23,6 @@ public class EnemyPathing : MonoBehaviour {
     public float walkingDirection = 1.0f;
     Vector3 walkAmount;
 
-    // pour la detection
-    public GameObject particuleDetection;
-
     // Use this for initialization
     void Awake()
     {
@@ -39,7 +37,7 @@ public class EnemyPathing : MonoBehaviour {
     {
         //grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
         //Vector2 feet = new Vector2(transform.position.x, transform.position.y - 1f/*- GetComponent<BoxCollider2D>().bounds.extents.y*/);
-        Vector2 feet = new Vector2(transform.position.x, bc2d.bounds.min.y-0.5f);
+        Vector2 feet = new Vector2(transform.position.x, bc2d.bounds.min.y - 0.5f);
         grounded = Physics2D.OverlapCircle(feet, 0.2f, ground_layer);
 
         //Debug.Log(grounded);
@@ -84,8 +82,4 @@ public class EnemyPathing : MonoBehaviour {
         transform.localScale = theScale;
     }
 
-    public void CanBeAttacked(bool attack)
-    {
-        particuleDetection.SetActive(attack);
-    }
 }

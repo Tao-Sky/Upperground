@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool jump = false;               // Condition for whether the player should jump.
     public bool isRespawning = false;
+    public bool canmove = true;           // use to disable player control
 
     public float moveForce = 365f;          // Amount of force added to move the player left and right.
     public float maxSpeed = 5f;             // The fastest the player can travel in the x axis.
@@ -60,7 +61,7 @@ public class PlayerController : MonoBehaviour
         grounded = Physics2D.OverlapCircle(feet, 0.2f, ground_layer);
 
         //Debug.Log(grounded + " " + feet);
-        if ((Input.GetButtonDown("A button") /*|| Input.GetButtonDown("Jump")*/) && grounded)
+        if ((Input.GetButtonDown("A button") /*|| Input.GetButtonDown("Jump")*/) && grounded && canmove)
             jump = true;
 
         if (grounded)
@@ -82,13 +83,13 @@ public class PlayerController : MonoBehaviour
         }
 
         //pour l'hud
-        if (Input.GetAxis("gachette gauche") < 0.2 && Input.GetAxis("gachette droite") < 0.2)
+        if (Input.GetAxis("gachette gauche") < 0.2 && Input.GetAxis("gachette droite") < 0.2 && canmove)
         {
             swap = true;
 
         }
 
-        if (Input.GetAxis("gachette droite") > 0.2 && swap)
+        if (Input.GetAxis("gachette droite") > 0.2 && swap && canmove)
         {
             if (power == 0)
             {
@@ -104,7 +105,7 @@ public class PlayerController : MonoBehaviour
             sha.GetComponent<FollowPlayer>().powerParticule(power);
         }
 
-        if (Input.GetAxis("gachette gauche") > 0.2 && swap)
+        if (Input.GetAxis("gachette gauche") > 0.2 && swap && canmove)
         {
             power = Mathf.Abs((power + 1) % 4);
             //Debug.Log("test pouvoir " + power);
@@ -121,39 +122,43 @@ public class PlayerController : MonoBehaviour
         {
             sr.enabled = true;
             float h = Input.GetAxis("Horizontal");
-            //Debug.Log(h);
-            // The Speed animator parameter is set to the absolute value of the horizontal input.
-            anim.SetFloat("speed", Mathf.Abs(h));
-
-            // If the player is changing direction (h has a different sign to velocity.x) or not max speed
-            if (h * rb2d.velocity.x < maxSpeed)
-                rb2d.AddForce(Vector2.right * h * moveForce);
-
-            // If the player's horizontal velocity is greater than the maxSpeed...
-            if (Mathf.Abs(rb2d.velocity.x) > maxSpeed)
-                rb2d.velocity = new Vector2(Mathf.Sign(rb2d.velocity.x) * maxSpeed, rb2d.velocity.y);
-
-            // If the input is moving the player right and the player is facing left...
-            if (h > 0 && !facingRight)
-                //flip the player.
-                Flip();
-            // Otherwise if the input is moving the player left and the player is facing right...
-            else if (h < 0 && facingRight)
-                //flip the player.
-                Flip();
-
-
-            if (jump)
+            if (canmove)
             {
-                // Set the Jump animator trigger parameter.
-                // anim.SetTrigger("Jump");
+                //Debug.Log(h);
+                // The Speed animator parameter is set to the absolute value of the horizontal input.
+                anim.SetFloat("speed", Mathf.Abs(h));
+
+                // If the player is changing direction (h has a different sign to velocity.x) or not max speed
+                if (h * rb2d.velocity.x < maxSpeed)
+                    rb2d.AddForce(Vector2.right * h * moveForce);
+
+                // If the player's horizontal velocity is greater than the maxSpeed...
+                if (Mathf.Abs(rb2d.velocity.x) > maxSpeed)
+                    rb2d.velocity = new Vector2(Mathf.Sign(rb2d.velocity.x) * maxSpeed, rb2d.velocity.y);
+
+                // If the input is moving the player right and the player is facing left...
+                if (h > 0 && !facingRight)
+                    //flip the player.
+                    Flip();
+                // Otherwise if the input is moving the player left and the player is facing right...
+                else if (h < 0 && facingRight)
+                    //flip the player.
+                    Flip();
 
 
-                // Add a vertical force to the player.
-                rb2d.AddForce(new Vector2(0f, jumpForce));
+                if (jump)
+                {
+                    // Set the Jump animator trigger parameter.
+                    // anim.SetTrigger("Jump");
 
-                // Make sure the player can't jump again until the jump conditions from Update are satisfied.
-                jump = false;
+
+                    // Add a vertical force to the player.
+                    rb2d.AddForce(new Vector2(0f, jumpForce));
+
+                    // Make sure the player can't jump again until the jump conditions from Update are satisfied.
+                    jump = false;
+
+                }
             }
         }
 

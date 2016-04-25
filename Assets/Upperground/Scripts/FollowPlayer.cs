@@ -183,7 +183,7 @@ public class FollowPlayer : MonoBehaviour {
 		GetComponent<ShaSFX>().Thunder();
 		speclair.transform.LookAt (T);
 		speclair.GetComponent<ParticleSystem>().startSize = Mathf.Sqrt( Vector2.Distance(T.position, this.transform.position)) * 0.8f;//la taille du rayon reste a definir avec un fontion propre
-		speclair.SetActive(true);
+		//speclair.SetActive(true);
 		speclair.GetComponent<ParticleSystem>().Play();		
 	}
 

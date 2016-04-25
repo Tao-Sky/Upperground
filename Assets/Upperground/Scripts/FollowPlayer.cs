@@ -178,6 +178,14 @@ public class FollowPlayer : MonoBehaviour {
         //Debug.Log("je suis enfin fini");
     }
 
+	public void LaunchPower(int nbP, Transform T)
+	{
+		speclair.transform.LookAt (T);
+		speclair.GetComponent<ParticleSystem>().startSize = Mathf.Sqrt( Vector2.Distance(T.position, this.transform.position)) * 0.8f;//la taille du rayon reste a definir avec un fontion propre
+		speclair.SetActive(true);
+		speclair.GetComponent<ParticleSystem>().Play();		
+	}
+
     public void powerParticule(int power)
     {
 		Animator A = GameObject.Find ("Sha").GetComponent<Animator> ();
@@ -228,7 +236,7 @@ public class FollowPlayer : MonoBehaviour {
 		APlayer.SetFloat ("speed", 0.0f);
 
 
-		yield return new WaitForSeconds (12f);
+		yield return new WaitForSeconds (12.5f);
 			
 		sha.GetComponent<FollowPlayer>().nocoroutine = true;
 		player.GetComponent<PlayerController>().canmove = true;
@@ -264,6 +272,7 @@ public class FollowPlayer : MonoBehaviour {
 			if (Input.GetButtonDown("B button") && sha.GetComponent<FollowPlayer>().playerFound)
 			{
 				other.gameObject.GetComponent<EnemyFight>().takingDamage();
+				LaunchPower (0, other.transform);
 				if (other.gameObject.GetComponent<EnemyFight>().getHealthPoints() == 0)
 					other.gameObject.GetComponent<EnemyFight>().EnemyDie();
 

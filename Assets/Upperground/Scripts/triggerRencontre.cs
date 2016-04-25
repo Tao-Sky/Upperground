@@ -14,7 +14,7 @@ public class triggerRencontre : MonoBehaviour {
             GameObject player = GameObject.Find("Player");
             sha.GetComponent<FollowPlayer>().nocoroutine = false;
             player.GetComponent<PlayerController>().canmove = false;
-			StartCoroutine(sha.GetComponent<FollowPlayer>().CinematicRencontre());
+            StartCoroutine(sha.GetComponent<FollowPlayer>().CinematicRencontre());
         }
     }
 }

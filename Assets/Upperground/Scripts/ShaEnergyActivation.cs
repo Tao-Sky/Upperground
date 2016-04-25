@@ -44,8 +44,8 @@ public class ShaEnergyActivation : MonoBehaviour {
                
                 if (sha.GetComponent<FollowPlayer>().playerFound)
                 {
-                    //sha.GetComponent<FollowPlayer>().goToMachine(centremachine.transform.position, 2.0f,2);//sha va la machine situé en centremachine et y reste 1.0 seconde et il ferra l'action 2
-					sha.GetComponent<FollowPlayer>().LaunchPower(0, centremachine.transform);
+                    sha.GetComponent<FollowPlayer>().goToMachine(centremachine.transform.position, 1.0f,2);//sha va la machine situé en centremachine et y reste 1.0 seconde et il ferra l'action 2
+					//sha.GetComponent<FollowPlayer>().LaunchPower(0, centremachine.transform);// version ou sha fait une attaque
 
                 }
 

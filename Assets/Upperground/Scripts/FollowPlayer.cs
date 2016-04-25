@@ -29,6 +29,7 @@ public class FollowPlayer : MonoBehaviour {
 
     //les attaques de sha
     public GameObject speclair;
+    public GameObject speclairlong;
 
     //pour le jeu global
     public int PowerUnlocked=0;
@@ -152,9 +153,9 @@ public class FollowPlayer : MonoBehaviour {
         {
             transform.LookAt(centremachine);
             transform.Rotate(new Vector3(0, -90, 0), Space.Self);
-            speclair.GetComponent<ParticleSystem>().startSize = Mathf.Sqrt( Vector2.Distance(centremachine, target.position)) * 0.8f;//la taille du rayon reste a definir avec un fontion propre
-            speclair.SetActive(true);
-            speclair.GetComponent<ParticleSystem>().Play();
+            speclairlong.GetComponent<ParticleSystem>().startSize = Mathf.Sqrt( Vector2.Distance(centremachine, target.position)) * 0.8f;//la taille du rayon reste a definir avec un fontion propre
+            speclairlong.SetActive(true);
+            speclairlong.GetComponent<ParticleSystem>().Play();
             //lui faire lancer un rayon
         }
 
@@ -170,8 +171,8 @@ public class FollowPlayer : MonoBehaviour {
         }
         if (appel == 2)
         {
-            speclair.GetComponent<ParticleSystem>().Stop();
-            speclair.SetActive(false);
+            speclairlong.GetComponent<ParticleSystem>().Stop();
+            speclairlong.SetActive(false);
             //areter de lancer un rayon
         }
         nocoroutine = true;

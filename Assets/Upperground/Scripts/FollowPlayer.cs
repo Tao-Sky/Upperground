@@ -216,6 +216,24 @@ public class FollowPlayer : MonoBehaviour {
 
     }
 
+	public IEnumerator CinematicRencontre()
+	{
+		Animator A = GameObject.Find ("Dialogue").GetComponent<Animator> ();
+		A.SetBool ("isPlaying", true);
+		GameObject sha = GameObject.Find ("Sha");
+		GameObject player = GameObject.Find ("Player");
+		Animator APlayer = player.GetComponent<Animator> ();
+		APlayer.SetBool ("grounded", true);
+		APlayer.SetBool ("up", true);
+		APlayer.SetFloat ("speed", 0.0f);
+
+
+		yield return new WaitForSeconds (12f);
+			
+		sha.GetComponent<FollowPlayer>().nocoroutine = true;
+		player.GetComponent<PlayerController>().canmove = true;
+		A.SetBool ("isPlaying", false);
+	}
 
     void OnTriggerEnter2D(Collider2D other)
     {

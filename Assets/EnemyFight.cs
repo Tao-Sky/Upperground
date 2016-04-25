@@ -3,43 +3,35 @@ using System.Collections;
 
 public class EnemyFight : MonoBehaviour
 {
-
     public SpriteRenderer healthBar;
     public GameObject particuleDetection;
-    public Sprite fullHealth;
-    public Sprite OneHitHealth;
-    public Sprite TwoHitHealth;
 
-    private int healthPoints = 3;
-
+    public float totalHealth = 3;
+    private float currentHealth;
 
     void Awake()
     {
-        // HealthBar = GameObject.Find("HealthBar").GetComponent<SpriteRenderer>();
         healthBar.enabled = false;
-        healthBar.sprite = fullHealth;
+        currentHealth = totalHealth;
     }
-
 
     void Update()
     {
-
+        if (currentHealth < totalHealth)
+            healthBar.enabled = true;
     }
 
     public void takingDamage()
     {
-        if (healthPoints > 0)
-            healthPoints--;
+        if (currentHealth > 0)
+            currentHealth--;
 
-        if (healthPoints == 2)
-            healthBar.sprite = OneHitHealth;
-        else if (healthPoints == 1)
-            healthBar.sprite = TwoHitHealth;
+        healthBar.transform.localScale = new Vector3(currentHealth / totalHealth, 1, 1);
     }
 
-    public int getHealthPoints()
+    public float getHealthPoints()
     {
-        return healthPoints;
+        return currentHealth;
     }
 
     public void showHealthBar(bool b)

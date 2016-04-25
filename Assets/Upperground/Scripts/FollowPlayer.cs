@@ -217,26 +217,28 @@ public class FollowPlayer : MonoBehaviour {
     }
 
 
-	void OnTriggerEnter2D(Collider2D other)
-	{
-		if (other.gameObject.tag == "Enemy")
-		{
-			other.gameObject.GetComponent<EnemyFight>().CanBeAttacked(true);
-			other.gameObject.GetComponent<EnemyFight>().showHealthBar(true);
-		}
-	}
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            other.gameObject.GetComponent<EnemyFight>().CanBeAttacked(true);
+            if (other.gameObject.GetComponent<EnemyFight>().getHealthPoints() == other.gameObject.GetComponent<EnemyFight>().totalHealth)
+                other.gameObject.GetComponent<EnemyFight>().showHealthBar(true);
+        }
+    }
 
-	void OnTriggerExit2D(Collider2D other)
-	{
-		if (other.gameObject.tag == "Enemy")
-		{
-			other.gameObject.GetComponent<EnemyFight>().CanBeAttacked(false);
-			other.gameObject.GetComponent<EnemyFight>().showHealthBar(false);
-		}
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            other.gameObject.GetComponent<EnemyFight>().CanBeAttacked(false);
+            if (other.gameObject.GetComponent<EnemyFight>().getHealthPoints() == other.gameObject.GetComponent<EnemyFight>().totalHealth)
+                other.gameObject.GetComponent<EnemyFight>().showHealthBar(false);
+        }
 
-	}
+    }
 
-	void OnTriggerStay2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
 	{
 		GameObject sha = GameObject.Find("Sha");
 		if (other.gameObject.tag == "Enemy")

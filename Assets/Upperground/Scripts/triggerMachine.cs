@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class triggerMachine : MonoBehaviour
+public class TriggerMachine : MonoBehaviour
 {
 	public GameObject Generator;
 	private GameObject MessageEteint;

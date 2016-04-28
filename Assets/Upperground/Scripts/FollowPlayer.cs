@@ -148,6 +148,7 @@ public class FollowPlayer : MonoBehaviour {
         {
             ps.SetActive(true);
 			Machine.GetComponent<Animator> ().SetBool("run",true);
+			GameObject.Find ("Main Camera").GetComponent<ChangeColor> ().violet = true;
         }
         if(appel == 2)
         {
@@ -167,6 +168,8 @@ public class FollowPlayer : MonoBehaviour {
             PowerUnlocked = 1;
             spShaEnergie.SetActive(true);
 			Machine.GetComponent<Animator> ().SetBool("run",false);
+			GameObject.Find ("Main Camera").GetComponent<ChangeColor> ().violet = false;
+
 
         }
         if (appel == 2)

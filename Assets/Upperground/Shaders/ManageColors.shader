@@ -1,7 +1,11 @@
 ﻿Shader "Hidden/BWDiffuse" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
-		_bwBlend ("Black & White blend", Range (0, 1)) = 0
+		_bwBlendV ("Black & White V", Range (0, 1)) = 0
+		_bwBlendR ("Black & White R", Range (0, 1)) = 0
+		_bwBlendB ("Black & White B", Range (0, 1)) = 0
+		_bwBlendG ("Black & White G", Range (0, 1)) = 0
+
 	}
 	SubShader {
 		Pass {
@@ -12,7 +16,10 @@
 			#include "UnityCG.cginc"
  
 			uniform sampler2D _MainTex;
-			uniform float _bwBlend;
+			uniform float _bwBlendV;
+			uniform float _bwBlendG;
+			uniform float _bwBlendR;
+			uniform float _bwBlendB;
  
 			float4 frag(v2f_img i) : COLOR {
 				float4 c = tex2D(_MainTex, i.uv);
@@ -22,7 +29,19 @@
 				float4 result = c;
 				if(c.g <0.4 && c.b < c.r + 0.3 && c.b > c.r -0.3)
 				{
-					result.rgb = lerp(c.rgb, bw, _bwBlend);
+					result.rgb = lerp(c.rgb, bw, _bwBlendV);
+				}
+				else if(c.g >0.5 && c.r <0.5 && c.b <0.5)
+				{
+					result.rgb = lerp(c.rgb, bw, _bwBlendG);
+				}
+				else if(c.r >0.5 && c.g <0.5 && c.b <0.5)
+				{
+					result.rgb = lerp(c.rgb, bw, _bwBlendR);
+				}
+				else if(c.b >0.5 && c.r <0.5 && c.g <0.5)
+				{
+					result.rgb = lerp(c.rgb, bw, _bwBlendB);
 				}
 				return result;
 			}

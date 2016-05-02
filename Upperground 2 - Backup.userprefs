@@ -1,16 +1,20 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Upperground\Scripts\EnemyPathing.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Upperground\Scripts\triggerRencontre.cs">
     <Files>
-      <File FileName="Assets\Upperground\Scripts\ChangeColor.cs" Line="9" Column="25" />
-      <File FileName="Assets\Upperground\Scripts\EnemyPathing.cs" Line="1" Column="1" />
-      <File FileName="Assets\Upperground\Scripts\FollowPlayer.cs" Line="171" Column="79" />
+      <File FileName="Assets\Upperground\Scripts\FollowPlayer.cs" Line="252" Column="37" />
+      <File FileName="Assets\Upperground\Scripts\ChangeColor.cs" Line="36" Column="11" />
+      <File FileName="Assets\Upperground\Scripts\EnemyPathing.cs" Line="21" Column="2" />
       <File FileName="Assets\Upperground\Scripts\GoToLvl2.cs" Line="1" Column="1" />
-      <File FileName="Assets\Upperground\Scripts\SoundManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Upperground\Scripts\TriggerMachine.cs" Line="48" Column="22" />
+      <File FileName="Assets\Upperground\Scripts\SoundManager.cs" Line="27" Column="31" />
+      <File FileName="Assets\Upperground\Scripts\TriggerMachine.cs" Line="6" Column="30" />
       <File FileName="Assets\Upperground\Scripts\GameManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Upperground\Scripts\nextLevel.cs" Line="1" Column="1" />
       <File FileName="Assets\Upperground\Scripts\TriggerEnemyWalking.cs" Line="1" Column="1" />
+      <File FileName="Assets\Upperground\Scripts\EnemyFight.cs" Line="64" Column="21" />
+      <File FileName="Assets\Upperground\Scripts\dialogueposition.cs" Line="1" Column="1" />
+      <File FileName="Assets\Upperground\Scripts\triggerRencontre.cs" Line="12" Column="27" />
+      <File FileName="Assets\Upperground\Scripts\triggerAttaque.cs" Line="9" Column="3" />
       <File FileName="Assets\Upperground\Shaders\ManageColors.shader" Line="7" Column="9" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

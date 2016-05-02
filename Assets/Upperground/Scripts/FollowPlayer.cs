@@ -14,6 +14,8 @@ public class FollowPlayer : MonoBehaviour {
     private float dist;
     private Vector3 lastDestination;
 
+	public bool PowersAvailable = false;
+
     bool inPlayerRadius = false;
     public bool playerFound = false;
 
@@ -169,8 +171,7 @@ public class FollowPlayer : MonoBehaviour {
             spShaEnergie.SetActive(true);
 			Machine.GetComponent<Animator> ().SetBool("run",false);
 			GameObject.Find ("Main Camera").GetComponent<ChangeColor> ().violet = false;
-
-
+			PowersAvailable = true;
         }
         if (appel == 2)
         {
@@ -248,13 +249,35 @@ public class FollowPlayer : MonoBehaviour {
 		A.SetBool ("isPlaying", false);
 	}
 
+	public IEnumerator CinematicAttaque()
+	{
+		Animator A = GameObject.Find ("Dialogue").GetComponent<Animator> ();
+		A.SetBool ("attaque", true);
+		GameObject sha = GameObject.Find ("Sha");
+		GameObject player = GameObject.Find ("Player");
+		Animator APlayer = player.GetComponent<Animator> ();
+		APlayer.SetBool ("grounded", true);
+		APlayer.SetBool ("up", true);
+		APlayer.SetFloat ("speed", 0.0f);
+
+
+		yield return new WaitForSeconds (12.5f);
+
+		sha.GetComponent<FollowPlayer>().nocoroutine = true;
+		player.GetComponent<PlayerController>().canmove = true;
+		A.SetBool ("attaque", false);
+	}
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy")
         {
-            other.gameObject.GetComponent<EnemyFight>().CanBeAttacked(true);
-            if (other.gameObject.GetComponent<EnemyFight>().getHealthPoints() == other.gameObject.GetComponent<EnemyFight>().totalHealth)
-                other.gameObject.GetComponent<EnemyFight>().showHealthBar(true);
+			if(PowersAvailable)
+			{
+				other.gameObject.GetComponent<EnemyFight>().CanBeAttacked(true);
+				if (other.gameObject.GetComponent<EnemyFight>().getHealthPoints() == other.gameObject.GetComponent<EnemyFight>().totalHealth)
+					other.gameObject.GetComponent<EnemyFight>().showHealthBar(true);				
+			}
         }
     }
 
@@ -274,7 +297,7 @@ public class FollowPlayer : MonoBehaviour {
 		GameObject sha = GameObject.Find("Sha");
 		if (other.gameObject.tag == "Enemy")
 		{
-			if (Input.GetButtonDown("B button") && sha.GetComponent<FollowPlayer>().playerFound)
+			if (Input.GetButtonDown("B button") && sha.GetComponent<FollowPlayer>().playerFound && PowersAvailable)
 			{
 				other.gameObject.GetComponent<EnemyFight>().takingDamage();
 				LaunchPower (0, other.transform);

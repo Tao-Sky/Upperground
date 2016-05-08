@@ -150,6 +150,7 @@ public class FollowPlayer : MonoBehaviour {
         {
             ps.SetActive(true);
 			Machine.GetComponent<Animator> ().SetBool("run",true);
+			GameObject.Find ("Machine").GetComponent<MachineSFX> ().Machine ();
 			GameObject.Find ("Main Camera").GetComponent<ChangeColor> ().violet = true;
         }
         if(appel == 2)
@@ -185,6 +186,7 @@ public class FollowPlayer : MonoBehaviour {
 
 	public void LaunchPower(int nbP, Transform T)
 	{
+		GetComponent<ShaSFX>().Scream();
 		GetComponent<ShaSFX>().Thunder();
 		speclair.transform.LookAt (T);
 		speclair.GetComponent<ParticleSystem>().startSize = Mathf.Sqrt( Vector2.Distance(T.position, this.transform.position)) * 0.8f;//la taille du rayon reste a definir avec un fontion propre

@@ -46,7 +46,10 @@ public class EnemyFight : MonoBehaviour
     {
         if (currentHealth > 0)
             currentHealth--;
-
+		if (enemyType == 1) 
+		{
+			GetComponent<BlobSFX> ().Hit ();
+		}
         healthBar.transform.localScale = new Vector3(currentHealth / totalHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
     }
 
@@ -125,6 +128,7 @@ public class EnemyFight : MonoBehaviour
             {
                 if (g.GetComponent<TriggerCheckpoint>().getIsActivated() == true)
                 {
+					coll.gameObject.GetComponent<LumoSFX> ().LumoHit ();
                     coll.gameObject.GetComponent<PlayerController>().isRespawning = true;
                     coll.gameObject.GetComponent<PlayerController>().getRigidbody2D().velocity = new Vector2(0, 0);
                     coll.transform.position = new Vector3(g.transform.position.x, g.transform.position.y - 4.0f, coll.transform.position.z);

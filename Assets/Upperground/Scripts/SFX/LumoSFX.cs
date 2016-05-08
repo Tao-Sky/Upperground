@@ -3,7 +3,12 @@ using System.Collections;
 
 public class LumoSFX : MonoBehaviour {
 	public AudioSource Run;
+	public AudioSource Jump;
+	public AudioSource Hit;
 	// Use this for initialization
+
+	private bool jump = false;
+
 	void Start () {
 	
 	}
@@ -23,5 +28,25 @@ public class LumoSFX : MonoBehaviour {
 		{
 			Run.Stop ();
 		}
+
+		if(Player.GetComponent<PlayerController>().jump && !jump && rand < 90)
+		{
+			Jump.pitch = pitch;
+			Jump.Play ();
+			jump = true;
+		}
+
+		if(Player.GetComponent<PlayerController>().anim.GetBool("grounded"))
+		{
+			jump = false;
+		}
+	}
+
+	public void LumoHit()
+	{
+		int rand = Random.Range (75, 105);
+		float pitch = (float)rand / 100.0f;
+		Hit.pitch = pitch;
+		Hit.Play ();
 	}
 }

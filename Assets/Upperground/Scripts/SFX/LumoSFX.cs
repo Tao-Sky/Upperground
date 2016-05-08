@@ -17,18 +17,18 @@ public class LumoSFX : MonoBehaviour {
 	void Update()
 	{
 		GameObject Player = GameObject.Find("Player");
-		int rand = Random.Range (75, 105);
-		float pitch = (float)rand / 100.0f;
-		if(Player.GetComponent<Animator>().GetFloat("speed")>0.2 && Player.GetComponent<Animator>().GetBool("grounded") && !Run.isPlaying)
+
+		if(Player.GetComponent<Animator>().GetFloat("speed")>0.4 && Player.GetComponent<Animator>().GetBool("grounded") && !Run.isPlaying)
 		{
-			Run.pitch = pitch;
+			Run.pitch =0.9f - 0.4f*(1f - Player.GetComponent<Animator> ().GetFloat ("speed"));
 			Run.Play ();
 		}
-		else if(Player.GetComponent<Animator>().GetFloat("speed")<0.2 || !Player.GetComponent<Animator>().GetBool("grounded") )
+		else if(Player.GetComponent<Animator>().GetFloat("speed")<0.4 || !Player.GetComponent<Animator>().GetBool("grounded") )
 		{
 			Run.Stop ();
 		}
-
+		int rand = Random.Range (75, 105);
+		float pitch = (float)rand / 100.0f;
 		if(Player.GetComponent<PlayerController>().jump && !jump && rand < 90)
 		{
 			Jump.pitch = pitch;

@@ -127,7 +127,14 @@ public class PlayerController : MonoBehaviour
                 //Debug.Log(h);
                 // The Speed animator parameter is set to the absolute value of the horizontal input.
                 anim.SetFloat("speed", Mathf.Abs(h));
-
+				if (anim.GetFloat("speed") > 0.3f) 
+				{
+					anim.speed = anim.GetFloat("speed");
+				}
+				else
+				{
+					anim.speed = 1;
+				}
                 // If the player is changing direction (h has a different sign to velocity.x) or not max speed
                 if (h * rb2d.velocity.x < maxSpeed)
                     rb2d.AddForce(Vector2.right * h * moveForce);
@@ -174,7 +181,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void Flip()
+    public void Flip()
     {
         // Switch the way the player is labelled as facing.
         facingRight = !facingRight;

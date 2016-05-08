@@ -10,10 +10,10 @@ public class EnemyFight : MonoBehaviour
     public Sprite OneHitHealth;
     public Sprite TwoHitHealth;
 
-    private SpriteRenderer sr;
     private BoxCollider2D box2D;
     private Animator anim;
 
+    private SpriteRenderer[] sr;
     public GameObject deadEnemy;
     public int enemyType;
 
@@ -28,11 +28,14 @@ public class EnemyFight : MonoBehaviour
         currentHealth = totalHealth;
 
         anim = GetComponent<Animator>();
-        sr = GetComponent<SpriteRenderer>();
         box2D = GetComponent<BoxCollider2D>();
+        sr = GetComponentsInChildren<SpriteRenderer>();
 
         if (enemyType == 1)
+        {
             deadEnemy = null;
+        }
+
         else if (enemyType == 2)
         {
             deadEnemy.GetComponent<SpriteRenderer>().enabled = false;
@@ -106,7 +109,14 @@ public class EnemyFight : MonoBehaviour
 
         anim.enabled = false;
         box2D.enabled = false;
-        sr.enabled = false;
+
+        //sr.enabled = false;
+        for(int i=0; i<sr.Length; i++)
+        {
+            if (sr[i].gameObject.name != "DeadSprite")
+                sr[i].enabled = false;
+        }
+
         particuleDetection.SetActive(false);
         healthBar.sprite = null;
 
@@ -120,7 +130,14 @@ public class EnemyFight : MonoBehaviour
         deadEnemy.GetComponent<BoxCollider2D>().enabled = false;
 
         box2D.enabled = true;
-        sr.enabled = true;
+
+        //sr.enabled = true;
+        for (int i = 0; i < sr.Length; i++)
+        {
+            if (sr[i].gameObject.name != "DeadSprite")
+                sr[i].enabled = true;
+        }
+
         anim.enabled = true;
         transform.tag = "Enemy";
 

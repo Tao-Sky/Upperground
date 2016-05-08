@@ -96,6 +96,7 @@ public class EnemyPathing : MonoBehaviour
         canAccelerate = true;
 
         walkSpeed = 4.0f;
+        anim.SetFloat("Speed", Mathf.Abs(walkSpeed));
 
         Invoke("MovementSpeedBoost", randomTime);
     }

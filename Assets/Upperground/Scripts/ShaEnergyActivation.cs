@@ -3,12 +3,13 @@ using System.Collections;
 
 public class ShaEnergyActivation : MonoBehaviour {
     private bool Sprite = true;
+	private bool Powers = false;
     public Sprite oppendoor;
     private int power;
     public GameObject centremachine;
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+		if (other.gameObject.tag == "Player" && Powers)
         {
             if (Sprite)
             {
@@ -20,7 +21,7 @@ public class ShaEnergyActivation : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+		if (other.gameObject.tag == "Player" && Powers)
         {
             GetComponentInChildren<SpriteRenderer>().enabled = false;
         }
@@ -30,12 +31,13 @@ public class ShaEnergyActivation : MonoBehaviour {
     {
         GameObject player = GameObject.Find("Player");
         power = player.GetComponent<PlayerController>().power;
+		Powers = GameObject.Find ("Sha").GetComponent<FollowPlayer> ().PowersAvailable;
         //Debug.Log(power);
     }
 
         void OnTriggerStay2D(Collider2D other)
     {
-        if (Input.GetButtonDown("Y button"))
+		if (Input.GetButtonDown("Y button") && Powers && Sprite)
         {
             GameObject sha = GameObject.Find("Sha");
             if (power == 0 && sha.GetComponent<FollowPlayer>().PowerUnlocked > 0)

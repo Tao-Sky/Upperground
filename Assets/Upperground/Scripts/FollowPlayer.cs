@@ -158,11 +158,11 @@ public class FollowPlayer : MonoBehaviour {
             transform.LookAt(centremachine);
             transform.Rotate(new Vector3(0, -90, 0), Space.Self);
             */
+			GetComponent<ShaSFX> ().PowerEclair ();
 			speclairlong.transform.LookAt (centremachine);
             speclairlong.GetComponent<ParticleSystem>().startSize = Mathf.Sqrt( Vector2.Distance(centremachine, target.position)) * 0.8f;//la taille du rayon reste a definir avec un fontion propre
             speclairlong.SetActive(true);
             speclairlong.GetComponent<ParticleSystem>().Play();
-			GetComponent<ShaSFX> ().PowerEclair ();
             //lui faire lancer un rayon
         }
 

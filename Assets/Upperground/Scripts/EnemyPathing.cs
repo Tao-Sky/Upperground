@@ -83,7 +83,7 @@ public class EnemyPathing : MonoBehaviour
             if (accTime <= 0)
             {
                 canAccelerate = false;
-                accTime = 2.0f;
+                accTime = 1.0f;
                 walkSpeed = 2.0f;
             }
         }
@@ -92,24 +92,13 @@ public class EnemyPathing : MonoBehaviour
 
     void MovementSpeedBoost()
     {
-        float randomTime = Random.Range(3.0f, 5.0f);
+        float randomTime = Random.Range(4.0f, 6.0f);
         canAccelerate = true;
 
-        walkSpeed = 4.0f;
+        walkSpeed = 4.5f;
         anim.SetFloat("Speed", Mathf.Abs(walkSpeed));
 
         Invoke("MovementSpeedBoost", randomTime);
-    }
-
-    IEnumerator accelerationCoroutine(float time)
-    {
-        walkSpeed = 4.0f;
-        anim.SetFloat("Speed", Mathf.Abs(walkAmount.x));
-
-        yield return new WaitForSeconds(time);
-
-        walkSpeed = 2.0f;
-        anim.SetFloat("Speed", Mathf.Abs(walkAmount.x));
     }
 
     public void Flip()

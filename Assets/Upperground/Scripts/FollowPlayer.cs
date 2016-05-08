@@ -154,12 +154,15 @@ public class FollowPlayer : MonoBehaviour {
 			GameObject.Find ("Main Camera").GetComponent<ChangeColor> ().violet = true;
         }
         if(appel == 2)
-        {
+        {/*
             transform.LookAt(centremachine);
             transform.Rotate(new Vector3(0, -90, 0), Space.Self);
+            */
+			speclairlong.transform.LookAt (centremachine);
             speclairlong.GetComponent<ParticleSystem>().startSize = Mathf.Sqrt( Vector2.Distance(centremachine, target.position)) * 0.8f;//la taille du rayon reste a definir avec un fontion propre
             speclairlong.SetActive(true);
             speclairlong.GetComponent<ParticleSystem>().Play();
+			GetComponent<ShaSFX> ().PowerEclair ();
             //lui faire lancer un rayon
         }
 
@@ -172,6 +175,7 @@ public class FollowPlayer : MonoBehaviour {
             spShaEnergie.SetActive(true);
 			Machine.GetComponent<Animator> ().SetBool("run",false);
 			GameObject.Find ("Main Camera").GetComponent<ChangeColor> ().violet = false;
+			GameObject.Find("Player").GetComponent<PlayerController>().canmove = true;
 			PowersAvailable = true;
         }
         if (appel == 2)
@@ -190,7 +194,6 @@ public class FollowPlayer : MonoBehaviour {
 		GetComponent<ShaSFX>().Thunder();
 		speclair.transform.LookAt (T);
 		speclair.GetComponent<ParticleSystem>().startSize = Mathf.Sqrt( Vector2.Distance(T.position, this.transform.position)) * 0.8f;//la taille du rayon reste a definir avec un fontion propre
-		//speclair.SetActive(true);
 		speclair.GetComponent<ParticleSystem>().Play();		
 	}
 

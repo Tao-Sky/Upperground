@@ -5,7 +5,7 @@ public class triggerAttaque : MonoBehaviour {
 
 	private bool first = true;
 
-	void OnTriggerEnter2D(Collider2D other)
+	void OnTriggerStay2D(Collider2D other)
 	{
 		if(first && other.gameObject.tag == "Player" && GameObject.Find("Sha").GetComponent<FollowPlayer>().PowersAvailable)
 		{

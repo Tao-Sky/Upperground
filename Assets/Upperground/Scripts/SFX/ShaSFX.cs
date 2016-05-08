@@ -4,6 +4,8 @@ using System.Collections;
 public class ShaSFX : MonoBehaviour {
 	public AudioSource eclair;
 	public AudioSource scream;
+	public AudioSource powerEclair;
+
 
 
 	// Use this for initialization
@@ -35,5 +37,16 @@ public class ShaSFX : MonoBehaviour {
 			scream.pitch = pitch;
 			scream.Play ();	
 		}
+	}
+
+	public void PowerEclair()
+	{
+		int rand = Random.Range (85, 120);
+		if (rand > 100) 
+		{
+			float pitch = (float)rand / 100.0f;
+			powerEclair.pitch = pitch;
+			powerEclair.Play ();	
+		}		
 	}
 }

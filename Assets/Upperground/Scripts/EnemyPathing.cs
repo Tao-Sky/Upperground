@@ -19,9 +19,17 @@ public class EnemyPathing : MonoBehaviour
     private Rigidbody2D rb2d;
     private BoxCollider2D bc2d;
 
+    private float accTime = 1.0f;
+    private bool canAccelerate;
+
     public float walkSpeed = 2.0f;
     public float walkingDirection = 1.0f;
     Vector3 walkAmount;
+
+    void Start()
+    {
+        Invoke("MovementSpeedBoost", 1);
+    }
 
     // Use this for initialization
     void Awake()
@@ -35,12 +43,10 @@ public class EnemyPathing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-        //Vector2 feet = new Vector2(transform.position.x, transform.position.y - 1f/*- GetComponent<BoxCollider2D>().bounds.extents.y*/);
+        GameObject player = GameObject.Find("Player");
+
         Vector2 feet = new Vector2(transform.position.x, bc2d.bounds.min.y - 0.5f);
         grounded = Physics2D.OverlapCircle(feet, 0.2f, ground_layer);
-
-        //Debug.Log(grounded);
 
         walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
         transform.Translate(walkAmount);
@@ -71,7 +77,38 @@ public class EnemyPathing : MonoBehaviour
 
     void FixedUpdate()
     {
-        //anim.SetFloat("Speed", Mathf.Abs(walkAmount.x));
+        if (canAccelerate)
+        {
+            accTime -= Time.deltaTime;
+            if (accTime <= 0)
+            {
+                canAccelerate = false;
+                accTime = 2.0f;
+                walkSpeed = 2.0f;
+            }
+        }
+        anim.SetFloat("Speed", Mathf.Abs(walkAmount.x));
+    }
+
+    void MovementSpeedBoost()
+    {
+        float randomTime = Random.Range(3.0f, 5.0f);
+        canAccelerate = true;
+
+        walkSpeed = 4.0f;
+
+        Invoke("MovementSpeedBoost", randomTime);
+    }
+
+    IEnumerator accelerationCoroutine(float time)
+    {
+        walkSpeed = 4.0f;
+        anim.SetFloat("Speed", Mathf.Abs(walkAmount.x));
+
+        yield return new WaitForSeconds(time);
+
+        walkSpeed = 2.0f;
+        anim.SetFloat("Speed", Mathf.Abs(walkAmount.x));
     }
 
     public void Flip()

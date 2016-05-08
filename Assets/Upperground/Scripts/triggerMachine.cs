@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TriggerMachine : MonoBehaviour
+public class triggerMachine : MonoBehaviour
 {
 	public GameObject Generator;
 	private GameObject MessageEteint;
 	private GameObject MessageSha;
 	private bool allumeM;
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Player")
@@ -34,6 +35,7 @@ public class TriggerMachine : MonoBehaviour
 		MessageSha = GameObject.Find ("Message_Sha_Missing");
 
 		allumeM = Generator.GetComponent<Triggergenerator> ().allume;
+        Debug.Log(allumeM);
 
 		if (Input.GetButtonDown("X button"))
         {

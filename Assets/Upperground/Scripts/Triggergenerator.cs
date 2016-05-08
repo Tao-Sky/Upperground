@@ -6,6 +6,7 @@ public class Triggergenerator : MonoBehaviour {
 	public Sprite restored;
 	private bool Sprite = true;
 	public bool allume = false;
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")

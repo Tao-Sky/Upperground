@@ -1,4 +1,4 @@
-﻿Shader "Hidden/BWDiffuse" {
+﻿Shader "ManageColors" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 		_bwBlendV ("Black & White V", Range (0, 1)) = 0

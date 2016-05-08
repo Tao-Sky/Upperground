@@ -42,11 +42,8 @@ public class ShaSFX : MonoBehaviour {
 	public void PowerEclair()
 	{
 		int rand = Random.Range (85, 120);
-		if (rand > 100) 
-		{
-			float pitch = (float)rand / 100.0f;
-			powerEclair.pitch = pitch;
-			powerEclair.Play ();	
-		}		
+		float pitch = (float)rand / 100.0f;
+		powerEclair.pitch = pitch;
+		powerEclair.Play ();	
 	}
 }

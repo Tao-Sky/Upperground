@@ -24,7 +24,7 @@ public class ChangeColor : MonoBehaviour {
 		valueRed = 0.8f;
 		valueBlue = 0.8f;
 		valueGreen = 0.8f;
-		material = new Material( Shader.Find("Hidden/BWDiffuse") );
+		material = new Material(Shader.Find("ManageColors"));
 	}
 
 	// Postprocess the image

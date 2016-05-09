@@ -56,10 +56,10 @@ public class FollowPlayer : MonoBehaviour {
     {
         dist = Vector3.Distance(transform.position, target.position);
 
-        if (!inPlayerRadius && dist < 10 && nocoroutine)
+		if (!inPlayerRadius && dist < 10 && nocoroutine && playerFound)
         {
             MoveTowardsPlayer();
-            playerFound = true;
+            //playerFound = true;
         }
         else
         {
@@ -152,6 +152,7 @@ public class FollowPlayer : MonoBehaviour {
 			Machine.GetComponent<Animator> ().SetBool("run",true);
 			GameObject.Find ("Machine").GetComponent<MachineSFX> ().Machine ();
 			GameObject.Find ("Main Camera").GetComponent<ChangeColor> ().violet = true;
+			GameObject.Find ("Main Camera").GetComponent<Animator> ().SetBool ("unzoom", true);
         }
         if(appel == 2)
         {/*
@@ -176,6 +177,7 @@ public class FollowPlayer : MonoBehaviour {
 			Machine.GetComponent<Animator> ().SetBool("run",false);
 			GameObject.Find ("Main Camera").GetComponent<ChangeColor> ().violet = false;
 			GameObject.Find("Player").GetComponent<PlayerController>().canmove = true;
+			GameObject.Find ("Main Camera").GetComponent<Animator> ().SetBool ("unzoom", false);
 			PowersAvailable = true;
         }
         if (appel == 2)
@@ -246,12 +248,14 @@ public class FollowPlayer : MonoBehaviour {
 		APlayer.SetBool ("up", true);
 		APlayer.SetFloat ("speed", 0.0f);
 
-
 		yield return new WaitForSeconds (12.5f);
 			
 		sha.GetComponent<FollowPlayer>().nocoroutine = true;
 		player.GetComponent<PlayerController>().canmove = true;
 		A.SetBool ("isPlaying", false);
+		GameObject.Find ("Main Camera").GetComponent<Animator> ().SetBool ("zoom", false);
+		playerFound = true;
+
 	}
 
 	public IEnumerator CinematicAttaque()
@@ -265,12 +269,12 @@ public class FollowPlayer : MonoBehaviour {
 		APlayer.SetBool ("up", true);
 		APlayer.SetFloat ("speed", 0.0f);
 
-
 		yield return new WaitForSeconds (12.5f);
 
 		sha.GetComponent<FollowPlayer>().nocoroutine = true;
 		player.GetComponent<PlayerController>().canmove = true;
 		A.SetBool ("attaque", false);
+		GameObject.Find ("Main Camera").GetComponent<Animator> ().SetBool ("zoom", false);
 	}
 
     void OnTriggerEnter2D(Collider2D other)
@@ -313,5 +317,4 @@ public class FollowPlayer : MonoBehaviour {
 			}
 		}
 	}
-
 }

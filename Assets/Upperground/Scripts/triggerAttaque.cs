@@ -22,6 +22,7 @@ public class triggerAttaque : MonoBehaviour {
 			{
 				player.GetComponent<PlayerController> ().Flip ();
 			}
+			GameObject.Find ("Main Camera").GetComponent<Animator> ().SetBool ("zoom", true);
 			StartCoroutine(sha.GetComponent<FollowPlayer>().CinematicAttaque());
 		}
 	}

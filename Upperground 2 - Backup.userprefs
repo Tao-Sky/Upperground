@@ -1,25 +1,24 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Upperground\Scripts\SFX\LumoSFX.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Upperground\Scripts\triggerRencontre.cs">
     <Files>
-      <File FileName="Assets\Upperground\Scripts\triggerRencontre.cs" Line="17" Column="1" />
+      <File FileName="Assets\Upperground\Scripts\CameraController.cs" Line="42" Column="29" />
+      <File FileName="Assets\Upperground\Scripts\triggerRencontre.cs" Line="18" Column="77" />
       <File FileName="Assets\Upperground\Scripts\EnemyPathing.cs" Line="88" Column="19" />
       <File FileName="Assets\Upperground\Scripts\SFX\DragonSFX.cs" Line="1" Column="1" />
-      <File FileName="Assets\Upperground\Scripts\SFX\LumoSFX.cs" Line="23" Column="25" />
       <File FileName="Assets\Upperground\Scripts\DisplayHUD.cs" Line="1" Column="1" />
-      <File FileName="Assets\Upperground\Scripts\CameraController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Upperground\Scripts\FollowPlayer.cs" Line="204" Column="10" />
-      <File FileName="Assets\Upperground\Scripts\ChangeColor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Upperground\Scripts\PlayerController.cs" Line="130" Column="37" />
-      <File FileName="Assets\Upperground\Scripts\GoToLvl2.cs" Line="1" Column="1" />
-      <File FileName="Assets\Upperground\Scripts\SoundManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Upperground\Scripts\FollowPlayer.cs" Line="88" Column="1" />
+      <File FileName="Assets\Upperground\Scripts\ChangeColor.cs" Line="13" Column="24" />
+      <File FileName="Assets\Upperground\Scripts\PlayerController.cs" Line="190" Column="1" />
+      <File FileName="Assets\Upperground\Scripts\GoToLvl2.cs" Line="23" Column="45" />
+      <File FileName="Assets\Upperground\Scripts\SoundManager.cs" Line="35" Column="2" />
       <File FileName="Assets\Upperground\Scripts\TriggerMachine.cs" Line="1" Column="1" />
-      <File FileName="Assets\Upperground\Scripts\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Upperground\Scripts\GameManager.cs" Line="37" Column="16" />
       <File FileName="Assets\Upperground\Scripts\nextLevel.cs" Line="1" Column="1" />
       <File FileName="Assets\Upperground\Scripts\TriggerEnemyWalking.cs" Line="1" Column="1" />
       <File FileName="Assets\Upperground\Scripts\EnemyFight.cs" Line="1" Column="1" />
       <File FileName="Assets\Upperground\Scripts\dialogueposition.cs" Line="1" Column="1" />
-      <File FileName="Assets\Upperground\Scripts\triggerAttaque.cs" Line="24" Column="5" />
+      <File FileName="Assets\Upperground\Scripts\triggerAttaque.cs" Line="25" Column="85" />
       <File FileName="Assets\Upperground\Scripts\SFX\BlobSFX.cs" Line="1" Column="1" />
       <File FileName="Assets\Upperground\Scripts\SFX\DialogueSFX.cs" Line="1" Column="1" />
       <File FileName="Assets\Upperground\Scripts\SFX\ShaSFX.cs" Line="1" Column="1" />

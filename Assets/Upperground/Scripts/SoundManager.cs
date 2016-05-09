@@ -32,7 +32,7 @@ public class SoundManager : MonoBehaviour {
 	private bool boolDrum=false;
 	private bool boolLead=false;
 
-		void Start () 
+	void Start () 
 	{
 		LoadSnaps ();
 	}

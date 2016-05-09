@@ -31,7 +31,7 @@ public class EnemyFight : MonoBehaviour
         box2D = GetComponent<BoxCollider2D>();
         sr = GetComponentsInChildren<SpriteRenderer>();
 
-        if (enemyType == 1)
+        if (enemyType != 2)
         {
             deadEnemy = null;
         }
@@ -94,7 +94,7 @@ public class EnemyFight : MonoBehaviour
 
     public void EnemyDie()
     {
-        if (enemyType == 1)
+        if (enemyType != 2)
             Destroy(this.gameObject);
 
         else if (enemyType == 2)
@@ -111,7 +111,7 @@ public class EnemyFight : MonoBehaviour
         box2D.enabled = false;
 
         //sr.enabled = false;
-        for(int i=0; i<sr.Length; i++)
+        for (int i = 0; i < sr.Length; i++)
         {
             if (sr[i].gameObject.name != "DeadSprite")
                 sr[i].enabled = false;

@@ -14,7 +14,8 @@ public class triggerAttaque : MonoBehaviour {
 			GameObject player = GameObject.Find("Player");
 			sha.GetComponent<FollowPlayer>().nocoroutine = false;
 			player.GetComponent<PlayerController>().canmove = false;
-			if(sha.transform.position.x > player.transform.position.x && player.transform.localScale.x < 0)
+
+            if (sha.transform.position.x > player.transform.position.x && player.transform.localScale.x < 0)
 			{
 				player.GetComponent<PlayerController> ().Flip ();
 			}
@@ -22,6 +23,7 @@ public class triggerAttaque : MonoBehaviour {
 			{
 				player.GetComponent<PlayerController> ().Flip ();
 			}
+
 			GameObject.Find ("Main Camera").GetComponent<Animator> ().SetBool ("zoom", true);
 			StartCoroutine(sha.GetComponent<FollowPlayer>().CinematicAttaque());
 		}

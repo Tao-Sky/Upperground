@@ -12,6 +12,7 @@ public class FollowPlayer : MonoBehaviour {
 
     private float lastDist;
     private float dist;
+    private float maxDist = 4.0f;
     private Vector3 lastDestination;
 
 	public bool PowersAvailable = false;
@@ -105,13 +106,13 @@ public class FollowPlayer : MonoBehaviour {
         }
         //fin d'ajout
 
-        if (dist > 5)
+        if (dist > maxDist)
         {
             speed *= 1.01f;
             transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
         }
 
-        if (dist > minDistanceFromPlayer && dist <= 5)
+        if (dist > minDistanceFromPlayer && dist <= maxDist)
         {
             if (dist <= lastDist)
                 speed *= 0.975f;
@@ -137,15 +138,16 @@ public class FollowPlayer : MonoBehaviour {
     {
         nocoroutine = false;
 		GameObject Machine = GameObject.Find("Machine");
+
         if (appel != 2)
         {
-
             while (Vector3.Distance(centremachine, target.position) > 0.1f)
             {
                 target.position = Vector3.Lerp(centremachine, target.position, 59.0f * Time.deltaTime);
                 yield return null;
             }
         }
+
         if (appel == 1)
         {
             ps.SetActive(true);
@@ -154,7 +156,8 @@ public class FollowPlayer : MonoBehaviour {
 			GameObject.Find ("Main Camera").GetComponent<ChangeColor> ().violet = true;
 			GameObject.Find ("Main Camera").GetComponent<Animator> ().SetBool ("unzoom", true);
         }
-        if(appel == 2)
+
+        else if(appel == 2)
         {/*
             transform.LookAt(centremachine);
             transform.Rotate(new Vector3(0, -90, 0), Space.Self);
@@ -180,13 +183,15 @@ public class FollowPlayer : MonoBehaviour {
 			GameObject.Find ("Main Camera").GetComponent<Animator> ().SetBool ("unzoom", false);
 			PowersAvailable = true;
         }
-        if (appel == 2)
+        else if (appel == 2)
         {
             speclairlong.GetComponent<ParticleSystem>().Stop();
             speclairlong.SetActive(false);
             //areter de lancer un rayon
         }
+
         nocoroutine = true;
+        playerFound = true;
         //Debug.Log("je suis enfin fini");
     }
 
@@ -275,7 +280,8 @@ public class FollowPlayer : MonoBehaviour {
 		player.GetComponent<PlayerController>().canmove = true;
 		A.SetBool ("attaque", false);
 		GameObject.Find ("Main Camera").GetComponent<Animator> ().SetBool ("zoom", false);
-	}
+        playerFound = true;
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {

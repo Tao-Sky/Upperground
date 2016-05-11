@@ -22,9 +22,9 @@ public class SoundManager : MonoBehaviour {
 
 	public AudioMixer Music;
 
-	private double xBass = -30.0f;
-	private double xDrum = -2.3f;
-	private double xLead = 53.0f;
+	public double xBass = -30.0f;
+	public double xDrum = -2.3f;
+	public double xLead = 53.0f;
 
 	private int level;
 	private int nextTheme = 0;
@@ -180,4 +180,5 @@ public class SoundManager : MonoBehaviour {
 			SnapLead1.TransitionTo (2);
 		}		
 	}
+		
 }

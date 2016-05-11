@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GoToLvl2 : MonoBehaviour {
 	public GameObject door;
@@ -30,7 +31,8 @@ public class GoToLvl2 : MonoBehaviour {
         {
 			if(door.GetComponent<SpriteRenderer>().sprite.name == "Door24")
 			{
-				Application.LoadLevel("Scene_1");	
+				SceneManager.LoadScene ("Scene_2");
+				GameObject.Find ("GameManager").GetComponent<GameManager> ().level++;
 			}
         }
     }

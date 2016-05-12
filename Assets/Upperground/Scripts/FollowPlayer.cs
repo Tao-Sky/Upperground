@@ -24,6 +24,7 @@ public class FollowPlayer : MonoBehaviour
     public bool playerFound = false;
 
     bool inCanalisation = false;
+    bool canalisationCalled = false;
     Transform[] tabWayPoints;
     int nbWayPoints;
     int indiceNextWayPoint;
@@ -47,7 +48,8 @@ public class FollowPlayer : MonoBehaviour
 
     void Awake()
     {
-        Invoke("startingCanalisation", 3);
+        // DECOMMENTER POUR TEST DIRECT DANS NIVEAU 2
+        //Invoke("startingCanalisation", 3);
     }
 
     void startingCanalisation()
@@ -88,11 +90,19 @@ public class FollowPlayer : MonoBehaviour
 
     void Update()
     {
+        GameObject manager = GameObject.Find("GameManager");
+        manager.hideFlags = HideFlags.HideInHierarchy;
+
+        Debug.Log(manager.GetComponent<GameManager>().getLevel());
+
+        if (manager.GetComponent<GameManager>().getLevel() == 2 && !canalisationCalled)
+        {
+            Invoke("startingCanalisation", 3);
+            canalisationCalled = true;
+        }
+
         if (inCanalisation)
         {
-            GameObject manager = GameObject.Find("GameManager");
-            manager.hideFlags = HideFlags.HideInHierarchy;
-
             if (manager.GetComponent<GameManager>().IsPaused == true)
             {
                 direction = lastDirection;
@@ -359,7 +369,7 @@ public class FollowPlayer : MonoBehaviour
 
     bool isOnNextWayPoint(int indiceNextWayPoint)
     {
-        float ecart = 0.03f;
+        float ecart = 0.05f;
 
         if (Mathf.Abs(transform.position.x - tabWayPoints[indiceNextWayPoint].transform.position.x) < ecart
          && Mathf.Abs(transform.position.y - tabWayPoints[indiceNextWayPoint].transform.position.y) < ecart)

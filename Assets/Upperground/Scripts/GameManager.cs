@@ -82,4 +82,9 @@ public class GameManager : MonoBehaviour {
     {
         return IsPaused;
     }
+
+    public int getLevel()
+    {
+        return level;
+    }
 }

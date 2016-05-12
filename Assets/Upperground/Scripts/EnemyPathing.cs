@@ -23,8 +23,11 @@ public class EnemyPathing : MonoBehaviour
 
     void Update()
     {
-        walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
-        transform.Translate(walkAmount);
+        if (GetComponent<EnemyFight>().getEnemyType() != 3)
+        {
+            walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
+            transform.Translate(walkAmount);
+        }
     }
 
     public float getWalkingDirection()

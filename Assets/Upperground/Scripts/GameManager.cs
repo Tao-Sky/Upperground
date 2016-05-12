@@ -77,4 +77,9 @@ public class GameManager : MonoBehaviour {
 		}
 		IsPaused = pause;
 	}
+
+    public bool getPause()
+    {
+        return IsPaused;
+    }
 }

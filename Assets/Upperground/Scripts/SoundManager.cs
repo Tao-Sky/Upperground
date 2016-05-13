@@ -31,6 +31,10 @@ public class SoundManager : MonoBehaviour {
 	private bool boolBass=false;
 	private bool boolDrum=false;
 	private bool boolLead=false;
+	public bool endL=false;
+
+	private float timeCurrent = 0f;
+	private float time = 2f;
 
 	void Start () 
 	{
@@ -39,9 +43,33 @@ public class SoundManager : MonoBehaviour {
 
 	void Update () 
 	{
-		ControlPosition();
-		Effects ();
-		chooseTheme ();
+		if(!endL)
+		{
+			ControlPosition();
+			Effects ();
+			chooseTheme ();			
+		}
+		else
+		{
+			if(timeCurrent==0f)
+			{
+				FadeOutSnaps ();
+			}
+			if(timeCurrent<time)
+			{
+				timeCurrent += Time.deltaTime;
+			}
+			else
+			{
+				SnapSynth1.TransitionTo (0.5f);
+				SnapBass2.TransitionTo (0);
+				SnapBridge2.TransitionTo (0);
+				SnapDrum2.TransitionTo (0);
+				SnapLead2.TransitionTo (0);
+				endL = false;
+			}
+		}
+
 	}
 
 	void chooseTheme()
@@ -135,6 +163,12 @@ public class SoundManager : MonoBehaviour {
 			Music.SetFloat ("volumeVal", 0.00f);
 			Music.SetFloat ("reverbVal", -250.0f);
 		}
+		else if(level == 2)
+		{
+			Music.SetFloat ("lowPassVal", 22000.0f);
+			Music.SetFloat ("volumeVal", 0.00f);
+			Music.SetFloat ("reverbVal", -3000.0f);
+		}
 
 		if(FindObjectOfType<GameManager>().IsPaused)
 		{
@@ -179,6 +213,15 @@ public class SoundManager : MonoBehaviour {
 		{
 			SnapLead1.TransitionTo (2);
 		}		
+	}
+
+	void FadeOutSnaps()
+	{
+		SnapSynth2.TransitionTo (0.5f);
+		SnapBass2.TransitionTo (0.5f);
+		SnapBridge2.TransitionTo (0.5f);
+		SnapDrum2.TransitionTo (0.5f);
+		SnapLead2.TransitionTo (0.5f);
 	}
 		
 }

@@ -33,6 +33,7 @@ public class GoToLvl2 : MonoBehaviour {
 			{
 				SceneManager.LoadScene ("Scene_2");
 				GameObject.Find ("GameManager").GetComponent<GameManager> ().level++;
+				GameObject.Find ("SoundManager").GetComponent<SoundManager> ().endL = true;
 			}
         }
     }

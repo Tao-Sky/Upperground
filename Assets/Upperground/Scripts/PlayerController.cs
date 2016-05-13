@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
             {
                 power = power - 1;
             }
-            //Debug.Log("test pouvoir " + power);
+            Debug.Log("test pouvoir " + power);
             swap = false;
             rouepouvoir.transform.Rotate(0, 0, -90);
             sha.GetComponent<FollowPlayer>().powerParticule(power);
@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxis("gachette gauche") > 0.2 && swap && canmove)
         {
             power = Mathf.Abs((power + 1) % 4);
-            //Debug.Log("test pouvoir " + power);
+            Debug.Log("test pouvoir " + power);
             swap = false;
             rouepouvoir.transform.Rotate(0, 0, 90);
             sha.GetComponent<FollowPlayer>().powerParticule(power);

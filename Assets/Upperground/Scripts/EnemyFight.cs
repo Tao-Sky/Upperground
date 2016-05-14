@@ -153,11 +153,12 @@ public class EnemyFight : MonoBehaviour
         if (coll.gameObject.tag == "Player" && transform.tag == "Enemy")
         {
             GameObject[] listeCP = GameObject.FindGameObjectsWithTag("Checkpoint");
-            GetComponent<Rigidbody2D>().isKinematic = true;
+            //GetComponent<Rigidbody2D>().isKinematic = true;
 
             if (enemyType == 3)
             {
-                GetComponent<EnemyFlying>().setDirection(GetComponent<EnemyFlying>().getLastDirection());
+
+                GetComponent<EnemyPathing>().setDirection(GetComponent<EnemyPathing>().getLastDirection());
             }
 
             foreach (GameObject g in listeCP)
@@ -181,7 +182,7 @@ public class EnemyFight : MonoBehaviour
     {
         if (coll.gameObject.tag == "Player" && transform.tag == "Enemy")
         {
-            GetComponent<Rigidbody2D>().isKinematic = false;
+            //GetComponent<Rigidbody2D>().isKinematic = false;
         }
     }
 }

@@ -36,7 +36,6 @@ public class triggerMachine : MonoBehaviour
 		MessageSha = GameObject.Find ("Message_Sha_Missing");
 
 		allumeM = Generator.GetComponent<Triggergenerator> ().allume;
-        Debug.Log(allumeM);
 
 		if (Input.GetButtonDown("X button") && !used)
         {
@@ -47,12 +46,14 @@ public class triggerMachine : MonoBehaviour
 				{
                     Vector3 centremachine = new Vector3(-12.18f, -6.85f, -1.50f);
 				
-                    sha.GetComponent<FollowPlayer> ().goToMachine (centremachine,5.0f,1);//sha va la machine situé en centremachine et y reste 5.0 seconde et fera l'action 1
-					GameObject.Find("Player").GetComponent<PlayerController>().canmove = false;
-					GameObject.Find("Player").GetComponent<PlayerController>().anim.SetFloat("speed",0f);
-					GameObject.Find("Player").GetComponent<PlayerController>().anim.SetBool("grounded",true);
-					GameObject.Find("Player").GetComponent<PlayerController>().anim.SetBool("up",false);
+					GameObject player = GameObject.Find("Player");
 
+					player.GetComponent<PlayerController>().canmove = false;
+					player.GetComponent<PlayerController>().anim.SetFloat("speed",0f);
+					player.GetComponent<PlayerController>().anim.SetBool("grounded",true);
+					player.GetComponent<PlayerController>().anim.SetBool("up",false);
+		
+					sha.GetComponent<FollowPlayer> ().goToMachine (centremachine,5.0f,1);//sha va la machine situé en centremachine et y reste 5.0 seconde et fera l'action 1
 
 					//sha.GetComponent<FollowPlayer>().PowerUnlocked = 1;
                     GetComponentInChildren<SpriteRenderer> ().enabled = false;

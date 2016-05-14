@@ -3,14 +3,6 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
-	public enum GameState
-	{
-		Boot,
-		MainMenu,
-		InGame,
-		AfterGame,
-		Loading
-	}
 	public bool IsPaused;
 	private static GameManager manager = null;
 	public static GameManager Manager

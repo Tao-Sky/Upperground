@@ -2,7 +2,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Upperground\Scripts\FollowPlayer.cs">
     <Files>
-      <File FileName="Assets\Upperground\Scripts\FollowPlayer.cs" Line="107" Column="23" />
+      <File FileName="Assets\Upperground\Scripts\FollowPlayer.cs" Line="282" Column="4" />
+      <File FileName="Assets\Upperground\Scripts\triggerMachine.cs" Line="57" Column="6" />
+      <File FileName="Assets\Upperground\Scripts\SoundManager.cs" Line="31" Column="30" />
+      <File FileName="Assets\Upperground\Scripts\GameManager.cs" Line="37" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

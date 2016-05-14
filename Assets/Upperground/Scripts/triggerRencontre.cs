@@ -25,7 +25,7 @@ public class triggerRencontre : MonoBehaviour {
 			}
 			sha.transform.LookAt(new Vector3(player.transform.position.x,player.transform.position.y,player.transform.position.z));
 			sha.transform.Rotate(new Vector3(0, -90, 0), Space.Self);
-            StartCoroutine(sha.GetComponent<FollowPlayer>().CinematicRencontre());
+			sha.GetComponent<FollowPlayer>().launchCinematicRencontre();
         }
     }
 }

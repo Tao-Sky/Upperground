@@ -33,6 +33,7 @@ public class FollowPlayer : MonoBehaviour
     public bool nocoroutine = true;
 	private bool boolRencontre = false;
 	private bool boolAttaque = false;
+	private bool coroutineAttaque = false;
 
     public GameObject ps;
 
@@ -93,7 +94,13 @@ public class FollowPlayer : MonoBehaviour
 
     void Update()
     {
-		Debug.Log ("nocoroutine : " + nocoroutine);
+		if(coroutineAttaque)
+		{
+			GameObject.Find ("Main Camera").GetComponent<Animator> ().SetBool ("zoom", true);
+			coroutineAttaque = false;
+			StartCoroutine(CinematicAttaque());
+		}
+
 		if(Input.GetButtonDown("X button") && boolRencontre)
 		{
 			StopCoroutine (CinematicRencontre());
@@ -111,12 +118,11 @@ public class FollowPlayer : MonoBehaviour
 			StopCoroutine (CinematicAttaque());
 
 			GameObject.Find ("Passer").GetComponent<SpriteRenderer> ().enabled = false;
-			boolRencontre = false;
+			boolAttaque = false;
 			nocoroutine = true;
 			GameObject.Find("Player").GetComponent<PlayerController>().canmove = true;
 			GameObject.Find("Dialogue").GetComponent<Animator>().SetBool("attaque", false);
 			GameObject.Find("Main Camera").GetComponent<Animator>().SetBool("zoom", false);
-			playerFound = true;
 		}
 		
         GameObject manager = GameObject.Find("GameManager");
@@ -239,6 +245,15 @@ public class FollowPlayer : MonoBehaviour
         StartCoroutine(MachineCoroutine(transform, cible, time, appel));
     }
 
+	public void launchCinematicAttaque()
+	{
+		StartCoroutine (CinematicAttaque ());
+	}
+
+	public void launchCinematicRencontre()
+	{
+		StartCoroutine (CinematicRencontre ());
+	}
 
     IEnumerator MachineCoroutine(Transform target, Vector3 centremachine, float time, int appel)
     {
@@ -256,12 +271,25 @@ public class FollowPlayer : MonoBehaviour
 
         if (appel == 1)
         {
-			GameObject.Find("Player").GetComponent<PlayerController>().canmove = false;
             ps.SetActive(true);
             Machine.GetComponent<Animator>().SetBool("run", true);
             GameObject.Find("Machine").GetComponent<MachineSFX>().Machine();
             GameObject.Find("Main Camera").GetComponent<ChangeColor>().violet = true;
             GameObject.Find("Main Camera").GetComponent<Animator>().SetBool("unzoom", true);
+
+			GameObject player = GameObject.Find ("Player");
+			player.GetComponent<PlayerController>().canmove = false;
+
+			if(player.transform.position.x > -10.55f && player.transform.localScale.x > 0)
+			{
+				player.GetComponent<PlayerController> ().Flip ();
+			}
+			else if(player.transform.position.x < -10.55f && player.transform.localScale.x < 0)
+			{
+				player.GetComponent<PlayerController> ().Flip ();
+			}
+
+
         }
 
         else if (appel == 2)
@@ -286,26 +314,9 @@ public class FollowPlayer : MonoBehaviour
             spShaEnergie.SetActive(true);
             Machine.GetComponent<Animator>().SetBool("run", false);
             GameObject.Find("Main Camera").GetComponent<ChangeColor>().violet = false;
-            //GameObject.Find("Player").GetComponent<PlayerController>().canmove = true;
             GameObject.Find("Main Camera").GetComponent<Animator>().SetBool("unzoom", false);
             PowersAvailable = true;
-
-			//Déclanchement de la couroutine de cinématique d'attaque
-
-			GameObject sha = GameObject.Find("Sha");
-			GameObject player = GameObject.Find("Player");
-			if (sha.transform.position.x > player.transform.position.x && player.transform.localScale.x < 0)
-			{
-				player.GetComponent<PlayerController> ().Flip ();
-			}
-			else if(sha.transform.position.x < player.transform.position.x && player.transform.localScale.x > 0)
-			{
-				player.GetComponent<PlayerController> ().Flip ();
-			}
-
-			GameObject.Find ("Main Camera").GetComponent<Animator> ().SetBool ("zoom", true);
-			StartCoroutine(sha.GetComponent<FollowPlayer>().CinematicAttaque());
-
+			coroutineAttaque = true;
 
         }
         else if (appel == 2)
@@ -316,7 +327,6 @@ public class FollowPlayer : MonoBehaviour
 
             //areter de lancer un rayon
         }
-
         playerFound = true;
         //Debug.Log("je suis enfin fini");
     }
@@ -382,25 +392,26 @@ public class FollowPlayer : MonoBehaviour
 
         yield return new WaitForSeconds(12.5f);
 
-		boolRencontre = false;
-        sha.GetComponent<FollowPlayer>().nocoroutine = true;
+		if(boolRencontre) 
+		{
+			nocoroutine = true;
+		}
         player.GetComponent<PlayerController>().canmove = true;
         A.SetBool("isPlaying", false);
         GameObject.Find("Main Camera").GetComponent<Animator>().SetBool("zoom", false);
         playerFound = true;
-
+		boolRencontre = false;
     }
 
     public IEnumerator CinematicAttaque()
     {
+		nocoroutine = false;
 		boolAttaque = true;
         Animator A = GameObject.Find("Dialogue").GetComponent<Animator>();
         A.SetBool("attaque", true);
         GameObject sha = GameObject.Find("Sha");
         GameObject player = GameObject.Find("Player");
         Animator APlayer = player.GetComponent<Animator>();
-
-		nocoroutine = false;
 		player.GetComponent<PlayerController>().canmove = false;
 
         APlayer.SetBool("grounded", true);
@@ -409,12 +420,16 @@ public class FollowPlayer : MonoBehaviour
 
         yield return new WaitForSeconds(12.5f);
 
-		boolAttaque = false;
-        nocoroutine = true;
+		if(boolAttaque)
+		{
+			nocoroutine = true;
+		}
         player.GetComponent<PlayerController>().canmove = true;
         A.SetBool("attaque", false);
         GameObject.Find("Main Camera").GetComponent<Animator>().SetBool("zoom", false);
         playerFound = true;
+		boolAttaque = false;
+
     }
 
     bool isOnNextWayPoint(int indiceNextWayPoint)

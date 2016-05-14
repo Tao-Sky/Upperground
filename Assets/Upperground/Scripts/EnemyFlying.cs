@@ -92,7 +92,7 @@ public class EnemyFlying : MonoBehaviour
 
                 lastDirection = direction;
 
-                Debug.Log("Prochain point curve: " + indiceNextCurvePoint);
+                //Debug.Log("Prochain point curve: " + indiceNextCurvePoint);
             }
 
             if (Time.timeScale == 1f)

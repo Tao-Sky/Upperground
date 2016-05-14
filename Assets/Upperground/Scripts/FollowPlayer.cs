@@ -93,6 +93,7 @@ public class FollowPlayer : MonoBehaviour
 
     void Update()
     {
+		Debug.Log ("nocoroutine : " + nocoroutine);
 		if(Input.GetButtonDown("X button") && boolRencontre)
 		{
 			StopCoroutine (CinematicRencontre());
@@ -113,15 +114,13 @@ public class FollowPlayer : MonoBehaviour
 			boolRencontre = false;
 			nocoroutine = true;
 			GameObject.Find("Player").GetComponent<PlayerController>().canmove = true;
-			GameObject.Find("Dialogue").GetComponent<Animator>().SetBool("isPlaying", false);
+			GameObject.Find("Dialogue").GetComponent<Animator>().SetBool("attaque", false);
 			GameObject.Find("Main Camera").GetComponent<Animator>().SetBool("zoom", false);
 			playerFound = true;
 		}
 		
         GameObject manager = GameObject.Find("GameManager");
         manager.hideFlags = HideFlags.HideInHierarchy;
-
-        //Debug.Log(manager.GetComponent<GameManager>().getLevel());
 
         if (manager.GetComponent<GameManager>().getLevel() == 2 && !canalisationCalled)
         {
@@ -295,8 +294,6 @@ public class FollowPlayer : MonoBehaviour
 
 			GameObject sha = GameObject.Find("Sha");
 			GameObject player = GameObject.Find("Player");
-			sha.GetComponent<FollowPlayer>().nocoroutine = false;
-
 			if (sha.transform.position.x > player.transform.position.x && player.transform.localScale.x < 0)
 			{
 				player.GetComponent<PlayerController> ().Flip ();
@@ -315,10 +312,11 @@ public class FollowPlayer : MonoBehaviour
         {
             speclairlong.GetComponent<ParticleSystem>().Stop();
             speclairlong.SetActive(false);
+			nocoroutine = true;
+
             //areter de lancer un rayon
         }
 
-        nocoroutine = true;
         playerFound = true;
         //Debug.Log("je suis enfin fini");
     }
@@ -401,6 +399,10 @@ public class FollowPlayer : MonoBehaviour
         GameObject sha = GameObject.Find("Sha");
         GameObject player = GameObject.Find("Player");
         Animator APlayer = player.GetComponent<Animator>();
+
+		nocoroutine = false;
+		player.GetComponent<PlayerController>().canmove = false;
+
         APlayer.SetBool("grounded", true);
         APlayer.SetBool("up", true);
         APlayer.SetFloat("speed", 0.0f);
@@ -408,7 +410,7 @@ public class FollowPlayer : MonoBehaviour
         yield return new WaitForSeconds(12.5f);
 
 		boolAttaque = false;
-        sha.GetComponent<FollowPlayer>().nocoroutine = true;
+        nocoroutine = true;
         player.GetComponent<PlayerController>().canmove = true;
         A.SetBool("attaque", false);
         GameObject.Find("Main Camera").GetComponent<Animator>().SetBool("zoom", false);

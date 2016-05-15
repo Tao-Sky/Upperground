@@ -102,8 +102,6 @@ public class FollowPlayer : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
     }*/
 
     void Update()
@@ -127,6 +125,7 @@ public class FollowPlayer : MonoBehaviour
 			GameObject.Find("Main Camera").GetComponent<Animator>().SetBool("zoom", false);
 			playerFound = true;
 		}
+
 		else if(Input.GetButtonDown("X button") && boolAttaque)
 		{
 			StopCoroutine (CinematicAttaque());
@@ -177,10 +176,11 @@ public class FollowPlayer : MonoBehaviour
                     transform.Rotate(new Vector3(0, -90, 0), Space.Self);
                 }
 
-                if (Time.timeScale == 1f)
+                if (Time.timeScale == 0f)
                     transform.Translate(lastDirection);
                 else
                 {
+                    Debug.Log(speed);
                     direction = new Vector3(speed * Time.deltaTime, 0, 0);
                     transform.Translate(direction);
                     lastDirection = direction;
@@ -472,7 +472,7 @@ public class FollowPlayer : MonoBehaviour
     
     bool isOnNextWayPoint(int indiceNextWayPoint)
     {
-        float ecart = 0.05f;
+        float ecart = 0.05f * speed / 2;
 
         if (Mathf.Abs(transform.position.x - tabWayPoints[indiceNextWayPoint].transform.position.x) < ecart
          && Mathf.Abs(transform.position.y - tabWayPoints[indiceNextWayPoint].transform.position.y) < ecart)
@@ -521,8 +521,17 @@ public class FollowPlayer : MonoBehaviour
         }
     }
 
-    public Vector3 getPositionDepart()
+    public void Respawn()
     {
-        return positionDepart;
+        transform.position = positionDepart;
+        GameObject manager = GameObject.Find("GameManager");
+        manager.hideFlags = HideFlags.HideInHierarchy;
+
+        if (manager.GetComponent<GameManager>().getLevel() == 0)
+        {
+            indiceNextWayPoint = 0;
+            transform.LookAt(new Vector3(tabWayPoints[0].position.x, tabWayPoints[0].position.y, transform.position.z));
+            transform.Rotate(new Vector3(0, -90, 0), Space.Self);
+        }
     }
 }

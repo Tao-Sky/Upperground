@@ -21,9 +21,9 @@ public class EnemyPathing : MonoBehaviour
     private GameObject nextCurvePoint;
     private int indiceNextCurvePoint;
 
-    private int nbWayPoints = 5;
-    private GameObject[] tabWayPoints;
-    private GameObject nextWayPoint;
+    private int nbWayPoints;// = 5;
+    private Transform[] tabWayPoints;
+    private Transform nextWayPoint;
     private int indiceNextWayPoint;
 
     Vector3 direction;
@@ -39,12 +39,23 @@ public class EnemyPathing : MonoBehaviour
         {
             rb2d = GetComponent<Rigidbody2D>();
             rb2d.gravityScale = 0;
+            /*
             leftTrigger = transform.root.Find("TriggerEnemyPath").FindChild("TriggerL1");
             rightTrigger = transform.root.Find("TriggerEnemyPath").FindChild("TriggerR1");
+            */
 
             walkSpeed = GetComponent<EnemyPathing>().getWalkSpeed();
-            tabWayPoints = new GameObject[nbWayPoints];
-            calculateWayPoints();
+            //calculateWayPoints();
+
+            GameObject g = GameObject.Find("WayPoints");
+            nbWayPoints = g.transform.childCount;
+            tabWayPoints = new Transform[nbWayPoints];
+
+            for (int i = 0; i < nbWayPoints; i++)
+            {
+                tabWayPoints[i] = g.transform.GetChild(i);
+            }
+
             determineBezierCurve();
             determineNextCurvePoint();
         }
@@ -145,7 +156,7 @@ public class EnemyPathing : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
-
+    /*
     void calculateWayPoints()
     {
         float dist = rightTrigger.position.x - leftTrigger.position.x;
@@ -154,7 +165,7 @@ public class EnemyPathing : MonoBehaviour
         gFirst.hideFlags = HideFlags.HideInHierarchy;
 
         gFirst.transform.Translate(leftTrigger.position.x, transform.position.y, transform.position.z);
-        tabWayPoints[0] = gFirst;
+        tabWayPoints[0] = gFirst.transform;
 
         for (int i = 1; i < tabWayPoints.Length - 1; i++)
         {
@@ -171,17 +182,17 @@ public class EnemyPathing : MonoBehaviour
             float z = transform.position.z;
 
             g.transform.Translate(x, y, z);
-            tabWayPoints[i] = g;
+            tabWayPoints[i] = g.transform;
         }
 
         GameObject gLast = new GameObject();
         gLast.hideFlags = HideFlags.HideInHierarchy;
 
         gLast.transform.Translate(rightTrigger.position.x, transform.position.y, transform.position.z);
-        tabWayPoints[nbWayPoints - 1] = gLast;
+        tabWayPoints[nbWayPoints - 1] = gLast.transform;
 
     }
-
+    */
     void determineNextCurvePoint()
     {
         nextCurvePoint = tabCurvePoints[0];
@@ -205,10 +216,10 @@ public class EnemyPathing : MonoBehaviour
 
     bool isOnNextCurvePoint(int indiceNextCurvePoint)
     {
-        float ecart = 0.05f;
+        float ecart = 0.05f * walkSpeed;
 
-        if (Mathf.Abs(transform.position.x - tabCurvePoints[indiceNextCurvePoint].transform.position.x) < ecart)
-        // && Mathf.Abs(transform.position.y - tabCurvePoints[indiceNextCurvePoint].transform.position.y) < ecart)
+        if (Mathf.Abs(transform.position.x - tabCurvePoints[indiceNextCurvePoint].transform.position.x) < ecart
+         && Mathf.Abs(transform.position.y - tabCurvePoints[indiceNextCurvePoint].transform.position.y) < ecart)
         {
             return true;
         }
@@ -230,8 +241,8 @@ public class EnemyPathing : MonoBehaviour
 
             for (int j = 0; j < nbWayPoints; j++)
             {
-                resX += Facto(degre) / (Facto(j) * Facto(degre - j)) * Mathf.Pow(u, j) * Mathf.Pow(1 - u, degre - j) * tabWayPoints[j].transform.position.x;
-                resY += Facto(degre) / (Facto(j) * Facto(degre - j)) * Mathf.Pow(u, j) * Mathf.Pow(1 - u, degre - j) * tabWayPoints[j].transform.position.y;
+                resX += Facto(degre) / (Facto(j) * Facto(degre - j)) * Mathf.Pow(u, j) * Mathf.Pow(1 - u, degre - j) * tabWayPoints[j].position.x;
+                resY += Facto(degre) / (Facto(j) * Facto(degre - j)) * Mathf.Pow(u, j) * Mathf.Pow(1 - u, degre - j) * tabWayPoints[j].position.y;
             }
 
             GameObject g = new GameObject();

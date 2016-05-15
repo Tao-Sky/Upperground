@@ -23,7 +23,7 @@ public class TriggerSpikes : MonoBehaviour
 
                     if (s.GetComponent<FollowPlayer>().playerFound == false)
                     {
-                        s.transform.position = s.GetComponent<FollowPlayer>().getPositionDepart();
+                        s.GetComponent<FollowPlayer>().Respawn();
                     }
 
                     if (s.GetComponent<FollowPlayer>().playerFound == true && s.GetComponent<FollowPlayer>().nocoroutine == true)

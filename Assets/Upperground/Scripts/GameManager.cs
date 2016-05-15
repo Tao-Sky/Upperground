@@ -14,9 +14,9 @@ public class GameManager : MonoBehaviour {
 
 	void Awake()
 	{
-		GetThisGameManager();
-	}
-
+		GetThisGameManager();       
+    }
+    
 	// Use this for initialization
 	void Start () 
 	{

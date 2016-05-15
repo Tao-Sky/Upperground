@@ -6,6 +6,8 @@ public class FollowPlayer : MonoBehaviour
 
     public static FollowPlayer uniqueSha;//creation d'un singleton pour la persistance (voir le Awake)
 
+    private Vector3 positionDepart;
+
     public Transform target;//set target from inspector instead of looking in Update
     public float speed = 4.0f;
     public float basicSpeed = 4.0f;
@@ -48,6 +50,11 @@ public class FollowPlayer : MonoBehaviour
     //pour le jeu global
     public int PowerUnlocked = 0;
 
+    void Start()
+    {
+        positionDepart = transform.position;
+    }
+
     void Awake()
     {
         // DECOMMENTER POUR TEST DIRECT DANS NIVEAU 2
@@ -66,7 +73,7 @@ public class FollowPlayer : MonoBehaviour
     {
         inCanalisation = true;
         playerFound = false;
-
+    
         GameObject g = GameObject.Find("ShaWayPoints");
         nbWayPoints = g.transform.childCount;
         tabWayPoints = new Transform[nbWayPoints];
@@ -76,6 +83,7 @@ public class FollowPlayer : MonoBehaviour
             tabWayPoints[i] = g.transform.GetChild(i);
         }
 
+        indiceNextWayPoint = 0;
         direction = new Vector3(speed * Time.deltaTime, 0, 0);
         lastDirection = direction;
         transform.LookAt(new Vector3(tabWayPoints[0].position.x, tabWayPoints[0].position.y, transform.position.z));
@@ -477,5 +485,10 @@ public class FollowPlayer : MonoBehaviour
                 LaunchPower(0, other.transform);
             }
         }
+    }
+
+    public Vector3 getPositionDepart()
+    {
+        return positionDepart;
     }
 }

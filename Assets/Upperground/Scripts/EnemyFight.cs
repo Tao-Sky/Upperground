@@ -157,7 +157,6 @@ public class EnemyFight : MonoBehaviour
 
             if (enemyType == 3)
             {
-
                 GetComponent<EnemyPathing>().setDirection(GetComponent<EnemyPathing>().getLastDirection());
             }
 
@@ -168,7 +167,13 @@ public class EnemyFight : MonoBehaviour
                     coll.gameObject.GetComponent<PlayerController>().isRespawning = true;
                     coll.gameObject.GetComponent<PlayerController>().getRigidbody2D().velocity = new Vector2(0, 0);
                     coll.transform.position = new Vector3(g.transform.position.x, g.transform.position.y - 4.0f, coll.transform.position.z);
+
                     GameObject s = GameObject.Find("Sha");
+
+                    if (s.GetComponent<FollowPlayer>().playerFound == false)
+                    {
+                        s.transform.position = s.GetComponent<FollowPlayer>().getPositionDepart();
+                    }
                     if (s.GetComponent<FollowPlayer>().playerFound == true && s.GetComponent<FollowPlayer>().nocoroutine == true)
                         s.transform.position = new Vector3(g.transform.position.x, g.transform.position.y - 4.0f, s.transform.position.z);
 
@@ -180,14 +185,6 @@ public class EnemyFight : MonoBehaviour
         else if (coll.gameObject.tag == "Player" && transform.tag == "Untagged")
         {
             coll.gameObject.GetComponent<PlayerController>().Bounce();
-        }
-    }
-
-    void OnCollisionExit2D(Collision2D coll)
-    {
-        if (coll.gameObject.tag == "Player" && transform.tag == "Enemy")
-        {
-            //GetComponent<Rigidbody2D>().isKinematic = false;
         }
     }
 }

@@ -4,19 +4,17 @@ using System.Collections;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
-public class DisplayHUD : MonoBehaviour {
+public class MainMenu : MonoBehaviour {
 
-	public CanvasRenderer roue;
-	public CanvasRenderer socle;
 	public CanvasRenderer pause;
-	public CanvasRenderer back1;
-	public CanvasRenderer back2;
-	public CanvasRenderer restart1;
-	public CanvasRenderer restart2;
+	public CanvasRenderer start1;
+	public CanvasRenderer start2;
+
 	public CanvasRenderer options1;
 	public CanvasRenderer options2;
-	public CanvasRenderer main1;
-	public CanvasRenderer main2;
+
+	public CanvasRenderer quit1;
+	public CanvasRenderer quit2;
 
 	public CanvasRenderer retour1;
 	public CanvasRenderer retour2;
@@ -33,6 +31,9 @@ public class DisplayHUD : MonoBehaviour {
 	public AudioMixer AMMusic;
 	public AudioMixer AMSFX;
 
+	public AudioSource MusiqueIntro;
+	public AudioSource bruitageMenu;
+
 
 	private int etatMenu;
 
@@ -48,11 +49,11 @@ public class DisplayHUD : MonoBehaviour {
 	private bool available;
 	private bool options;
 
+	private bool music = false;
+
 	// Use this for initialization
 	void Awake () 
 	{
-		roue.SetColor (new Color32 (255, 255, 255, 0));
-		socle.SetColor (new Color32 (255, 255, 255, 0));
 		isPaused = false;
 		enterPause = false;
 		available = true;
@@ -61,79 +62,27 @@ public class DisplayHUD : MonoBehaviour {
 
 		float valM;
 		float valS;
-
 		AMMusic.GetFloat("Volume",out valM);
-
 		AMSFX.GetFloat("Volume",out valS);
 
-		S1.value = (valM + 45.0f) / 45.0f;
-		S2.value = (valS + 45.0f) / 45.0f;
+		S1.value = (valM / 45.0f) + 45.0f;
+		S2.value = (valS / 45.0f) + 45.0f;
+		DefaultValue ();
 	}
 
 	// Update is called once per frame
 	void Update () 
-	{
-		isPaused = GameObject.Find ("GameManager").GetComponent<GameManager> ().IsPaused;
-		if(!isPaused)
+	{	
+		if(!music && !MusiqueIntro.isPlaying)
 		{
-			if(enterPause)
-			{
-				GetComponent<HudSFX> ().unpauseSFX ();
-			}
-			enterPause = false;
-			if(pause.GetAlpha() != 0f)
-			{
-				HideAll ();
-			}
-			if((Input.GetAxis("gachette gauche") > 0.2 || Input.GetAxis("gachette droite") > 0.2) && GameObject.Find("Sha").GetComponent<FollowPlayer>().PowersAvailable)
-			{
-				fadeIn=true;
-			}
-
-			if (fadeIn) 
-			{
-				roue.SetColor (new Color32 (255, 255, 255, 255));
-				socle.SetColor (new Color32 (255, 255, 255, 255));
-
-				currentTime = 0f;
-				fadeIn = false;
-				fadeOut = true;
-			}
-
-			if (fadeOut) 
-			{
-				if(currentTime <= time) 
-				{
-					currentTime += Time.deltaTime;
-				}
-				else if(currentTime <= time2)
-				{
-					currentTime += Time.deltaTime;
-					roue.SetColor (new Color32 (255, 255, 255, (byte)(255 * Mathf.Lerp (1f, 0f, currentTime / time2 ))));
-					socle.SetColor (new Color32 (255, 255, 255, (byte)(255 * Mathf.Lerp (1f, 0f, currentTime / time2 ))));				
-				}
-				else 
-				{
-					currentTime = 0f;
-					fadeOut = false;
-				}
-			}			
+			MusiqueIntro.Play ();
+			music = true;
 		}
-		else
+		else if( !MusiqueIntro.isPlaying)
 		{
-			if(!enterPause)
-			{
-				DefaultValue ();
-				pause.SetAlpha (1f);
-				GetComponent<HudSFX> ().pauseSFX ();
-			}
-			Pause ();
+			music = false;
 		}
 
-	}
-
-	void Pause()
-	{
 		enterPause = true;
 		if(Input.GetAxis("Vertical") == 0)
 		{
@@ -149,32 +98,34 @@ public class DisplayHUD : MonoBehaviour {
 			{
 				etatMenu--;
 				updated = true;
+				bruitageMenu.Play ();
 			}
 			else if(h < -0.9f)
 			{
 				etatMenu++;
 				updated = true;
+				bruitageMenu.Play ();
 			}
 			if(!options)
 			{
-				if(etatMenu > 3)
+				if(etatMenu > 2)
 				{
 					etatMenu = 0;
 				}
 				else if(etatMenu < 0)
 				{
-					etatMenu = 3;
+					etatMenu = 2;
 				}				
 			}
 			else
 			{
-				if(etatMenu > 6)
+				if(etatMenu > 5)
 				{
-					etatMenu = 4;
+					etatMenu = 3;
 				}
-				else if(etatMenu < 4)
+				else if(etatMenu < 3)
 				{
-					etatMenu = 6;
+					etatMenu = 5;
 				}				
 			}
 
@@ -190,52 +141,45 @@ public class DisplayHUD : MonoBehaviour {
 				{
 					ResetValue ();
 				}
-				GetComponent<HudSFX> ().pauseMoveSFX ();
 				switch(etatMenu)
 				{
 				case(0):
 					{
-						back1.SetAlpha (0f);
-						back2.SetAlpha (1f);
+						start1.SetAlpha (0f);
+						start2.SetAlpha (1f);
 						break;
 					}
+						
 
 				case(1):
-					{
-						restart1.SetAlpha (0f);
-						restart2.SetAlpha (1f);
-						break;
-					}
-
-				case(2):
 					{
 						options1.SetAlpha (0f);
 						options2.SetAlpha (1f);
 						break;
 					}
 
-				case(3):
+				case(2):
 					{
-						main1.SetAlpha (0f);
-						main2.SetAlpha (1f);
+						quit1.SetAlpha (0f);
+						quit2.SetAlpha (1f);
 						break;
 					}
 
-				case(4):
+				case(3):
 					{
 						volM1.SetAlpha (0f);
 						volM2.SetAlpha (1f);
 						break;
 					}
 
-				case(5):
+				case(4):
 					{
 						volS1.SetAlpha (0f);
 						volS2.SetAlpha (1f);
 						break;
 					}
 
-				case(6):
+				case(5):
 					{
 						retour1.SetAlpha (0f);
 						retour2.SetAlpha (1f);
@@ -250,34 +194,28 @@ public class DisplayHUD : MonoBehaviour {
 		{
 			switch(etatMenu)
 			{
-				case(0):
+			case(0):
 				{
-					GameObject.Find ("GameManager").GetComponent<GameManager> ().SetPause(false);
-					break;
-				}
-				case(1):
-				{
-					string s = "Scene_";
-					s += GameObject.Find ("GameManager").GetComponent<GameManager> ().level.ToString();
-					GameObject.Find ("GameManager").GetComponent<GameManager> ().SetPause(false);
+					MusiqueIntro.Stop ();
+					string s = "Scene_0";
 					SceneManager.LoadScene (s);
 					break;
 				}
-
-				case(2):
+			case(1):
 				{
 					options = true;
 					Options ();
-					etatMenu = 4;
+					etatMenu = 3;
 					break;
 				}
 
-				case(3):
+			case(2):
 				{
+					Application.Quit ();
 					break;
 				}
-
-				case(6):
+					
+			case(5):
 				{
 					options = false;
 					etatMenu = 0;
@@ -288,54 +226,44 @@ public class DisplayHUD : MonoBehaviour {
 		}
 
 		float val = Input.GetAxis ("Horizontal");
-		if (Mathf.Abs(val) > 0.5f)
+		if (Mathf.Abs (val) > 0.5f) 
 		{
-			switch(etatMenu)
+			switch (etatMenu) 
 			{
-			case(4):
+			case(3):
 				{
-					if(val > 0.01f)
-					{
+					if (val > 0.01f) {
 						S1.value += 0.01f;
-					}
-					else
-					{
+					} else {
 						S1.value -= 0.01f;
 					}
-					AMMusic.SetFloat ("Volume", -45f + (S1.value*45f));
+					AMMusic.SetFloat ("Volume", -45f + (S1.value * 45f));
 					break;
 				}
-			case(5):
+			case(4):
 				{
-					if(val > 0.01f)
-					{
+					if (val > 0.01f) {
 						S2.value += 0.01f;
-					}
-					else
-					{
+					} else {
 						S2.value -= 0.01f;
 					}
-					AMSFX.SetFloat ("Volume", -45f + (S2.value*45f));
+					AMSFX.SetFloat ("Volume", -45f + (S2.value * 45f));
 					break;
 				}
 			}
-
 		}
-
-
 	}
 
 	void HideAll()
 	{
 		pause.SetAlpha (0f);
-		back1.SetAlpha (0f);
-		back2.SetAlpha (0f);
-		restart1.SetAlpha (0f);
-		restart2.SetAlpha (0f);
+		start1.SetAlpha (0f);
+		start2.SetAlpha (0f);
+
 		options1.SetAlpha (0f);
 		options2.SetAlpha (0f);
-		main1.SetAlpha (0f);
-		main2.SetAlpha (0f);
+		quit1.SetAlpha (0f);
+		quit2.SetAlpha (0f);
 
 		retour1.SetAlpha (0f);
 		retour2.SetAlpha (0f);
@@ -349,14 +277,13 @@ public class DisplayHUD : MonoBehaviour {
 
 	void DefaultValue()
 	{
-		back1.SetAlpha (0f);
-		back2.SetAlpha (1f);
-		restart1.SetAlpha (1f);
-		restart2.SetAlpha (0f);
+		start1.SetAlpha (0f);
+		start2.SetAlpha (1f);
+
 		options1.SetAlpha (1f);
 		options2.SetAlpha (0f);
-		main1.SetAlpha (1f);
-		main2.SetAlpha (0f);
+		quit1.SetAlpha (1f);
+		quit2.SetAlpha (0f);
 
 		retour1.SetAlpha (0f);
 		retour2.SetAlpha (0f);
@@ -370,14 +297,13 @@ public class DisplayHUD : MonoBehaviour {
 
 	void ResetValue()
 	{
-		back1.SetAlpha (1f);
-		back2.SetAlpha (0f);
-		restart1.SetAlpha (1f);
-		restart2.SetAlpha (0f);
+		start1.SetAlpha (1f);
+		start2.SetAlpha (0f);
+
 		options1.SetAlpha (1f);
 		options2.SetAlpha (0f);
-		main1.SetAlpha (1f);
-		main2.SetAlpha (0f);
+		quit1.SetAlpha (1f);
+		quit2.SetAlpha (0f);
 
 		retour1.SetAlpha (0f);
 		retour2.SetAlpha (0f);
@@ -391,14 +317,13 @@ public class DisplayHUD : MonoBehaviour {
 
 	void Options()
 	{
-		back1.SetAlpha (0f);
-		back2.SetAlpha (0f);
-		restart1.SetAlpha (0f);
-		restart2.SetAlpha (0f);
+		start1.SetAlpha (0f);
+		start2.SetAlpha (0f);
+
 		options1.SetAlpha (0f);
 		options2.SetAlpha (0f);
-		main1.SetAlpha (0f);
-		main2.SetAlpha (0f);
+		quit1.SetAlpha (0f);
+		quit2.SetAlpha (0f);
 
 		retour1.SetAlpha (1f);
 		retour2.SetAlpha (0f);

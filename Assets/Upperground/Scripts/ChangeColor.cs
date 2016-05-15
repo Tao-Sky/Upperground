@@ -18,12 +18,44 @@ public class ChangeColor : MonoBehaviour {
 
 
 	// Creates a private material used to the effect
-	void Awake ()
+	void Start ()
 	{
-		valuePurple = 0.8f;
-		valueRed = 0.8f;
-		valueBlue = 0.8f;
-		valueGreen = 0.8f;
+		int nbColors = GameObject.Find ("Sha").GetComponent<FollowPlayer> ().PowerUnlocked;
+		if (nbColors == 0) 
+		{
+			valuePurple = 0.8f;
+			valueRed = 0.8f;
+			valueBlue = 0.8f;
+			valueGreen = 0.8f;
+		}
+		else if(nbColors == 1)
+		{
+			valuePurple = 0.0f;
+			valueRed = 0.8f;
+			valueBlue = 0.8f;
+			valueGreen = 0.8f;			
+		}
+		else if(nbColors == 2)
+		{
+			valuePurple = 0.0f;
+			valueRed = 0.0f;
+			valueBlue = 0.8f;
+			valueGreen = 0.8f;			
+		}
+		else if(nbColors == 3)
+		{
+			valuePurple = 0.0f;
+			valueRed = 0.8f;
+			valueBlue = 0.0f;
+			valueGreen = 0.0f;			
+		}
+		else if(nbColors == 4)
+		{
+			valuePurple = 0.0f;
+			valueRed = 0.0f;
+			valueBlue = 0.0f;
+			valueGreen = 0.0f;			
+		}
 		material = new Material(Shader.Find("ManageColors"));
 	}
 

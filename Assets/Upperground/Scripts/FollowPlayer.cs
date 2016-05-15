@@ -51,15 +51,15 @@ public class FollowPlayer : MonoBehaviour
     void Awake()
     {
         // DECOMMENTER POUR TEST DIRECT DANS NIVEAU 2
-        Invoke("startingCanalisation", 3);
+        /*Invoke("startingCanalisation", 3);
         PowersAvailable = true;
-        PowerUnlocked = 3;
+        PowerUnlocked = 3;*/
 
         if (GameObject.Find("GameManager").GetComponent<GameManager>().level != 0)
         {
             PowersAvailable = true;
             PowerUnlocked = 3;
-}
+        }
     }
 
     void startingCanalisation()
@@ -185,6 +185,7 @@ public class FollowPlayer : MonoBehaviour
                 MoveTowardsPlayer();
                 //playerFound = true;
             }
+
             lastDist = dist;
         }
     }
@@ -426,7 +427,7 @@ public class FollowPlayer : MonoBehaviour
 		boolAttaque = false;
 
     }
-
+    
     bool isOnNextWayPoint(int indiceNextWayPoint)
     {
         float ecart = 0.05f;
@@ -440,7 +441,7 @@ public class FollowPlayer : MonoBehaviour
         else
             return false;
     }
-
+    
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy")

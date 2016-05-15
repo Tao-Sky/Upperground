@@ -103,8 +103,6 @@ public class EnemyPathing : MonoBehaviour
                 direction.y = (nextCurvePoint.transform.position.y - transform.position.y) * walkSpeed * Time.deltaTime;
 
                 lastDirection = direction;
-
-                Debug.Log("Prochain point curve: " + indiceNextCurvePoint);
             }
 
             if (Time.timeScale == 1f)
@@ -180,11 +178,6 @@ public class EnemyPathing : MonoBehaviour
 
         gLast.transform.Translate(rightTrigger.position.x, transform.position.y, transform.position.z);
         tabWayPoints[nbWayPoints - 1] = gLast;
-
-        for (int i = 0; i < nbWayPoints; i++)
-        {
-            Debug.Log("Valeur y du point " + i + ": " + tabWayPoints[i].transform.position.y);
-        }
 
     }
 

@@ -93,7 +93,7 @@ public class EnemyFight : MonoBehaviour
     public void showHealthBar(bool b)
     {
         if (b == true)
-            healthBar.enabled = true;
+            updateHealthBar(currentHealth);
         else
             healthBar.enabled = false;
     }
@@ -175,6 +175,11 @@ public class EnemyFight : MonoBehaviour
                     break;
                 }
             }
+        }
+
+        else if (coll.gameObject.tag == "Player" && transform.tag == "Untagged")
+        {
+            coll.gameObject.GetComponent<PlayerController>().Bounce();
         }
     }
 

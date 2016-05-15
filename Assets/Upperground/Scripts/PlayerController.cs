@@ -192,4 +192,9 @@ public class PlayerController : MonoBehaviour
         transform.localScale = theScale;
     }
 
+    public void Bounce()
+    {
+        rb2d.AddForce(new Vector2(0f, jumpForce * 2.2f));
+        jump = false;
+    }
 }

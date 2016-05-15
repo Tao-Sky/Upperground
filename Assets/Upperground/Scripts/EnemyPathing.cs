@@ -211,7 +211,7 @@ public class EnemyPathing : MonoBehaviour
 
     bool isOnNextCurvePoint(int indiceNextCurvePoint)
     {
-        float ecart = 0.03f;
+        float ecart = 0.05f;
 
         if (Mathf.Abs(transform.position.x - tabCurvePoints[indiceNextCurvePoint].transform.position.x) < ecart)
         // && Mathf.Abs(transform.position.y - tabCurvePoints[indiceNextCurvePoint].transform.position.y) < ecart)

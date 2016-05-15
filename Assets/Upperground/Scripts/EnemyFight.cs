@@ -45,6 +45,7 @@ public class EnemyFight : MonoBehaviour
 
     void Update()
     {
+        GetComponent<Rigidbody2D>().isKinematic = false;
         if (currentHealth < totalHealth)
             healthBar.enabled = true;
     }
@@ -153,7 +154,7 @@ public class EnemyFight : MonoBehaviour
         if (coll.gameObject.tag == "Player" && transform.tag == "Enemy")
         {
             GameObject[] listeCP = GameObject.FindGameObjectsWithTag("Checkpoint");
-            //GetComponent<Rigidbody2D>().isKinematic = true;
+            GetComponent<Rigidbody2D>().isKinematic = true;
 
             if (enemyType == 3)
             {

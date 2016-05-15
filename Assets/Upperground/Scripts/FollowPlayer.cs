@@ -19,8 +19,6 @@ public class FollowPlayer : MonoBehaviour
     private Vector3 direction;
 
     public bool PowersAvailable = false;
-
-    bool inPlayerRadius = false;
     public bool playerFound = false;
 
     bool inCanalisation = false;
@@ -174,7 +172,7 @@ public class FollowPlayer : MonoBehaviour
         {
             dist = Vector3.Distance(transform.position, target.position);
 
-            if (!inPlayerRadius && dist < 10 && nocoroutine && playerFound)
+            if (dist < 10 && nocoroutine && playerFound)
             {
                 MoveTowardsPlayer();
                 //playerFound = true;
@@ -218,26 +216,15 @@ public class FollowPlayer : MonoBehaviour
         }
         //fin d'ajout
 
-        if (dist > maxDist)
+        if (dist > minDistanceFromPlayer)
         {
-            speed *= 1.01f;
-            transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
-        }
-
-        if (dist > minDistanceFromPlayer && dist <= maxDist)
-        {
-            if (dist <= lastDist)
-                speed *= 0.975f;
+            speed = dist + dist / 10;
 
             if (speed < basicSpeed)
                 speed = basicSpeed;
+
             transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
         }
-    }
-
-    public void setInPlayerRadius(bool b)
-    {
-        inPlayerRadius = b;
     }
 
     public void goToMachine(Vector3 cible, float time, int appel)

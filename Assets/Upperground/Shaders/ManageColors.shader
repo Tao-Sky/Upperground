@@ -27,19 +27,19 @@
 				float3 bw = float3( lum, lum, lum ); 
 
 				float4 result = c;
-				if(c.g <0.4 && c.b < c.r + 0.3 && c.b > c.r -0.3)
+				if(c.g <0.4 && c.b < c.r + 0.4 && c.b > c.r -0.4)
 				{
 					result.rgb = lerp(c.rgb, bw, _bwBlendV);
 				}
-				else if(c.g >0.5 && c.r <0.5 && c.b <0.5)
+				else if(c.g >0.6)
 				{
 					result.rgb = lerp(c.rgb, bw, _bwBlendG);
 				}
-				else if(c.r >0.5 && c.g <0.5 && c.b <0.5)
+				else if(c.r >0.6)
 				{
 					result.rgb = lerp(c.rgb, bw, _bwBlendR);
 				}
-				else if(c.b >0.5 && c.r <0.5 && c.g <0.5)
+				else if(c.b >0.6)
 				{
 					result.rgb = lerp(c.rgb, bw, _bwBlendB);
 				}

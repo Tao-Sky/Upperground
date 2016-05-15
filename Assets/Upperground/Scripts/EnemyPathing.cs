@@ -55,38 +55,30 @@ public class EnemyPathing : MonoBehaviour
         GameObject manager = GameObject.Find("GameManager");
         manager.hideFlags = HideFlags.HideInHierarchy;
 
-        if (manager.GetComponent<GameManager>().IsPaused == true)
+        if (GetComponent<EnemyFight>().getNoCoroutine() == true)
         {
-            direction = lastDirection;
-        }
-
-        if (GetComponent<EnemyFight>().getEnemyType() != 3)
-        {
-            walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
-            transform.Translate(walkAmount);
-        }
-
-        else
-        {
-
-
-            if (isOnNextCurvePoint(indiceNextCurvePoint))
+            if (manager.GetComponent<GameManager>().IsPaused == true)
             {
-                if (indiceNextCurvePoint == tabCurvePoints.Length - 1)
-                {
-                    indiceNextCurvePoint--;
-                    nextCurvePoint = tabCurvePoints[indiceNextCurvePoint];
-                }
+                direction = lastDirection;
+            }
 
-                else if (indiceNextCurvePoint == 0)
-                {
-                    indiceNextCurvePoint++;
-                    nextCurvePoint = tabCurvePoints[indiceNextCurvePoint];
-                }
+            if (GetComponent<EnemyFight>().getEnemyType() != 3)
+            {
+                walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
+                transform.Translate(walkAmount);
+            }
 
-                else
+            else
+            {
+                if (isOnNextCurvePoint(indiceNextCurvePoint))
                 {
-                    if (GetComponent<EnemyPathing>().getWalkingDirection() > 0)
+                    if (indiceNextCurvePoint == tabCurvePoints.Length - 1)
+                    {
+                        indiceNextCurvePoint--;
+                        nextCurvePoint = tabCurvePoints[indiceNextCurvePoint];
+                    }
+
+                    else if (indiceNextCurvePoint == 0)
                     {
                         indiceNextCurvePoint++;
                         nextCurvePoint = tabCurvePoints[indiceNextCurvePoint];
@@ -94,21 +86,30 @@ public class EnemyPathing : MonoBehaviour
 
                     else
                     {
-                        indiceNextCurvePoint--;
-                        nextCurvePoint = tabCurvePoints[indiceNextCurvePoint];
+                        if (GetComponent<EnemyPathing>().getWalkingDirection() > 0)
+                        {
+                            indiceNextCurvePoint++;
+                            nextCurvePoint = tabCurvePoints[indiceNextCurvePoint];
+                        }
+
+                        else
+                        {
+                            indiceNextCurvePoint--;
+                            nextCurvePoint = tabCurvePoints[indiceNextCurvePoint];
+                        }
                     }
+
+                    direction.x = (nextCurvePoint.transform.position.x - transform.position.x) * walkSpeed * Time.deltaTime;
+                    direction.y = (nextCurvePoint.transform.position.y - transform.position.y) * walkSpeed * Time.deltaTime;
+
+                    lastDirection = direction;
                 }
 
-                direction.x = (nextCurvePoint.transform.position.x - transform.position.x) * walkSpeed * Time.deltaTime;
-                direction.y = (nextCurvePoint.transform.position.y - transform.position.y) * walkSpeed * Time.deltaTime;
-
-                lastDirection = direction;
+                if (Time.timeScale == 1f)
+                    transform.Translate(lastDirection);
+                else
+                    transform.Translate(direction);
             }
-
-            if (Time.timeScale == 1f)
-                transform.Translate(lastDirection);
-            else
-                transform.Translate(direction);
         }
     }
 

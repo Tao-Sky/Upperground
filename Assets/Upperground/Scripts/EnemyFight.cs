@@ -50,6 +50,11 @@ public class EnemyFight : MonoBehaviour
             healthBar.enabled = true;
     }
 
+    public bool getNoCoroutine()
+    {
+        return noCoroutine;
+    }
+
     public void updateHealthBar(float h)
     {
         healthBar.enabled = true;

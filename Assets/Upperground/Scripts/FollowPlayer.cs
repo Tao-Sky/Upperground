@@ -466,8 +466,6 @@ public class FollowPlayer : MonoBehaviour
             {
                 other.gameObject.GetComponent<EnemyFight>().takingDamage();
                 LaunchPower(0, other.transform);
-                if (other.gameObject.GetComponent<EnemyFight>().getHealthPoints() == 0)
-                    other.gameObject.GetComponent<EnemyFight>().EnemyDie();
             }
         }
     }

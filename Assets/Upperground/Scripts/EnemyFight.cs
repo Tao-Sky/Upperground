@@ -59,15 +59,25 @@ public class EnemyFight : MonoBehaviour
             healthBar.sprite = OneHitHealth;
         else if (h == 1)
             healthBar.sprite = TwoHitHealth;
+		else if(h==0)
+		{
+			if(enemyType != 2)
+			{
+				DestroyObject (this.gameObject);
+			}
+			else if(enemyType == 2)
+			{
+				StartCoroutine(deathCoroutine(5.0f));
+			}
+		}
     }
 
     public void takingDamage()
     {
         if (currentHealth > 0)
             currentHealth--;
-
-        if (currentHealth > 0)
-            updateHealthBar(currentHealth);
+		
+		updateHealthBar(currentHealth);
     }
 
     public float getHealthPoints()
@@ -92,18 +102,7 @@ public class EnemyFight : MonoBehaviour
     {
         particuleDetection.SetActive(attack);
     }
-
-    public void EnemyDie()
-    {
-        if (enemyType != 2)
-            Destroy(this.gameObject);
-
-        else if (enemyType == 2)
-        {
-            StartCoroutine(deathCoroutine(5.0f));
-        }
-    }
-
+		
     IEnumerator deathCoroutine(float time)
     {
         noCoroutine = false;

@@ -1,11 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Upperground\Scripts\FollowPlayer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Upperground\Scripts\SFX\FlyingSFX.cs">
     <Files>
-      <File FileName="Assets\Upperground\Scripts\FollowPlayer.cs" Line="282" Column="4" />
-      <File FileName="Assets\Upperground\Scripts\triggerMachine.cs" Line="57" Column="6" />
-      <File FileName="Assets\Upperground\Scripts\SoundManager.cs" Line="31" Column="30" />
-      <File FileName="Assets\Upperground\Scripts\GameManager.cs" Line="37" Column="4" />
+      <File FileName="Assets\Upperground\Scripts\FollowPlayer.cs" Line="468" Column="49" />
+      <File FileName="Assets\Upperground\Scripts\triggerMachine.cs" Line="1" Column="1" />
+      <File FileName="Assets\Upperground\Scripts\SoundManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Upperground\Scripts\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Upperground\Scripts\EnemyFight.cs" Line="60" Column="25" />
+      <File FileName="Assets\Upperground\Scripts\SFX\BlobSFX.cs" Line="1" Column="1" />
+      <File FileName="Assets\Upperground\Scripts\SFX\FlyingSFX.cs" Line="14" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

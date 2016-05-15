@@ -58,9 +58,9 @@ public class FollowPlayer : MonoBehaviour
     void Awake()
     {
         // DECOMMENTER POUR TEST DIRECT DANS NIVEAU 2
-        //Invoke("startingCanalisation", 3);
-        //PowersAvailable = true;
-        //PowerUnlocked = 3;
+        Invoke("startingCanalisation", 3);
+        PowersAvailable = true;
+        PowerUnlocked = 3;
 
         if (GameObject.Find("GameManager").GetComponent<GameManager>().level != 0)
         {
@@ -180,7 +180,11 @@ public class FollowPlayer : MonoBehaviour
                 if (Time.timeScale == 1f)
                     transform.Translate(lastDirection);
                 else
+                {
+                    direction = new Vector3(speed * Time.deltaTime, 0, 0);
                     transform.Translate(direction);
+                    lastDirection = direction;
+                }                    
             }
         }
 
@@ -355,7 +359,7 @@ public class FollowPlayer : MonoBehaviour
             spShaAcide.SetActive(false);
             spShaEnergie.SetActive(true);
         }
-        if (power == 1 && PowerUnlocked > 0)// power unlock sert a savoir si le pouvoir a deja ete decouvert on peut donc decier dans quel ordre on decouvre les pouvoir en changenant a partir de quand on affiche les anims
+        if (power == 1 && PowerUnlocked > 1)// power unlock sert a savoir si le pouvoir a deja ete decouvert on peut donc decier dans quel ordre on decouvre les pouvoir en changenant a partir de quand on affiche les anims
         {
             A.SetInteger("state", 1);
             spShaEnergie.SetActive(false);
@@ -363,7 +367,7 @@ public class FollowPlayer : MonoBehaviour
             spShaAcide.SetActive(false);
             spShaFeu.SetActive(true);
         }
-        if (power == 2 && PowerUnlocked > 0)// power unlock sert a savoir si le pouvoir a deja ete decouvert on peut donc decier dans quel ordre on decouvre les pouvoir en changenant a partir de quand on affiche les anims
+        if (power == 2 && PowerUnlocked > 2)// power unlock sert a savoir si le pouvoir a deja ete decouvert on peut donc decier dans quel ordre on decouvre les pouvoir en changenant a partir de quand on affiche les anims
         {
             A.SetInteger("state", 2);
             spShaFeu.SetActive(false);
@@ -371,7 +375,7 @@ public class FollowPlayer : MonoBehaviour
             spShaEnergie.SetActive(false);
             spShaAcide.SetActive(true);
         }
-        if (power == 3 && PowerUnlocked > 0)// power unlock sert a savoir si le pouvoir a deja ete decouvert on peut donc decier dans quel ordre on decouvre les pouvoir en changenant a partir de quand on affiche les anims
+        if (power == 3 && PowerUnlocked > 3)// power unlock sert a savoir si le pouvoir a deja ete decouvert on peut donc decier dans quel ordre on decouvre les pouvoir en changenant a partir de quand on affiche les anims
         {
             A.SetInteger("state", 3);
             spShaFeu.SetActive(false);
@@ -379,6 +383,36 @@ public class FollowPlayer : MonoBehaviour
             spShaEnergie.SetActive(false);
             spShaGlace.SetActive(true);
         }
+
+        if(power == 3 && PowerUnlocked < 4)
+        {
+            spShaFeu.SetActive(false);
+            spShaAcide.SetActive(false);
+            spShaEnergie.SetActive(false);
+            spShaGlace.SetActive(false);
+        }
+        if (power == 2 && PowerUnlocked < 3)
+        {
+            spShaFeu.SetActive(false);
+            spShaAcide.SetActive(false);
+            spShaEnergie.SetActive(false);
+            spShaGlace.SetActive(false);
+        }
+        if (power == 1 && PowerUnlocked < 2)
+        {
+            spShaFeu.SetActive(false);
+            spShaAcide.SetActive(false);
+            spShaEnergie.SetActive(false);
+            spShaGlace.SetActive(false);
+        }
+        if (power == 0 && PowerUnlocked < 1)
+        {
+            spShaFeu.SetActive(false);
+            spShaAcide.SetActive(false);
+            spShaEnergie.SetActive(false);
+            spShaGlace.SetActive(false);
+        }
+
 
     }
 

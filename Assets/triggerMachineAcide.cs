@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class triggerMachineFireBolt : MonoBehaviour {
-    public GameObject fireboltlauncher;
+public class triggerMachineAcide : MonoBehaviour {
+    public GameObject acide;
     void Start()
     {
         GetComponentInChildren<ParticleSystem>().Stop();
@@ -25,10 +25,10 @@ public class triggerMachineFireBolt : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Sha" && Input.GetButtonDown("Y button") && GameObject.Find("Player").GetComponent<PlayerController>().power == 1)
+        if (other.gameObject.tag == "Sha" && Input.GetButtonDown("Y button") && GameObject.Find("Player").GetComponent<PlayerController>().power == 2)
         {
-            fireboltlauncher.GetComponent<fire>().go();
+            acide.GetComponent<dropacide>().go();
             gameObject.SetActive(false);
         }
     }
-    }
+}

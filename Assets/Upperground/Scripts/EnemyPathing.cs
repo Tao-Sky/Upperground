@@ -29,7 +29,7 @@ public class EnemyPathing : MonoBehaviour
     Vector3 direction;
     Vector3 lastDirection;
 
-    void Start()
+    void Awake()
     {
         anim = GetComponent<Animator>();
         bc2d = GetComponent<BoxCollider2D>();
@@ -56,7 +56,7 @@ public class EnemyPathing : MonoBehaviour
             }
 
             determineBezierCurve();
-            determineNextCurvePoint();
+			Invoke("determineNextCurvePoint",0.5f);
         }
     }
 

@@ -58,9 +58,9 @@ public class FollowPlayer : MonoBehaviour
     void Awake()
     {
         // DECOMMENTER POUR TEST DIRECT DANS NIVEAU 2
-        Invoke("startingCanalisation", 3);
-        PowersAvailable = true;
-        PowerUnlocked = 3;
+        //Invoke("startingCanalisation", 3);
+        //PowersAvailable = true;
+        //PowerUnlocked = 3;
 
         if (GameObject.Find("GameManager").GetComponent<GameManager>().level != 0)
         {
@@ -527,7 +527,7 @@ public class FollowPlayer : MonoBehaviour
         GameObject manager = GameObject.Find("GameManager");
         manager.hideFlags = HideFlags.HideInHierarchy;
 
-        if (manager.GetComponent<GameManager>().getLevel() == 0)
+        if (manager.GetComponent<GameManager>().getLevel() == 2)
         {
             indiceNextWayPoint = 0;
             transform.LookAt(new Vector3(tabWayPoints[0].position.x, tabWayPoints[0].position.y, transform.position.z));

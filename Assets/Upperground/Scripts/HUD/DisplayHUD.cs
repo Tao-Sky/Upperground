@@ -274,6 +274,9 @@ public class DisplayHUD : MonoBehaviour {
 
 				case(3):
 				{
+					GameObject.Find ("SoundManager").GetComponent<SoundManager> ().ResetEffects ();
+					isPaused = false;
+					SceneManager.LoadScene ("Main_Menu");
 					break;
 				}
 

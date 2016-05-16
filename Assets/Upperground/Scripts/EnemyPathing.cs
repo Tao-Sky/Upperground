@@ -29,8 +29,7 @@ public class EnemyPathing : MonoBehaviour
     Vector3 direction;
     Vector3 lastDirection;
 
-
-    void Awake()
+    void Start()
     {
         anim = GetComponent<Animator>();
         bc2d = GetComponent<BoxCollider2D>();
@@ -73,54 +72,58 @@ public class EnemyPathing : MonoBehaviour
                 direction = lastDirection;
             }
 
-            if (GetComponent<EnemyFight>().getEnemyType() != 3)
-            {
-                walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
-                transform.Translate(walkAmount);
-            }
+			else
+			{
+				if (GetComponent<EnemyFight>().getEnemyType() != 3)
+				{
+					walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
+					transform.Translate(walkAmount);
+				}
 
-            else
-            {
-                if (isOnNextCurvePoint(indiceNextCurvePoint))
-                {
-                    if (indiceNextCurvePoint == tabCurvePoints.Length - 1)
-                    {
-                        indiceNextCurvePoint--;
-                        nextCurvePoint = tabCurvePoints[indiceNextCurvePoint];
-                    }
+				else
+				{
+					if (isOnNextCurvePoint(indiceNextCurvePoint))
+					{
+						if (indiceNextCurvePoint == tabCurvePoints.Length - 1)
+						{
+							indiceNextCurvePoint--;
+							nextCurvePoint = tabCurvePoints[indiceNextCurvePoint];
+						}
 
-                    else if (indiceNextCurvePoint == 0)
-                    {
-                        indiceNextCurvePoint++;
-                        nextCurvePoint = tabCurvePoints[indiceNextCurvePoint];
-                    }
+						else if (indiceNextCurvePoint == 0)
+						{
+							indiceNextCurvePoint++;
+							nextCurvePoint = tabCurvePoints[indiceNextCurvePoint];
+						}
 
-                    else
-                    {
-                        if (GetComponent<EnemyPathing>().getWalkingDirection() > 0)
-                        {
-                            indiceNextCurvePoint++;
-                            nextCurvePoint = tabCurvePoints[indiceNextCurvePoint];
-                        }
+						else
+						{
+							if (GetComponent<EnemyPathing>().getWalkingDirection() > 0)
+							{
+								indiceNextCurvePoint++;
+								nextCurvePoint = tabCurvePoints[indiceNextCurvePoint];
+							}
 
-                        else
-                        {
-                            indiceNextCurvePoint--;
-                            nextCurvePoint = tabCurvePoints[indiceNextCurvePoint];
-                        }
-                    }
+							else
+							{
+								indiceNextCurvePoint--;
+								nextCurvePoint = tabCurvePoints[indiceNextCurvePoint];
+							}
+						}
 
-                    direction.x = (nextCurvePoint.transform.position.x - transform.position.x) * walkSpeed * Time.deltaTime;
-                    direction.y = (nextCurvePoint.transform.position.y - transform.position.y) * walkSpeed * Time.deltaTime;
+						direction.x = (nextCurvePoint.transform.position.x - transform.position.x) * walkSpeed * Time.deltaTime;
+						direction.y = (nextCurvePoint.transform.position.y - transform.position.y) * walkSpeed * Time.deltaTime;
 
-                    lastDirection = direction;
-                }
+					}
+					lastDirection = direction;
 
-                if (Time.timeScale == 1f)
-                    transform.Translate(lastDirection);
-                else
-                    transform.Translate(direction);
-            }
+					if (Time.timeScale == 0.0f)
+						transform.Translate(lastDirection);
+					else
+						transform.Translate(direction);
+				}				
+			}
+
         }
     }
 

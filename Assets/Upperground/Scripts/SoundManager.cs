@@ -223,5 +223,11 @@ public class SoundManager : MonoBehaviour {
 		SnapDrum2.TransitionTo (0.5f);
 		SnapLead2.TransitionTo (0.5f);
 	}
-		
+
+	public void ResetEffects()
+	{
+		Music.SetFloat ("lowPassVal", 22000.0f);
+		Music.SetFloat ("reverbVal", -3000.0f);		
+	}
+
 }

@@ -20,7 +20,7 @@ public class triggerPlateformMove : MonoBehaviour {
         if (other.gameObject.tag == "Sha" && Input.GetButtonDown("Y button") && GameObject.Find("Player").GetComponent<PlayerController>().power==0)
         {
             plateforme.GetComponent<platerformeMove>().go();
-            gameObject.SetActive(false);
+            GetComponentInChildren<ParticleSystem>().Pause();
         }
     }
 
@@ -28,7 +28,7 @@ public class triggerPlateformMove : MonoBehaviour {
     {
         if (other.gameObject.tag == "Sha")
         {
-            GetComponentInChildren<ParticleSystem>().Stop();
+            GetComponentInChildren<ParticleSystem>().Pause();
         }
     }
 }

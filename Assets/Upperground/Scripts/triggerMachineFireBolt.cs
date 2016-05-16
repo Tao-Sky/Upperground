@@ -19,7 +19,7 @@ public class triggerMachineFireBolt : MonoBehaviour {
     {
         if (other.gameObject.tag == "Sha")
         {
-            GetComponentInChildren<ParticleSystem>().Stop();
+            GetComponentInChildren<ParticleSystem>().Pause();
         }
     }
 
@@ -28,7 +28,7 @@ public class triggerMachineFireBolt : MonoBehaviour {
         if (other.gameObject.tag == "Sha" && Input.GetButtonDown("Y button") && GameObject.Find("Player").GetComponent<PlayerController>().power == 1)
         {
             fireboltlauncher.GetComponent<fire>().go();
-            gameObject.SetActive(false);
+            GetComponentInChildren<ParticleSystem>().Pause();
         }
     }
     }

@@ -257,12 +257,19 @@ public class DisplayHUD : MonoBehaviour {
 				}
 				case(1):
 				{
-					string s = "Scene_";
-					s += GameObject.Find ("GameManager").GetComponent<GameManager> ().level.ToString();
-					GameObject.Find ("GameManager").GetComponent<GameManager> ().SetPause(false);
-					SceneManager.LoadScene (s);
-					break;
-				}
+                        GameObject.Find("GameManager").GetComponent<GameManager>().SetPause(false);
+                        if (GameObject.Find("GameManager").GetComponent<GameManager>().level < 2)
+                        {
+                            SceneManager.LoadScene("Scene_0");
+                        }
+                        else
+                        {
+                            string s = "Scene_";
+                            s += GameObject.Find("GameManager").GetComponent<GameManager>().level.ToString();
+                            SceneManager.LoadScene(s);
+                        }
+                        break;
+                    }
 
 				case(2):
 				{
@@ -275,8 +282,8 @@ public class DisplayHUD : MonoBehaviour {
 				case(3):
 				{
 					GameObject.Find ("SoundManager").GetComponent<SoundManager> ().ResetEffects ();
-					isPaused = false;
-					SceneManager.LoadScene ("Main_Menu");
+                     GameObject.Find("GameManager").GetComponent<GameManager>().SetPause(false);
+                     SceneManager.LoadScene ("Main_Menu");
 					break;
 				}
 

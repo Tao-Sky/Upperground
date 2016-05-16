@@ -37,7 +37,7 @@ public class ShaEnergyActivation : MonoBehaviour {
 
         void OnTriggerStay2D(Collider2D other)
     {
-		if (Input.GetButtonDown("Y button") && Powers && Sprite)
+		if (Input.GetButtonDown("Y button") && Powers && Sprite && other.gameObject.tag == "Player")
         {
             GameObject sha = GameObject.Find("Sha");
             if (power == 0 && sha.GetComponent<FollowPlayer>().PowerUnlocked > 0)

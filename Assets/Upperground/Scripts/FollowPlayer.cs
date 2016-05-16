@@ -169,7 +169,7 @@ public class FollowPlayer : MonoBehaviour
                     else
                     {
                         inCanalisation = false;
-                        playerFound = true;
+                        //playerFound = true;
                     }
 
                     transform.LookAt(new Vector3(nextWayPoint.position.x, nextWayPoint.position.y, transform.position.z));
@@ -192,7 +192,7 @@ public class FollowPlayer : MonoBehaviour
         {
             dist = Vector3.Distance(transform.position, target.position);
 
-            if (dist < 10 && nocoroutine && playerFound)
+            if (/*dist < 10 &&*/ nocoroutine && playerFound)
             {
                 MoveTowardsPlayer();
                 //playerFound = true;
@@ -486,6 +486,10 @@ public class FollowPlayer : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.tag == "Player" && !inCanalisation && !playerFound && GameObject.Find("GameManager").GetComponent<GameManager>().level > 1)
+        {
+            playerFound = true;
+        }
         if (other.gameObject.tag == "Enemy")
         {
             if (PowersAvailable)
@@ -499,7 +503,8 @@ public class FollowPlayer : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+        
+            if (other.gameObject.tag == "Enemy")
         {
             other.gameObject.GetComponent<EnemyFight>().CanBeAttacked(false);
             if (other.gameObject.GetComponent<EnemyFight>().getHealthPoints() == other.gameObject.GetComponent<EnemyFight>().totalHealth)
@@ -510,6 +515,10 @@ public class FollowPlayer : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
+        if (other.gameObject.tag == "Player" && !inCanalisation && !playerFound &&  GameObject.Find("GameManager").GetComponent<GameManager>().level > 1)
+        {
+            playerFound = true;
+        }
         GameObject sha = GameObject.Find("Sha");
         if (other.gameObject.tag == "Enemy")
         {

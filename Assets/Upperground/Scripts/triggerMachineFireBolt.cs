@@ -28,6 +28,7 @@ public class triggerMachineFireBolt : MonoBehaviour {
         if (other.gameObject.tag == "Sha" && Input.GetButtonDown("Y button") && GameObject.Find("Player").GetComponent<PlayerController>().power == 1)
         {
             fireboltlauncher.GetComponent<fire>().go();
+			GameObject.Find ("SFXManager").GetComponent<MachinesSFX>().PlayFire ();
             GetComponentInChildren<ParticleSystem>().Pause();
         }
     }

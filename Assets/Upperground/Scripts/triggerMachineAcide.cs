@@ -28,6 +28,7 @@ public class triggerMachineAcide : MonoBehaviour {
         if (other.gameObject.tag == "Sha" && Input.GetButtonDown("Y button") && GameObject.Find("Player").GetComponent<PlayerController>().power == 2)
         {
             acide.GetComponent<dropacide>().go();
+			GameObject.Find ("SFXManager").GetComponent<MachinesSFX>().PlayAcid ();
             gameObject.SetActive(false);
         }
     }

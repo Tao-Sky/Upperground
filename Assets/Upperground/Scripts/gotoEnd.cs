@@ -31,7 +31,15 @@ public class gotoEnd : MonoBehaviour {
         {
             //if (door.GetComponent<SpriteRenderer>().sprite.name == "Door24")
             //{
-                SceneManager.LoadScene("End_Scene");
+			if(GameObject.Find("GameManager").GetComponent<GameManager>().level == 2)
+			{
+				SceneManager.LoadScene("Scene_3");
+				GameObject.Find ("GameManager").GetComponent<GameManager> ().level++;
+			}
+			else
+			{
+				SceneManager.LoadScene("End_Scene");
+			}
                 //GameObject.Find("GameManager").GetComponent<GameManager>().level++;
                 //GameObject.Find("SoundManager").GetComponent<SoundManager>().endL = true;
             //}

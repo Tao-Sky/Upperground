@@ -22,9 +22,10 @@ public class SoundManager : MonoBehaviour {
 
 	public AudioMixer Music;
 
-	public double xBass = -30.0f;
-	public double xDrum = -2.3f;
-	public double xLead = 53.0f;
+
+	public Transform tBass;
+	public Transform tDrum;
+	public Transform tLead;
 
 	private int level;
 	private int nextTheme = 0;
@@ -188,7 +189,7 @@ public class SoundManager : MonoBehaviour {
 
 	void ControlPosition()
 	{
-		if(Player.transform.position.x > xBass)
+		if(Player.transform.position.x > tBass.position.x && Player.transform.position.y > tBass.position.y)
 		{
 			boolBass = true;
 		}
@@ -197,7 +198,7 @@ public class SoundManager : MonoBehaviour {
 			SnapBass1.TransitionTo (2);
 		}
 
-		if(Player.transform.position.x > xDrum)
+		if(Player.transform.position.x > tDrum.position.x && Player.transform.position.y > tDrum.position.y)
 		{
 			boolDrum = true;
 		}
@@ -205,7 +206,7 @@ public class SoundManager : MonoBehaviour {
 		{
 			SnapDrum1.TransitionTo (2);
 		}
-		if(Player.transform.position.x > xLead)
+		if(Player.transform.position.x > tLead.position.x && Player.transform.position.y > tLead.position.y)
 		{
 			boolLead = true;
 		}

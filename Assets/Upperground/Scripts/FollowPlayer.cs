@@ -45,6 +45,9 @@ public class FollowPlayer : MonoBehaviour
 
     //les attaques de sha
     public GameObject speclair;
+	public GameObject sfeu;
+	public GameObject sglace;
+	public GameObject sacide;
     public GameObject speclairlong;
 
     //pour le jeu global
@@ -342,10 +345,53 @@ public class FollowPlayer : MonoBehaviour
     public void LaunchPower(int nbP, Transform T)
     {
         GetComponent<ShaSFX>().Scream();
-        GetComponent<ShaSFX>().Thunder();
-        speclair.transform.LookAt(T);
-        speclair.GetComponent<ParticleSystem>().startSize = Mathf.Sqrt(Vector2.Distance(T.position, this.transform.position)) * 0.8f;//la taille du rayon reste a definir avec un fontion propre
-        speclair.GetComponent<ParticleSystem>().Play();
+
+		switch (nbP)
+		{
+			case 0:
+			{
+				speclair.transform.LookAt(T);
+				speclair.GetComponent<ParticleSystem>().startSize = Mathf.Sqrt(Vector2.Distance(T.position, this.transform.position)) * 0.8f;//la taille du rayon reste a definir avec un fontion propre
+				speclair.GetComponent<ParticleSystem>().Play();
+				GetComponent<ShaSFX>().Thunder();
+
+				break;
+			}
+
+			case 1:
+			{
+				sfeu.transform.LookAt(T);
+				sfeu.GetComponent<ParticleSystem>().startSize = Mathf.Sqrt(Vector2.Distance(T.position, this.transform.position)) * 0.8f;//la taille du rayon reste a definir avec un fontion propre
+				sfeu.GetComponent<ParticleSystem>().Play();
+				GetComponent<ShaSFX>().Fire();
+
+				break;
+			}
+
+			case 2:
+			{
+				sacide.transform.LookAt(T);
+				sacide.GetComponent<ParticleSystem>().startSize = Mathf.Sqrt(Vector2.Distance(T.position, this.transform.position)) * 0.8f;//la taille du rayon reste a definir avec un fontion propre
+				sacide.GetComponent<ParticleSystem>().Play();
+				GetComponent<ShaSFX>().Acid();
+
+				break;
+			}
+
+			case 3:
+			{
+				sglace.transform.LookAt(T);
+				sglace.GetComponent<ParticleSystem>().startSize = Mathf.Sqrt(Vector2.Distance(T.position, this.transform.position)) * 0.8f;//la taille du rayon reste a definir avec un fontion propre
+				sglace.GetComponent<ParticleSystem>().Play();
+				GetComponent<ShaSFX>().Ice();
+
+				break;
+			}
+
+
+		}
+
+
     }
 
     public void powerParticule(int power)
@@ -522,10 +568,12 @@ public class FollowPlayer : MonoBehaviour
         GameObject sha = GameObject.Find("Sha");
         if (other.gameObject.tag == "Enemy")
         {
-            if (Input.GetButtonDown("B button") && sha.GetComponent<FollowPlayer>().playerFound && PowersAvailable)
+			int power = sha.GetComponent<Animator> ().GetInteger ("state");
+
+			if (Input.GetButtonDown("B button") && sha.GetComponent<FollowPlayer>().playerFound && PowersAvailable && power <= PowerUnlocked + 1  )
             {
                 other.gameObject.GetComponent<EnemyFight>().takingDamage();
-                LaunchPower(0, other.transform);
+                LaunchPower(power, other.transform);
             }
         }
     }

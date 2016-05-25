@@ -3,6 +3,9 @@ using System.Collections;
 
 public class ShaSFX : MonoBehaviour {
 	public AudioSource eclair;
+	public AudioSource fire;
+	public AudioSource acid;
+	public AudioSource ice;
 	public AudioSource scream;
 	public AudioSource powerEclair;
 
@@ -27,6 +30,31 @@ public class ShaSFX : MonoBehaviour {
 		eclair.pitch = pitch;
 		eclair.Play ();
 	}
+
+	public void Fire()
+	{
+		int rand = Random.Range (85, 120);
+		float pitch = (float)rand / 100.0f;
+		fire.pitch = pitch;
+		fire.Play ();
+	}
+
+	public void Acid()
+	{
+		int rand = Random.Range (85, 120);
+		float pitch = (float)rand / 100.0f;
+		acid.pitch = pitch;
+		acid.Play ();
+	}
+
+	public void Ice()
+	{
+		int rand = Random.Range (85, 120);
+		float pitch = (float)rand / 100.0f;
+		ice.pitch = pitch;
+		ice.Play ();
+	}
+
 
 	public void Scream()
 	{

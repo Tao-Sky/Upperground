@@ -194,7 +194,8 @@ public class PlayerController : MonoBehaviour
 
     public void Bounce()
     {
-        rb2d.AddForce(new Vector2(0f, jumpForce * 2.2f));
+		rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
+        rb2d.AddForce(new Vector2(0f, jumpForce * 1.5f));
         jump = false;
     }
 }

@@ -14,6 +14,7 @@ public class EnemyPathing : MonoBehaviour
 
     public float walkSpeed = 2.0f;
     public float walkingDirection = 1.0f;
+    public GameObject listeWayPoints;
     Vector3 walkAmount;
 
     private int nbCurvePoints = 8;
@@ -45,14 +46,13 @@ public class EnemyPathing : MonoBehaviour
 
             walkSpeed = GetComponent<EnemyPathing>().getWalkSpeed();
             //calculateWayPoints();
-
-            GameObject g = GameObject.Find("WayPoints");
-            nbWayPoints = g.transform.childCount;
+            
+            nbWayPoints = listeWayPoints.transform.childCount;
             tabWayPoints = new Transform[nbWayPoints];
 
             for (int i = 0; i < nbWayPoints; i++)
             {
-                tabWayPoints[i] = g.transform.GetChild(i);
+                tabWayPoints[i] = listeWayPoints.transform.GetChild(i);
             }
 
             determineBezierCurve();
@@ -159,43 +159,7 @@ public class EnemyPathing : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
-    /*
-    void calculateWayPoints()
-    {
-        float dist = rightTrigger.position.x - leftTrigger.position.x;
 
-        GameObject gFirst = new GameObject();
-        gFirst.hideFlags = HideFlags.HideInHierarchy;
-
-        gFirst.transform.Translate(leftTrigger.position.x, transform.position.y, transform.position.z);
-        tabWayPoints[0] = gFirst.transform;
-
-        for (int i = 1; i < tabWayPoints.Length - 1; i++)
-        {
-            GameObject g = new GameObject();
-            g.hideFlags = HideFlags.HideInHierarchy;
-
-            float x = leftTrigger.position.x + i * (float)(dist / (nbWayPoints - 1));
-            float y;
-            if (i % 2 == 0)
-                y = transform.position.y + 4.0f;
-            else
-                y = transform.position.y - 2.0f;
-
-            float z = transform.position.z;
-
-            g.transform.Translate(x, y, z);
-            tabWayPoints[i] = g.transform;
-        }
-
-        GameObject gLast = new GameObject();
-        gLast.hideFlags = HideFlags.HideInHierarchy;
-
-        gLast.transform.Translate(rightTrigger.position.x, transform.position.y, transform.position.z);
-        tabWayPoints[nbWayPoints - 1] = gLast.transform;
-
-    }
-    */
     void determineNextCurvePoint()
     {
         nextCurvePoint = tabCurvePoints[0];

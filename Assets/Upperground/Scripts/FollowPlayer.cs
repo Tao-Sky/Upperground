@@ -242,7 +242,7 @@ public class FollowPlayer : MonoBehaviour
 
         if (dist > minDistanceFromPlayer)
         {
-            speed = dist + dist / 10;
+            speed = dist + dist / 5;
 
             if (speed < basicSpeed)
                 speed = basicSpeed;
@@ -587,6 +587,8 @@ public class FollowPlayer : MonoBehaviour
         if (manager.GetComponent<GameManager>().getLevel() == 2)
         {
             indiceNextWayPoint = 0;
+            playerFound = false;
+            canalisationCalled = false;
             transform.LookAt(new Vector3(tabWayPoints[0].position.x, tabWayPoints[0].position.y, transform.position.z));
             transform.Rotate(new Vector3(0, -90, 0), Space.Self);
         }

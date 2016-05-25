@@ -179,6 +179,7 @@ public class EnemyFight : MonoBehaviour
                     {
                         s.GetComponent<FollowPlayer>().Respawn();
                     }
+
                     if (s.GetComponent<FollowPlayer>().playerFound == true && s.GetComponent<FollowPlayer>().nocoroutine == true)
                         s.transform.position = new Vector3(g.transform.position.x, g.transform.position.y - 4.0f, s.transform.position.z);
 

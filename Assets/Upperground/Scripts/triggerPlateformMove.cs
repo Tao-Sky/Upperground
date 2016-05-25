@@ -20,6 +20,7 @@ public class triggerPlateformMove : MonoBehaviour {
         if (other.gameObject.tag == "Sha" && Input.GetButtonDown("Y button") && GameObject.Find("Player").GetComponent<PlayerController>().power==0)
         {
             plateforme.GetComponent<platerformeMove>().go();
+			GameObject.Find ("Sha").GetComponent<FollowPlayer> ().LaunchPower (0, this.transform);
 			GameObject.Find ("SFXManager").GetComponent<MachinesSFX>().PlayElectric ();
             GetComponentInChildren<ParticleSystem>().Pause();
         }

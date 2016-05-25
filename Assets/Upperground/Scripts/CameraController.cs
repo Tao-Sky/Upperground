@@ -32,6 +32,13 @@ public class CameraController : MonoBehaviour {
         IsFollowing = true;
     }
 
+	public void SwapLvl3(int i)
+	{
+		min = Bounds[i].bounds.min;
+		max = Bounds[i].bounds.max;
+		IsFollowing = true;		
+	}
+
 	public void Update()
 	{
         var x = transform.position.x;

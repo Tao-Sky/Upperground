@@ -13,12 +13,14 @@ public class SoundManager : MonoBehaviour {
 	public AudioSource Lead1 ;
 	public AudioSource Lead2 ;
 	public AudioSource Bridge ;
+	public AudioSource BossTheme ;
 
 	public AudioMixerSnapshot SnapDrum1, SnapDrum2;
 	public AudioMixerSnapshot SnapSynth1, SnapSynth2;
 	public AudioMixerSnapshot SnapBass1, SnapBass2;
 	public AudioMixerSnapshot SnapLead1, SnapLead2;
 	public AudioMixerSnapshot SnapBridge1, SnapBridge2;
+	public AudioMixerSnapshot SnapBoss1, SnapBoss2;
 
 	public AudioMixer Music;
 
@@ -32,6 +34,8 @@ public class SoundManager : MonoBehaviour {
 	private bool boolBass=false;
 	private bool boolDrum=false;
 	private bool boolLead=false;
+	private bool firstBoss = true;
+	public bool boolBoss=false;
 	public bool endL=false;
 
 	private float timeCurrent = 0f;
@@ -44,12 +48,26 @@ public class SoundManager : MonoBehaviour {
 
 	void Update () 
 	{
-		if(!endL)
+		if(boolBoss)
+		{
+			if(firstBoss)
+			{
+				LaunchBossTheme (2.0f);
+				firstBoss = false;
+			}
+			else if(!BossTheme.isPlaying)
+			{
+				BossTheme.Play();
+			}
+		}
+
+		else if(!endL)
 		{
 			ControlPosition();
 			Effects ();
 			chooseTheme ();			
 		}
+
 		else
 		{
 			if(timeCurrent==0f)
@@ -185,6 +203,7 @@ public class SoundManager : MonoBehaviour {
 		SnapBridge2.TransitionTo (0);
 		SnapDrum2.TransitionTo (0);
 		SnapLead2.TransitionTo (0);
+		SnapBoss2.TransitionTo (0);
 	}
 
 	void ControlPosition()
@@ -231,4 +250,20 @@ public class SoundManager : MonoBehaviour {
 		Music.SetFloat ("reverbVal", -3000.0f);		
 	}
 
+	public void LaunchBossTheme(float time)
+	{
+		BossTheme.Play ();
+		SnapBoss1.TransitionTo (time);
+
+		SnapSynth2.TransitionTo (time);
+		SnapBass2.TransitionTo (time);
+		SnapBridge2.TransitionTo (time);
+		SnapDrum2.TransitionTo (time);
+		SnapLead2.TransitionTo (time);
+	}
+
+	public void StopBossTheme(float time)
+	{
+		SnapBoss2.TransitionTo(time);
+	}
 }

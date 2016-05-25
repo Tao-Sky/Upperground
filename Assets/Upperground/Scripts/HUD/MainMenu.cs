@@ -190,7 +190,7 @@ public class MainMenu : MonoBehaviour {
 			available = false;
 		}
 
-		if(Input.GetButtonDown("X button"))
+		if(Input.GetButtonDown("A button"))
 		{
 			switch(etatMenu)
 			{

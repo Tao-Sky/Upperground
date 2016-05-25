@@ -76,6 +76,7 @@ public class DisplayHUD : MonoBehaviour {
 		isPaused = GameObject.Find ("GameManager").GetComponent<GameManager> ().IsPaused;
 		if(!isPaused)
 		{
+			GameObject.Find ("Player").GetComponent<PlayerController> ().canmove = true;
 			if(enterPause)
 			{
 				GetComponent<HudSFX> ().unpauseSFX ();
@@ -134,6 +135,7 @@ public class DisplayHUD : MonoBehaviour {
 
 	void Pause()
 	{
+		GameObject.Find ("Player").GetComponent<PlayerController> ().canmove = false;
 		enterPause = true;
 		if(Input.GetAxis("Vertical") == 0)
 		{
@@ -246,7 +248,7 @@ public class DisplayHUD : MonoBehaviour {
 			available = false;
 		}
 
-		if(Input.GetButtonDown("X button"))
+		if(Input.GetButtonDown("A button"))
 		{
 			switch(etatMenu)
 			{

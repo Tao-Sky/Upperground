@@ -13,6 +13,7 @@ public class triggerPlateformMove : MonoBehaviour {
         if (other.gameObject.tag == "Sha")
         {
             GetComponentInChildren<ParticleSystem>().Play();
+			GetComponentInChildren<SpriteRenderer>().enabled = true;
         }
     }
     void OnTriggerStay2D(Collider2D other)
@@ -23,6 +24,7 @@ public class triggerPlateformMove : MonoBehaviour {
 			GameObject.Find ("Sha").GetComponent<FollowPlayer> ().LaunchPower (0, this.transform);
 			GameObject.Find ("SFXManager").GetComponent<MachinesSFX>().PlayElectric ();
             GetComponentInChildren<ParticleSystem>().Pause();
+			GetComponentInChildren<SpriteRenderer>().enabled = false;
         }
     }
 
@@ -31,6 +33,7 @@ public class triggerPlateformMove : MonoBehaviour {
         if (other.gameObject.tag == "Sha")
         {
             GetComponentInChildren<ParticleSystem>().Pause();
+			GetComponentInChildren<SpriteRenderer>().enabled = false;
         }
     }
 }

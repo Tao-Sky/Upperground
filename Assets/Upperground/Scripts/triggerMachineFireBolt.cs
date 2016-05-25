@@ -13,6 +13,7 @@ public class triggerMachineFireBolt : MonoBehaviour {
         if (other.gameObject.tag == "Sha")
         {
             GetComponentInChildren<ParticleSystem>().Play();
+			GetComponentInChildren<SpriteRenderer>().enabled = true;
         }
     }
     void OnTriggerExit2D(Collider2D other)
@@ -20,6 +21,7 @@ public class triggerMachineFireBolt : MonoBehaviour {
         if (other.gameObject.tag == "Sha")
         {
             GetComponentInChildren<ParticleSystem>().Pause();
+			GetComponentInChildren<SpriteRenderer>().enabled = false;
         }
     }
 
@@ -31,6 +33,7 @@ public class triggerMachineFireBolt : MonoBehaviour {
 			GameObject.Find ("Sha").GetComponent<FollowPlayer> ().LaunchPower (1, this.transform);
 			GameObject.Find ("SFXManager").GetComponent<MachinesSFX>().PlayFire ();
             GetComponentInChildren<ParticleSystem>().Pause();
+			GetComponentInChildren<SpriteRenderer>().enabled = false;
         }
     }
     }

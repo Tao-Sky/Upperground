@@ -12,6 +12,7 @@ public class triggerMachineAcide : MonoBehaviour {
     {
         if (other.gameObject.tag == "Sha")
         {
+			GetComponentInChildren<SpriteRenderer>().enabled = true;
             GetComponentInChildren<ParticleSystem>().Play();
         }
     }
@@ -19,6 +20,7 @@ public class triggerMachineAcide : MonoBehaviour {
     {
         if (other.gameObject.tag == "Sha")
         {
+			GetComponentInChildren<SpriteRenderer>().enabled = false;
             GetComponentInChildren<ParticleSystem>().Stop();
         }
     }

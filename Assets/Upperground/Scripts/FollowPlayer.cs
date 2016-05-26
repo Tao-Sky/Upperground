@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class FollowPlayer : MonoBehaviour
 {
@@ -56,6 +57,9 @@ public class FollowPlayer : MonoBehaviour
     void Start()
     {
         positionDepart = transform.position;
+		if (SceneManager.GetActiveScene ().buildIndex == 2) {
+			PowerUnlocked = 3;
+		}
     }
 
     void Awake()

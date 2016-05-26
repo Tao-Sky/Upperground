@@ -593,6 +593,7 @@ public class FollowPlayer : MonoBehaviour
             indiceNextWayPoint = 0;
             playerFound = false;
             canalisationCalled = false;
+            speed = basicSpeed;
             transform.LookAt(new Vector3(tabWayPoints[0].position.x, tabWayPoints[0].position.y, transform.position.z));
             transform.Rotate(new Vector3(0, -90, 0), Space.Self);
         }

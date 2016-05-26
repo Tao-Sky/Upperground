@@ -62,14 +62,14 @@ public class FollowPlayer : MonoBehaviour
     {
         // DECOMMENTER POUR TEST DIRECT DANS NIVEAU 2
         //Invoke("startingCanalisation", 3);
-        PowersAvailable = true;
-        PowerUnlocked = 3;
+        //PowersAvailable = true;
+        //PowerUnlocked = 3;
 
-        if (GameObject.Find("GameManager").GetComponent<GameManager>().level > 1)
+        /*if (GameObject.Find("GameManager").GetComponent<GameManager>().level > 1)
         {
             PowersAvailable = true;
             PowerUnlocked = 3;
-        }
+        }*/
     }
 
     void startingCanalisation()

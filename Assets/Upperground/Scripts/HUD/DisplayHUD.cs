@@ -79,6 +79,7 @@ public class DisplayHUD : MonoBehaviour {
 			if(enterPause)
 			{
 				GetComponent<HudSFX> ().unpauseSFX ();
+				GameObject.Find ("Player").GetComponent<PlayerController> ().canmove = true;
 			}
 			enterPause = false;
 			if(pause.GetAlpha() != 0f)
@@ -135,6 +136,7 @@ public class DisplayHUD : MonoBehaviour {
 	void Pause()
 	{
 		GameObject.Find ("Player").GetComponent<PlayerController> ().canmove = false;
+
 		enterPause = true;
 		if(Input.GetAxis("Vertical") == 0)
 		{
@@ -254,7 +256,7 @@ public class DisplayHUD : MonoBehaviour {
 				case(0):
 				{
 					GameObject.Find ("GameManager").GetComponent<GameManager> ().SetPause(false);
-					GameObject.Find ("Player").GetComponent<PlayerController> ().canmove = true;
+					//GameObject.Find ("Player").GetComponent<PlayerController> ().canmove = true;
 					break;
 				}
 				case(1):
@@ -270,7 +272,8 @@ public class DisplayHUD : MonoBehaviour {
                             s += GameObject.Find("GameManager").GetComponent<GameManager>().level.ToString();
                             SceneManager.LoadScene(s);
                         }
-                        break;
+						//GameObject.Find ("Player").GetComponent<PlayerController> ().canmove = true;
+					    break;
                     }
 
 				case(2):
@@ -331,10 +334,8 @@ public class DisplayHUD : MonoBehaviour {
 					break;
 				}
 			}
-
 		}
-
-
+			
 	}
 
 	void HideAll()

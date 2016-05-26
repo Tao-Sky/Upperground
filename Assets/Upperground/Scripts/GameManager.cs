@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour {
 			if(Input.GetButtonDown("Start"))
 			{
 				SetPause (true);
+				GameObject.Find ("Player").GetComponent<PlayerController> ().canmove = false;
 			}
 		}
 		else
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour {
 			if(Input.GetButtonDown("Start"))
 			{
 				SetPause (false);
+				GameObject.Find ("Player").GetComponent<PlayerController> ().canmove = true;
 			}
 		}
 	}

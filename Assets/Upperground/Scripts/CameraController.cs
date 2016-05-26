@@ -17,6 +17,12 @@ public class CameraController : MonoBehaviour {
 
 	public bool IsFollowing { get; set; }
 
+	//pour la fonction de shake
+	public float shaketime=0.0f;//valeur a appeler dans le code pour set le timer
+	public float shakeAmount = 3.0f;
+	private bool firstshake;
+	private Vector3 pos;
+
 	public void Start()
 	{
 		min = Bounds[0].bounds.min;
@@ -41,24 +47,43 @@ public class CameraController : MonoBehaviour {
 
 	public void Update()
 	{
-        var x = transform.position.x;
-		var y = transform.position.y;
-
-		if (IsFollowing) 
+		if (shaketime > 0.1f) 
 		{
-			if (Mathf.Abs (x - Player.position.x) > Margin.x)
-				x = Mathf.Lerp (x, Player.position.x, Smoothing.x * Time.deltaTime);
+			if (firstshake) {
+				pos = gameObject.transform.localPosition;
+				firstshake = false;
+			}
+			Shake ();
+		} 
+		else 
+		{
+			if (!firstshake) {
+				firstshake = true;
+			}
+			var x = transform.position.x;
+			var y = transform.position.y;
 
-			if (Mathf.Abs (y - Player.position.y) > Margin.y)
-				y = Mathf.Lerp (y, Player.position.y, Smoothing.y * Time.deltaTime);
+			if (IsFollowing) {
+				if (Mathf.Abs (x - Player.position.x) > Margin.x)
+					x = Mathf.Lerp (x, Player.position.x, Smoothing.x * Time.deltaTime);
+
+				if (Mathf.Abs (y - Player.position.y) > Margin.y)
+					y = Mathf.Lerp (y, Player.position.y, Smoothing.y * Time.deltaTime);
+			}
+
+			var cameraHalfWidth = Camera.main.orthographicSize * ((float)Screen.width / Screen.height);
+
+			x = Mathf.Clamp (x, min.x + cameraHalfWidth, max.x - cameraHalfWidth);
+			y = Mathf.Clamp (y, min.y + Camera.main.orthographicSize, max.y - Camera.main.orthographicSize);
+
+			transform.position = new Vector3 (x, y, transform.position.z);
 		}
+	}
 
-		var cameraHalfWidth = Camera.main.orthographicSize * ((float)Screen.width / Screen.height);
-
-		x = Mathf.Clamp (x, min.x + cameraHalfWidth, max.x - cameraHalfWidth);
-		y = Mathf.Clamp (y, min.y + Camera.main.orthographicSize, max.y - Camera.main.orthographicSize);
-
-		transform.position = new Vector3 (x, y, transform.position.z);
+	public void Shake(){
+		float randx = Random.Range (-0.001f*shakeAmount, 0.001f*shakeAmount);
+		gameObject.transform.localPosition=new Vector3(pos.x+randx,pos.y,pos.z);
+			shaketime -= Time.deltaTime;
 	}
 
 }

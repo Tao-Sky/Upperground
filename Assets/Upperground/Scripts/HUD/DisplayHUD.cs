@@ -48,7 +48,6 @@ public class DisplayHUD : MonoBehaviour {
 	private bool available;
 	private bool options;
 
-	// Use this for initialization
 	void Awake () 
 	{
 		roue.SetColor (new Color32 (255, 255, 255, 0));
@@ -70,12 +69,15 @@ public class DisplayHUD : MonoBehaviour {
 		S2.value = (valS + 45.0f) / 45.0f;
 	}
 
-	// Update is called once per frame
 	void Update () 
 	{
-		isPaused = GameObject.Find ("GameManager").GetComponent<GameManager> ().IsPaused;
+		isPaused = GameObject.Find ("GameManager").GetComponent<GameManager> ().getPause();
+		Debug.Log ("etat menu " + etatMenu + " - isPaused " + isPaused);
+
 		if(!isPaused)
 		{
+			etatMenu = 0;
+
 			if(enterPause)
 			{
 				GetComponent<HudSFX> ().unpauseSFX ();
@@ -256,11 +258,13 @@ public class DisplayHUD : MonoBehaviour {
 				case(0):
 				{
 					GameObject.Find ("GameManager").GetComponent<GameManager> ().SetPause(false);
-					//GameObject.Find ("Player").GetComponent<PlayerController> ().canmove = true;
+					isPaused = false;
+					etatMenu = 0;
 					break;
 				}
 				case(1):
 				{
+						etatMenu = 0;
                         GameObject.Find("GameManager").GetComponent<GameManager>().SetPause(false);
                         if (GameObject.Find("GameManager").GetComponent<GameManager>().level < 2)
                         {
@@ -272,7 +276,7 @@ public class DisplayHUD : MonoBehaviour {
                             s += GameObject.Find("GameManager").GetComponent<GameManager>().level.ToString();
                             SceneManager.LoadScene(s);
                         }
-						//GameObject.Find ("Player").GetComponent<PlayerController> ().canmove = true;
+						isPaused = false;
 					    break;
                     }
 
@@ -305,6 +309,7 @@ public class DisplayHUD : MonoBehaviour {
 		float val = Input.GetAxis ("Horizontal");
 		if (Mathf.Abs(val) > 0.5f)
 		{
+
 			switch(etatMenu)
 			{
 			case(4):
@@ -339,7 +344,7 @@ public class DisplayHUD : MonoBehaviour {
 	}
 
 	void HideAll()
-	{
+	{			
 		pause.SetAlpha (0f);
 		back1.SetAlpha (0f);
 		back2.SetAlpha (0f);

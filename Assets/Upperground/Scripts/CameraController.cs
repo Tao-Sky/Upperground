@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour {
 
 	//pour la fonction de shake
 	public float shaketime=0.0f;//valeur a appeler dans le code pour set le timer
-	public float shakeAmount = 3.0f;
+	public float shakeAmount = 2.0f;
 	private bool firstshake;
 	private Vector3 pos;
 

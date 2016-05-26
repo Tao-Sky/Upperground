@@ -572,9 +572,9 @@ public class FollowPlayer : MonoBehaviour
         GameObject sha = GameObject.Find("Sha");
         if (other.gameObject.tag == "Enemy")
         {
-			int power = sha.GetComponent<Animator> ().GetInteger ("state");
+			int power = GameObject.Find("Player").GetComponent<PlayerController> ().power;
 
-			if (Input.GetButtonDown("B button") && sha.GetComponent<FollowPlayer>().playerFound && PowersAvailable && power <= PowerUnlocked + 1  )
+			if (Input.GetButtonDown("B button") && sha.GetComponent<FollowPlayer>().playerFound && PowersAvailable && power <= PowerUnlocked-1  )
             {
                 other.gameObject.GetComponent<EnemyFight>().takingDamage();
                 LaunchPower(power, other.transform);

@@ -4,15 +4,19 @@ using System.Collections;
 
 public class TriggerFinalCinematic : MonoBehaviour {
 	public AudioSource BossSFX;
+	public AudioSource Impact;
 	private bool unique = false;
+	private bool impactUnique = false;
+	private int nbBossScreams = 0;
 	void OnTriggerStay2D(Collider2D other)
 	{
 		if (other.gameObject.tag == "Player" && !unique)
 		{
 			unique = false;
-			if(!BossSFX.isPlaying)
+			if(!BossSFX.isPlaying && nbBossScreams < 1)
 			{
 				BossSFX.Play ();
+				nbBossScreams++;
 			}
 			GameObject.Find("Player").GetComponent<PlayerController>().canmove = false;
 			Animator A = GameObject.Find("Player").GetComponent<PlayerController> ().anim;
@@ -28,11 +32,20 @@ public class TriggerFinalCinematic : MonoBehaviour {
 	{
 		yield return new WaitForSeconds (4.5f);
 
-		GameObject.Find ("Boss").GetComponent<Rigidbody2D> ().gravityScale = 1f;
+		GameObject.Find ("Boss").GetComponent<Rigidbody2D> ().gravityScale = 1.0f;
 
-		yield return new WaitForSeconds (11.5f);
+		yield return new WaitForSeconds (1.5f);
 
-		GameObject.Find ("SoundManager").GetComponent<SoundManager> ().StopBossTheme (2f);
+		GameObject.Find ("Main Camera").GetComponent<CameraController> ().shaketime = 1.8f;
+		if(!Impact.isPlaying & !impactUnique)
+		{
+			Impact.Play ();
+			impactUnique = true;
+		}
+
+		yield return new WaitForSeconds (9.0f);
+
+		GameObject.Find ("SoundManager").GetComponent<SoundManager> ().StopBossTheme (2.0f);
 
 		yield return new WaitForSeconds (2.0f);
 

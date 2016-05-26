@@ -67,7 +67,7 @@ public class EnemyPathing : MonoBehaviour
 
         if (GetComponent<EnemyFight>().getNoCoroutine() == true)
         {
-            if (manager.GetComponent<GameManager>().IsPaused == true)
+            if (manager.GetComponent<GameManager>().IsPaused == true ||Time.deltaTime == 0)
             {
                 direction = lastDirection;
             }

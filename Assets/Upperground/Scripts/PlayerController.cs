@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     private Transform groundCheck;          // A position marking where to check if the player is grounded.
     public bool grounded = false;          // Whether or not the player is grounded.
+    public bool iced=false;
     public LayerMask ground_layer;
     public Animator anim;                  // Reference to the player's animator component.
 
@@ -151,7 +152,10 @@ public class PlayerController : MonoBehaviour
                 else if (h < 0 && facingRight)
                     //flip the player.
                     Flip();
-
+                if (h < 0.1 && h>-0.1 && grounded && !iced)
+                {
+                    rb2d.velocity = new Vector2(0,rb2d.velocity.y);
+                }
 
                 if (jump)
                 {

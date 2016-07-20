@@ -35,8 +35,8 @@ public class ShaSFX : MonoBehaviour {
 	{
 		int rand = Random.Range (85, 120);
 		float pitch = (float)rand / 100.0f;
-		fire.pitch = pitch;
-		fire.Play ();
+		//fire.pitch = pitch;
+		//fire.Play ();
 	}
 
 	public void Acid()
@@ -51,8 +51,8 @@ public class ShaSFX : MonoBehaviour {
 	{
 		int rand = Random.Range (85, 120);
 		float pitch = (float)rand / 100.0f;
-		ice.pitch = pitch;
-		ice.Play ();
+		//ice.pitch = pitch;
+		//ice.Play ();
 	}
 
 

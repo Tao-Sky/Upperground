@@ -48,7 +48,6 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
         }*/
         // Setting up references.
-
         groundCheck = transform.Find("groundCheck");
         anim = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
@@ -156,7 +155,7 @@ public class PlayerController : MonoBehaviour
 
                 if (h < 0.1 && h>-0.1 && grounded && !iced && rb2d.velocity.y<(5))
                 {
-                    Debug.Log("je m'applique");
+                    //Debug.Log("je m'applique");
                     rb2d.velocity = new Vector2(0,rb2d.velocity.y);
                 }
 
@@ -206,4 +205,26 @@ public class PlayerController : MonoBehaviour
         jump = false;
     }
 
+    void OnTriggerStay2D(Collider2D other)
+    {
+
+        if (other.gameObject.tag == "Mouving Plateform")
+        {
+            Debug.Log("je me colle a la plateform");
+            iced = true;
+            transform.parent = other.transform;
+
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Mouving Plateform")
+        {
+            Debug.Log("je me decolle a la plateform");
+            iced = false;
+            transform.parent = null;
+
+        }
+    }
 }

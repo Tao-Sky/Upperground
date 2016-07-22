@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
             float h = Input.GetAxis("Horizontal");
             if (canmove)
             {
-                //Debug.Log(h);
+                //Debug.Log(rb2d.velocity);
                 // The Speed animator parameter is set to the absolute value of the horizontal input.
                 anim.SetFloat("speed", Mathf.Abs(h));
 				if (anim.GetFloat("speed") > 0.3f) 
@@ -152,8 +152,11 @@ public class PlayerController : MonoBehaviour
                 else if (h < 0 && facingRight)
                     //flip the player.
                     Flip();
-                if (h < 0.1 && h>-0.1 && grounded && !iced)
+
+
+                if (h < 0.1 && h>-0.1 && grounded && !iced && rb2d.velocity.y<(5))
                 {
+                    Debug.Log("je m'applique");
                     rb2d.velocity = new Vector2(0,rb2d.velocity.y);
                 }
 
@@ -202,4 +205,5 @@ public class PlayerController : MonoBehaviour
         rb2d.AddForce(new Vector2(0f, jumpForce * 1.5f));
         jump = false;
     }
+
 }

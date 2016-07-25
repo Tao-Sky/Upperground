@@ -210,7 +210,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.tag == "Mouving Plateform")
         {
-            Debug.Log("je me colle a la plateform");
+            //Debug.Log("je me colle a la plateform");
             iced = true;
             transform.parent = other.transform;
 
@@ -221,7 +221,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Mouving Plateform")
         {
-            Debug.Log("je me decolle a la plateform");
+            //Debug.Log("je me decolle a la plateform");
             iced = false;
             transform.parent = null;
 

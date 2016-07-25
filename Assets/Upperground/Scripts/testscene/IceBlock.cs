@@ -36,25 +36,4 @@ public class IceBlock : MonoBehaviour {
         box.size = box.size - new Vector2(0, 0.00001f);
     }
 
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Player" && iced)
-        {
-            other.GetComponent<PlayerController>().iced = true;
-        }
-        if (other.gameObject.tag == "Player" && !iced)
-        {
-            
-            other.GetComponent<PlayerController>().iced = false;
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            other.GetComponent<PlayerController>().iced = false;
-        }
-    }
-
 }

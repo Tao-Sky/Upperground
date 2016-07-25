@@ -27,7 +27,7 @@ public class IcedTrigger : MonoBehaviour {
 
         void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player" && Input.GetButtonDown("Y button") /*&& GameObject.Find("Player").GetComponent<PlayerController>().power == 3*/ && !isfrozen && attente<0.1)
+        if (other.gameObject.tag == "Player" && Input.GetButtonDown("Y button") && GameObject.Find("Player").GetComponent<PlayerController>().power == 3 && !isfrozen && attente<0.1)
         {
             attente = 1;
             StartCoroutine(stop());
@@ -38,7 +38,7 @@ public class IcedTrigger : MonoBehaviour {
 
         }
 
-        if (other.gameObject.tag == "Player" && Input.GetButtonDown("Y button") /*&& GameObject.Find("Player").GetComponent<PlayerController>().power == 1*/ && isfrozen && attente<0.1)
+        if (other.gameObject.tag == "Player" && Input.GetButtonDown("Y button") && GameObject.Find("Player").GetComponent<PlayerController>().power == 1 && isfrozen && attente<0.1)
         {
             attente = 1;
             StartCoroutine(stop()); 

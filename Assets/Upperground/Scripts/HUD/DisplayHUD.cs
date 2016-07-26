@@ -72,7 +72,7 @@ public class DisplayHUD : MonoBehaviour {
 	void Update () 
 	{
 		isPaused = GameObject.Find ("GameManager").GetComponent<GameManager> ().getPause();
-		Debug.Log ("etat menu " + etatMenu + " - isPaused " + isPaused);
+		//Debug.Log ("etat menu " + etatMenu + " - isPaused " + isPaused);
 
 		if(!isPaused)
 		{

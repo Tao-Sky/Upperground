@@ -1,0 +1,390 @@
+fileFormatVersion: 2
+guid: 2fbbda4929d53fa4fa737355d12e3212
+timeCreated: 1469610641
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: frog_0
+    21300002: frog_1
+    21300004: frog_2
+    21300006: frog_3
+    21300008: frog_4
+    21300010: frog_5
+    21300012: frog_6
+    21300014: frog_7
+    21300016: frog_8
+    21300018: frog_9
+    21300020: frog_10
+    21300022: frog_11
+    21300024: frog_12
+    21300026: frog_13
+    21300028: frog_14
+    21300030: frog_15
+    21300032: frog_16
+    21300034: frog_17
+    21300036: frog_18
+    21300038: frog_19
+    21300040: frog_20
+    21300042: frog_21
+    21300044: frog_22
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: frog_0
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 192
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1, y: 16}
+        - {x: -24, y: 5}
+        - {x: -24, y: -16}
+        - {x: 21, y: -16}
+        - {x: 24, y: -3}
+        - {x: 24, y: 13}
+        - {x: 22, y: 16}
+    - name: frog_1
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 192
+        width: 64
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: frog_2
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 192
+        width: 89
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: frog_3
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 192
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1, y: 16}
+        - {x: -24, y: 5}
+        - {x: -24, y: -16}
+        - {x: 21, y: -16}
+        - {x: 24, y: -3}
+        - {x: 24, y: 13}
+        - {x: 22, y: 16}
+    - name: frog_4
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 192
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1, y: 16}
+        - {x: -24, y: 5}
+        - {x: -24, y: -16}
+        - {x: 22, y: -16}
+        - {x: 24, y: -4}
+        - {x: 24, y: 12}
+        - {x: 22, y: 16}
+    - name: frog_5
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 159
+        width: 116
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: frog_6
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 159
+        width: 127
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: frog_7
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 159
+        width: 128
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: frog_8
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 167
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: frog_9
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 159
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 3, y: 16}
+        - {x: -24, y: 0}
+        - {x: -24, y: -16}
+        - {x: 24, y: -16}
+        - {x: 24, y: 12}
+        - {x: 22, y: 16}
+    - name: frog_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 126
+        width: 128
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: frog_11
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 133
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: frog_12
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 126
+        width: 128
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: frog_13
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 126
+        width: 128
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: frog_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 93
+        width: 128
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: frog_15
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 93
+        width: 128
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: frog_16
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 93
+        width: 128
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: frog_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 60
+        width: 128
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: frog_18
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 60
+        width: 128
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: frog_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21, y: 16}
+        - {x: 4, y: 16}
+        - {x: -24, y: 6}
+        - {x: -24, y: -16}
+        - {x: 21, y: -16}
+        - {x: 24, y: -3}
+        - {x: 24, y: 12}
+    - name: frog_20
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 2
+        width: 50
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 20.5}
+        - {x: -14, y: 8.5}
+        - {x: -25, y: -1.5}
+        - {x: -25, y: -20.5}
+        - {x: 4, y: -20.5}
+        - {x: 25, y: -3.5}
+        - {x: 25, y: 12.5}
+        - {x: 18, y: 20.5}
+    - name: frog_21
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 2
+        width: 50
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 28.5}
+        - {x: -25, y: 2.5}
+        - {x: -25, y: -28.5}
+        - {x: -8, y: -28.5}
+        - {x: 25, y: 5.5}
+        - {x: 25, y: 25.5}
+        - {x: 21, y: 28.5}
+    - name: frog_22
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 18
+        width: 50
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 20.5}
+        - {x: -14, y: 8.5}
+        - {x: -25, y: -1.5}
+        - {x: -25, y: -20.5}
+        - {x: 4, y: -20.5}
+        - {x: 25, y: -3.5}
+        - {x: 25, y: 12.5}
+        - {x: 18, y: 20.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
